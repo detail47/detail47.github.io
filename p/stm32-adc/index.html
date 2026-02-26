@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="江协科技STM32标准库学习笔记-STM32 ADC">
+<title>STM32 ADC</title>
+
+<link rel='canonical' href='https://detail47.github.io/p/stm32-adc/'>
+
+<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32 ADC">
+<meta property='og:description' content="江协科技STM32标准库学习笔记-STM32 ADC">
+<meta property='og:url' content='https://detail47.github.io/p/stm32-adc/'>
+<meta property='og:site_name' content='Detail&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-02-16T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="STM32 ADC">
+<meta name="twitter:description" content="江协科技STM32标准库学习笔记-STM32 ADC">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_c89fa279e410603e.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😉</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Detail&#39;s Blog</a></h1>
+            <h2 class="site-description">本站点作为个人学习笔记</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='mailto:linxiangxi@outlook.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/detail47'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#adc简介">ADC简介</a>
+      <ol>
+        <li><a href="#转换模式">转换模式</a>
+          <ol>
+            <li><a href="#单次转换非扫描模式">单次转换，非扫描模式</a></li>
+            <li><a href="#单次转换非扫描模式-1">单次转换，非扫描模式</a></li>
+            <li><a href="#连续转换非扫描模式">连续转换，非扫描模式</a></li>
+            <li><a href="#连续转换非扫描模式-1">连续转换，非扫描模式</a></li>
+          </ol>
+        </li>
+        <li><a href="#数据对齐">数据对齐</a></li>
+        <li><a href="#触发控制">触发控制</a></li>
+      </ol>
+    </li>
+    <li><a href="#代码">代码</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/stm32/" style="background-color: #9d3d2a; color: #fff;">
+                STM32
+            </a>
+        
+            
+            
+            
+            <a href="/categories/c/" style="background-color: hsl(10, 60%, 84%); color: hsl(10, 60%, 15%);">
+                C
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/stm32-adc/">STM32 ADC</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            江协科技STM32标准库学习笔记-STM32 ADC
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2024-02-16T00:00:00Z'>2024-02-02</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="adc简介">ADC简介
+</h2><ul>
+<li>ADC（Analog-Digital Converter）模拟-数字转换器</li>
+<li>ADC可以将引脚上连续变化的模拟电压转换为内存中存储的数字变量，建立模拟电路到数字电路的桥梁</li>
+<li>12位逐次逼近型ADC，1us转换时间</li>
+<li>输入电压范围：0<del>3.3V，转换结果范围：0</del>4095</li>
+<li>18个输入通道，可测量16个外部和2个内部信号源</li>
+<li>规则组和注入组两个转换单元</li>
+<li>模拟看门狗自动监测输入电压范围</li>
+<li>STM32F103C8T6 ADC资源：ADC1、ADC2，10个外部输入通道
+<img src="/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2.png"
+	width="1150"
+	height="735"
+	srcset="/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_c791789cef5531ba.png 480w, /p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_6b5450006e7a4549.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+>
+<img src="/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307.png"
+	width="700"
+	height="911"
+	srcset="/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_ce1c38ea4af32a7e.png 480w, /p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_809227f6153627ad.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="76"
+		data-flex-basis="184px"
+	
+>
+<img src="/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594.png"
+	width="1758"
+	height="819"
+	srcset="/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_76dda07ac24b0cef.png 480w, /p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_55b1ef43c2bc3ccf.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="214"
+		data-flex-basis="515px"
+	
+></li>
+</ul>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>通道</th>
+          <th>ADC1</th>
+          <th>ADC2</th>
+          <th>ADC3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>通道0</td>
+          <td>PA0</td>
+          <td>PA0</td>
+          <td>PA0</td>
+      </tr>
+      <tr>
+          <td>通道1</td>
+          <td>PA1</td>
+          <td>PA1</td>
+          <td>PA1</td>
+      </tr>
+      <tr>
+          <td>通道2</td>
+          <td>PA2</td>
+          <td>PA2</td>
+          <td>PA2</td>
+      </tr>
+      <tr>
+          <td>通道3</td>
+          <td>PA3</td>
+          <td>PA3</td>
+          <td>PA3</td>
+      </tr>
+      <tr>
+          <td>通道4</td>
+          <td>PA4</td>
+          <td>PA4</td>
+          <td>PF6</td>
+      </tr>
+      <tr>
+          <td>通道5</td>
+          <td>PA5</td>
+          <td>PA5</td>
+          <td>PF7</td>
+      </tr>
+      <tr>
+          <td>通道6</td>
+          <td>PA6</td>
+          <td>PA6</td>
+          <td>PF8</td>
+      </tr>
+      <tr>
+          <td>通道7</td>
+          <td>PA7</td>
+          <td>PA7</td>
+          <td>PF9</td>
+      </tr>
+      <tr>
+          <td>通道8</td>
+          <td>PB0</td>
+          <td>PB0</td>
+          <td>PF10</td>
+      </tr>
+      <tr>
+          <td>通道9</td>
+          <td>PB1</td>
+          <td>PB1</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>通道10</td>
+          <td>PC0</td>
+          <td>PC0</td>
+          <td>PC0</td>
+      </tr>
+      <tr>
+          <td>通道11</td>
+          <td>PC1</td>
+          <td>PC1</td>
+          <td>PC1</td>
+      </tr>
+      <tr>
+          <td>通道12</td>
+          <td>PC2</td>
+          <td>PC2</td>
+          <td>PC2</td>
+      </tr>
+      <tr>
+          <td>通道13</td>
+          <td>PC3</td>
+          <td>PC3</td>
+          <td>PC3</td>
+      </tr>
+      <tr>
+          <td>通道14</td>
+          <td>PC4</td>
+          <td>PC4</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>通道15</td>
+          <td>PC5</td>
+          <td>PC5</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>通道16</td>
+          <td>温度传感器</td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>通道17</td>
+          <td>内部参考电压</td>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="转换模式">转换模式
+</h3><h4 id="单次转换非扫描模式">单次转换，非扫描模式
+</h4><p><img src="/p/stm32-adc/45e73d87eb7c7e83c4069bac4b909d3aae222daa.png"
+	width="1304"
+	height="917"
+	srcset="/p/stm32-adc/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_6fb45da61f862338.png 480w, /p/stm32-adc/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_e682813773778d57.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="341px"
+	
+></p>
+<h4 id="单次转换非扫描模式-1">单次转换，非扫描模式
+</h4><p><img src="/p/stm32-adc/2e639bd9a5578fb72ee3670d30053c6b508c8c34.png"
+	width="1350"
+	height="917"
+	srcset="/p/stm32-adc/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_31c279dd85051fe4.png 480w, /p/stm32-adc/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_81352a916c7579d2.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="353px"
+	
+></p>
+<h4 id="连续转换非扫描模式">连续转换，非扫描模式
+</h4><p><img src="/p/stm32-adc/15c73f79b1edca0808706db8a4116757314aa83c.png"
+	width="1573"
+	height="917"
+	srcset="/p/stm32-adc/15c73f79b1edca0808706db8a4116757314aa83c_hu_3aea126517bba368.png 480w, /p/stm32-adc/15c73f79b1edca0808706db8a4116757314aa83c_hu_d123206a2cf58e9a.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="411px"
+	
+></p>
+<h4 id="连续转换非扫描模式-1">连续转换，非扫描模式
+</h4><p><img src="/p/stm32-adc/75d066ad44867a865dec01a97ba2ef4bba92b08c.png"
+	width="1619"
+	height="856"
+	srcset="/p/stm32-adc/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_5bfae5e38e9de7a.png 480w, /p/stm32-adc/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_fc358c85b8ed14f5.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="189"
+		data-flex-basis="453px"
+	
+></p>
+<h3 id="数据对齐">数据对齐
+</h3><p><img src="/p/stm32-adc/d28764c479dbceefe685c086ad61ad80f300020e.png"
+	width="675"
+	height="267"
+	srcset="/p/stm32-adc/d28764c479dbceefe685c086ad61ad80f300020e_hu_4158e6c3e86e4ca9.png 480w, /p/stm32-adc/d28764c479dbceefe685c086ad61ad80f300020e_hu_49ebad87c3e1198e.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="252"
+		data-flex-basis="606px"
+	
+></p>
+<h3 id="触发控制">触发控制
+</h3><p><img src="/p/stm32-adc/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7.png"
+	width="1710"
+	height="618"
+	srcset="/p/stm32-adc/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_d7c8b97eeb5f8209.png 480w, /p/stm32-adc/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_77156b075702fa43.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="276"
+		data-flex-basis="664px"
+	
+></p>
+<ul>
+<li>AD转换的步骤：采样，保持，量化，编码</li>
+<li>STM32 ADC的总转换时间为：
+
+$$T_{CONV} = T_{sampling} + 12.5T_{ADC}$$</li>
+<li>例如：当ADCCLK=14MHz，采样时间为1.5个ADC周期
+
+$$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$</li>
+</ul>
+<h2 id="代码">代码
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//配置时钟
+</span></span></span><span class="line"><span class="cl"><span class="nf">RCC_APB2PeriphClockCmd</span><span class="p">(</span><span class="n">RCC_APB2Periph_ADC1</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">RCC_APB2PeriphClockCmd</span><span class="p">(</span><span class="n">RCC_APB2Periph_GPIOA</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">RCC_ADCCLKConfig</span><span class="p">(</span><span class="n">RCC_PCLK2_Div6</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//GPIO配置
+</span></span></span><span class="line"><span class="cl"><span class="n">GPIO_InitTypeDef</span> <span class="n">GPIO_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Mode</span> <span class="o">=</span> <span class="n">GPIO_Mode_AIN</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Pin</span> <span class="o">=</span> <span class="n">GPIO_Pin_0</span> <span class="o">|</span> <span class="n">GPIO_Pin_1</span> <span class="o">|</span> <span class="n">GPIO_Pin_2</span> <span class="o">|</span> <span class="n">GPIO_Pin_3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Speed</span> <span class="o">=</span> <span class="n">GPIO_Speed_50MHz</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">GPIO_Init</span><span class="p">(</span><span class="n">GPIOA</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">GPIO_InitStructure</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//ADC配置
+</span></span></span><span class="line"><span class="cl"><span class="n">ADC_InitTypeDef</span> <span class="n">ADC_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_Mode</span> <span class="o">=</span> <span class="n">ADC_Mode_Independent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_DataAlign</span> <span class="o">=</span> <span class="n">ADC_DataAlign_Right</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_ExternalTrigConv</span> <span class="o">=</span> <span class="n">ADC_ExternalTrigConv_None</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_ContinuousConvMode</span> <span class="o">=</span> <span class="n">DISABLE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_ScanConvMode</span> <span class="o">=</span> <span class="n">DISABLE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_NbrOfChannel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ADC_Init</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ADC_InitStructure</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">//ADC使能
+</span></span></span><span class="line"><span class="cl"><span class="nf">ADC_Cmd</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">//ADC校准
+</span></span></span><span class="line"><span class="cl"><span class="nf">ADC_ResetCalibration</span><span class="p">(</span><span class="n">ADC1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nf">ADC_GetResetCalibrationStatus</span><span class="p">(</span><span class="n">ADC1</span><span class="p">)</span> <span class="o">==</span> <span class="n">SET</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ADC_StartCalibration</span><span class="p">(</span><span class="n">ADC1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nf">ADC_GetCalibrationStatus</span><span class="p">(</span><span class="n">ADC1</span><span class="p">)</span> <span class="o">==</span> <span class="n">SET</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//获取值
+</span></span></span><span class="line"><span class="cl"><span class="kt">uint16_t</span> <span class="nf">AD_GetValue</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">ADC_Channel</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ADC_RegularChannelConfig</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="n">ADC_Channel</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ADC_SampleTime_55Cycles5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ADC_SoftwareStartConvCmd</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nf">ADC_GetFlagStatus</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="n">ADC_FLAG_EOC</span><span class="p">)</span> <span class="o">==</span> <span class="n">RESET</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">ADC_GetConversionValue</span><span class="p">(</span><span class="n">ADC1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>RCC_ADCCLKConfig</code>函数用于配置ADC时钟分频（ADC最高支持14M时钟）</li>
+<li><code>GPIO_InitTypeDef</code>为ADC配置结构体
+<ul>
+<li><code>ADC_Mode</code>为ADC模式</li>
+<li><code>ADC_DataAlign</code>为数据对齐模式</li>
+<li><code>ADC_ExternalTrigConv</code>为外部触发模式</li>
+<li><code>ADC_ContinuousConvMode</code>为连续转换使能</li>
+<li><code>ADC_ScanConvMode</code>为扫描模式使能</li>
+<li><code>ADC_NbrOfChannel</code>为ADC通道数</li>
+</ul>
+</li>
+<li><code>ADC_ResetCalibration</code>函数用于复位ADC校准寄存器</li>
+<li><code>ADC_GetResetCalibrationStatus</code>函数用于检查ADC校准寄存器状态</li>
+<li><code>ADC_StartCalibration</code>函数用于校准ADC</li>
+<li><code>ADC_GetCalibrationStatus</code>函数用于检查ADC校准</li>
+<li><code>ADC_RegularChannelConfig</code>函数用于配置规则组通道
+<ul>
+<li><code>ADC_Channel</code>为ADC通道：<code>ADC_Channel_x</code></li>
+<li><code>ADC_SampleTime</code>为采样时间</li>
+</ul>
+</li>
+<li><code>ADC_GetFlagStatus</code>函数用于获取ADC标志位</li>
+<li><code>ADC_GetConversionValue</code>函数用于获取规则组结果</li>
+<li><code>ADC_SoftwareStartConvCmd</code>函数用于软件触发ADC</li>
+</ul>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>RCC_PCLK2</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>RCC_PCLK2_Div2</td>
+          <td>((uint32_t)0x00000000)</td>
+          <td>二分频</td>
+      </tr>
+      <tr>
+          <td>RCC_PCLK2_Div4</td>
+          <td>((uint32_t)0x00004000)</td>
+          <td>四分频</td>
+      </tr>
+      <tr>
+          <td>RCC_PCLK2_Div6</td>
+          <td>((uint32_t)0x00008000)</td>
+          <td>六分频</td>
+      </tr>
+      <tr>
+          <td>RCC_PCLK2_Div8</td>
+          <td>((uint32_t)0x0000C000)</td>
+          <td>八分频</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>ADC_Mode</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ADC_Mode_Independent</td>
+          <td>((uint32_t)0x00000000)</td>
+          <td>独立模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_RegInjecSimult</td>
+          <td>((uint32_t)0x00010000)</td>
+          <td>混合的同步规则+注入同步模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_RegSimult_AlterTrig</td>
+          <td>((uint32_t)0x00020000)</td>
+          <td>混合的同步规则+交替触发模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_InjecSimult_FastInterl</td>
+          <td>((uint32_t)0x00030000)</td>
+          <td>混合同步注入+快速交叉模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_InjecSimult_SlowInterl</td>
+          <td>((uint32_t)0x00040000)</td>
+          <td>混合同步注入+慢速交叉模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_InjecSimult</td>
+          <td>((uint32_t)0x00050000)</td>
+          <td>注入同步模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_RegSimult</td>
+          <td>((uint32_t)0x00060000)</td>
+          <td>规则同步模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_FastInterl</td>
+          <td>((uint32_t)0x00070000)</td>
+          <td>快速交叉模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_SlowInterl</td>
+          <td>((uint32_t)0x00080000)</td>
+          <td>慢速交叉模式</td>
+      </tr>
+      <tr>
+          <td>ADC_Mode_AlterTrig</td>
+          <td>((uint32_t)0x00090000)</td>
+          <td>交替触发模式</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>更多ADC_Mode的相关内容：STM32F10xxx参考手册（中文）.pdf 页码163/手册11.9</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>ADC_DataAlign</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ADC_DataAlign_Right</td>
+          <td>((uint32_t)0x00000000)</td>
+          <td>右对齐</td>
+      </tr>
+      <tr>
+          <td>ADC_DataAlign_Left</td>
+          <td>((uint32_t)0x00000800)</td>
+          <td>左对齐</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>ADC_ExternalTrigConv</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ADC_ExternalTrigConv_T1_CC1</td>
+          <td>((uint32_t)0x00000000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T1_CC2</td>
+          <td>((uint32_t)0x00020000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T2_CC2</td>
+          <td>((uint32_t)0x00060000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T3_TRGO</td>
+          <td>((uint32_t)0x00080000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T4_CC4</td>
+          <td>((uint32_t)0x000A0000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_Ext_IT11_TIM8_TRGO</td>
+          <td>((uint32_t)0x000C0000)</td>
+          <td>外部引脚/内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T1_CC3</td>
+          <td>((uint32_t)0x00040000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_None</td>
+          <td>((uint32_t)0x000E0000)</td>
+          <td>软件触发</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T3_CC1</td>
+          <td>((uint32_t)0x00000000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T2_CC3</td>
+          <td>((uint32_t)0x00020000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T8_CC1</td>
+          <td>((uint32_t)0x00060000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T8_TRGO</td>
+          <td>((uint32_t)0x00080000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T5_CC1</td>
+          <td>((uint32_t)0x000A0000)</td>
+          <td>内部信号</td>
+      </tr>
+      <tr>
+          <td>ADC_ExternalTrigConv_T5_CC3</td>
+          <td>((uint32_t)0x000C0000)</td>
+          <td>内部信号</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>前六个与后六个分别对应ADC12和ADC3，第七、八个可用于ADC123
+更多外部触发相关内容：STM32F10xxx参考手册（中文）.pdf 页码162/手册11.7</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>ADC_SampleTime</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ADC_SampleTime_1Cycles5</td>
+          <td>((uint8_t)0x00)</td>
+          <td>Sample time equal to 1.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_7Cycles5</td>
+          <td>((uint8_t)0x01)</td>
+          <td>Sample time equal to 7.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_13Cycles5</td>
+          <td>((uint8_t)0x02)</td>
+          <td>Sample time equal to 13.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_28Cycles5</td>
+          <td>((uint8_t)0x03)</td>
+          <td>Sample time equal to 28.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_41Cycles5</td>
+          <td>((uint8_t)0x04)</td>
+          <td>Sample time equal to 41.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_55Cycles5</td>
+          <td>((uint8_t)0x05)</td>
+          <td>Sample time equal to 55.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_71Cycles5</td>
+          <td>((uint8_t)0x06)</td>
+          <td>Sample time equal to 71.5 cycles</td>
+      </tr>
+      <tr>
+          <td>ADC_SampleTime_239Cycles5</td>
+          <td>((uint8_t)0x07)</td>
+          <td>Sample time equal to 239.5 cycles</td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/stm32%E7%AE%80%E4%BB%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32简介</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Detail
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

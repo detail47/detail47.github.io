@@ -7,7 +7,629 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Mon, 05 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/stm32/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 16 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/stm32/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>STM32 ADC</title>
+        <link>https://detail47.github.io/p/stm32-adc/</link>
+        <pubDate>Fri, 16 Feb 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/stm32-adc/</guid>
+        <description>&lt;h2 id=&#34;adc简介&#34;&gt;ADC简介
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;ADC（Analog-Digital Converter）模拟-数字转换器&lt;/li&gt;
+&lt;li&gt;ADC可以将引脚上连续变化的模拟电压转换为内存中存储的数字变量，建立模拟电路到数字电路的桥梁&lt;/li&gt;
+&lt;li&gt;12位逐次逼近型ADC，1us转换时间&lt;/li&gt;
+&lt;li&gt;输入电压范围：0&lt;del&gt;3.3V，转换结果范围：0&lt;/del&gt;4095&lt;/li&gt;
+&lt;li&gt;18个输入通道，可测量16个外部和2个内部信号源&lt;/li&gt;
+&lt;li&gt;规则组和注入组两个转换单元&lt;/li&gt;
+&lt;li&gt;模拟看门狗自动监测输入电压范围&lt;/li&gt;
+&lt;li&gt;STM32F103C8T6 ADC资源：ADC1、ADC2，10个外部输入通道
+&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2.png&#34;
+	width=&#34;1150&#34;
+	height=&#34;735&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_c791789cef5531ba.png 480w, https://detail47.github.io/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_6b5450006e7a4549.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;375px&#34;
+	
+&gt;
+&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307.png&#34;
+	width=&#34;700&#34;
+	height=&#34;911&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_ce1c38ea4af32a7e.png 480w, https://detail47.github.io/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_809227f6153627ad.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;76&#34;
+		data-flex-basis=&#34;184px&#34;
+	
+&gt;
+&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594.png&#34;
+	width=&#34;1758&#34;
+	height=&#34;819&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_76dda07ac24b0cef.png 480w, https://detail47.github.io/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_55b1ef43c2bc3ccf.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;515px&#34;
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;通道&lt;/th&gt;
+          &lt;th&gt;ADC1&lt;/th&gt;
+          &lt;th&gt;ADC2&lt;/th&gt;
+          &lt;th&gt;ADC3&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道0&lt;/td&gt;
+          &lt;td&gt;PA0&lt;/td&gt;
+          &lt;td&gt;PA0&lt;/td&gt;
+          &lt;td&gt;PA0&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道1&lt;/td&gt;
+          &lt;td&gt;PA1&lt;/td&gt;
+          &lt;td&gt;PA1&lt;/td&gt;
+          &lt;td&gt;PA1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道2&lt;/td&gt;
+          &lt;td&gt;PA2&lt;/td&gt;
+          &lt;td&gt;PA2&lt;/td&gt;
+          &lt;td&gt;PA2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道3&lt;/td&gt;
+          &lt;td&gt;PA3&lt;/td&gt;
+          &lt;td&gt;PA3&lt;/td&gt;
+          &lt;td&gt;PA3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道4&lt;/td&gt;
+          &lt;td&gt;PA4&lt;/td&gt;
+          &lt;td&gt;PA4&lt;/td&gt;
+          &lt;td&gt;PF6&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道5&lt;/td&gt;
+          &lt;td&gt;PA5&lt;/td&gt;
+          &lt;td&gt;PA5&lt;/td&gt;
+          &lt;td&gt;PF7&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道6&lt;/td&gt;
+          &lt;td&gt;PA6&lt;/td&gt;
+          &lt;td&gt;PA6&lt;/td&gt;
+          &lt;td&gt;PF8&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道7&lt;/td&gt;
+          &lt;td&gt;PA7&lt;/td&gt;
+          &lt;td&gt;PA7&lt;/td&gt;
+          &lt;td&gt;PF9&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道8&lt;/td&gt;
+          &lt;td&gt;PB0&lt;/td&gt;
+          &lt;td&gt;PB0&lt;/td&gt;
+          &lt;td&gt;PF10&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道9&lt;/td&gt;
+          &lt;td&gt;PB1&lt;/td&gt;
+          &lt;td&gt;PB1&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道10&lt;/td&gt;
+          &lt;td&gt;PC0&lt;/td&gt;
+          &lt;td&gt;PC0&lt;/td&gt;
+          &lt;td&gt;PC0&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道11&lt;/td&gt;
+          &lt;td&gt;PC1&lt;/td&gt;
+          &lt;td&gt;PC1&lt;/td&gt;
+          &lt;td&gt;PC1&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道12&lt;/td&gt;
+          &lt;td&gt;PC2&lt;/td&gt;
+          &lt;td&gt;PC2&lt;/td&gt;
+          &lt;td&gt;PC2&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道13&lt;/td&gt;
+          &lt;td&gt;PC3&lt;/td&gt;
+          &lt;td&gt;PC3&lt;/td&gt;
+          &lt;td&gt;PC3&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道14&lt;/td&gt;
+          &lt;td&gt;PC4&lt;/td&gt;
+          &lt;td&gt;PC4&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道15&lt;/td&gt;
+          &lt;td&gt;PC5&lt;/td&gt;
+          &lt;td&gt;PC5&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道16&lt;/td&gt;
+          &lt;td&gt;温度传感器&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;通道17&lt;/td&gt;
+          &lt;td&gt;内部参考电压&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;转换模式&#34;&gt;转换模式
+&lt;/h3&gt;&lt;h4 id=&#34;单次转换非扫描模式&#34;&gt;单次转换，非扫描模式
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/45e73d87eb7c7e83c4069bac4b909d3aae222daa.png&#34;
+	width=&#34;1304&#34;
+	height=&#34;917&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_6fb45da61f862338.png 480w, https://detail47.github.io/p/stm32-adc/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_e682813773778d57.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;142&#34;
+		data-flex-basis=&#34;341px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;单次转换非扫描模式-1&#34;&gt;单次转换，非扫描模式
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/2e639bd9a5578fb72ee3670d30053c6b508c8c34.png&#34;
+	width=&#34;1350&#34;
+	height=&#34;917&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_31c279dd85051fe4.png 480w, https://detail47.github.io/p/stm32-adc/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_81352a916c7579d2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;353px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;连续转换非扫描模式&#34;&gt;连续转换，非扫描模式
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/15c73f79b1edca0808706db8a4116757314aa83c.png&#34;
+	width=&#34;1573&#34;
+	height=&#34;917&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/15c73f79b1edca0808706db8a4116757314aa83c_hu_3aea126517bba368.png 480w, https://detail47.github.io/p/stm32-adc/15c73f79b1edca0808706db8a4116757314aa83c_hu_d123206a2cf58e9a.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;连续转换非扫描模式-1&#34;&gt;连续转换，非扫描模式
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/75d066ad44867a865dec01a97ba2ef4bba92b08c.png&#34;
+	width=&#34;1619&#34;
+	height=&#34;856&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_5bfae5e38e9de7a.png 480w, https://detail47.github.io/p/stm32-adc/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_fc358c85b8ed14f5.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;189&#34;
+		data-flex-basis=&#34;453px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;数据对齐&#34;&gt;数据对齐
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/d28764c479dbceefe685c086ad61ad80f300020e.png&#34;
+	width=&#34;675&#34;
+	height=&#34;267&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/d28764c479dbceefe685c086ad61ad80f300020e_hu_4158e6c3e86e4ca9.png 480w, https://detail47.github.io/p/stm32-adc/d28764c479dbceefe685c086ad61ad80f300020e_hu_49ebad87c3e1198e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;252&#34;
+		data-flex-basis=&#34;606px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;触发控制&#34;&gt;触发控制
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-adc/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7.png&#34;
+	width=&#34;1710&#34;
+	height=&#34;618&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-adc/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_d7c8b97eeb5f8209.png 480w, https://detail47.github.io/p/stm32-adc/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_77156b075702fa43.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;276&#34;
+		data-flex-basis=&#34;664px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AD转换的步骤：采样，保持，量化，编码&lt;/li&gt;
+&lt;li&gt;STM32 ADC的总转换时间为：
+
+$$T_{CONV} = T_{sampling} + 12.5T_{ADC}$$&lt;/li&gt;
+&lt;li&gt;例如：当ADCCLK=14MHz，采样时间为1.5个ADC周期
+
+$$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码&#34;&gt;代码
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//配置时钟
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;RCC_APB2PeriphClockCmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RCC_APB2Periph_ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;RCC_APB2PeriphClockCmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RCC_APB2Periph_GPIOA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;RCC_ADCCLKConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RCC_PCLK2_Div6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//GPIO配置
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;GPIO_InitTypeDef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;GPIO_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIO_Mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_Mode_AIN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;GPIO_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIO_Pin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_Pin_0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_Pin_1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_Pin_2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_Pin_3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;GPIO_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIO_Speed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;GPIO_Speed_50MHz&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;GPIO_Init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIOA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIO_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//ADC配置
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitTypeDef&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_Mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_Mode_Independent&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_DataAlign&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_DataAlign_Right&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_ExternalTrigConv&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_ExternalTrigConv_None&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_ContinuousConvMode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DISABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_ScanConvMode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DISABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_NbrOfChannel&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;ADC_Init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC_InitStructure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//ADC使能
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;ADC_Cmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//ADC校准
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;ADC_ResetCalibration&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ADC_GetResetCalibrationStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;ADC_StartCalibration&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ADC_GetCalibrationStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//获取值
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;AD_GetValue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint8_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_Channel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;ADC_RegularChannelConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_Channel&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_SampleTime_55Cycles5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;ADC_SoftwareStartConvCmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ADC_GetFlagStatus&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ADC_FLAG_EOC&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RESET&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;ADC_GetConversionValue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ADC1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;RCC_ADCCLKConfig&lt;/code&gt;函数用于配置ADC时钟分频（ADC最高支持14M时钟）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GPIO_InitTypeDef&lt;/code&gt;为ADC配置结构体
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ADC_Mode&lt;/code&gt;为ADC模式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_DataAlign&lt;/code&gt;为数据对齐模式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_ExternalTrigConv&lt;/code&gt;为外部触发模式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_ContinuousConvMode&lt;/code&gt;为连续转换使能&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_ScanConvMode&lt;/code&gt;为扫描模式使能&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_NbrOfChannel&lt;/code&gt;为ADC通道数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_ResetCalibration&lt;/code&gt;函数用于复位ADC校准寄存器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_GetResetCalibrationStatus&lt;/code&gt;函数用于检查ADC校准寄存器状态&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_StartCalibration&lt;/code&gt;函数用于校准ADC&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_GetCalibrationStatus&lt;/code&gt;函数用于检查ADC校准&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_RegularChannelConfig&lt;/code&gt;函数用于配置规则组通道
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ADC_Channel&lt;/code&gt;为ADC通道：&lt;code&gt;ADC_Channel_x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_SampleTime&lt;/code&gt;为采样时间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_GetFlagStatus&lt;/code&gt;函数用于获取ADC标志位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_GetConversionValue&lt;/code&gt;函数用于获取规则组结果&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ADC_SoftwareStartConvCmd&lt;/code&gt;函数用于软件触发ADC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;RCC_PCLK2&lt;/th&gt;
+          &lt;th&gt;值&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RCC_PCLK2_Div2&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00000000)&lt;/td&gt;
+          &lt;td&gt;二分频&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RCC_PCLK2_Div4&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00004000)&lt;/td&gt;
+          &lt;td&gt;四分频&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RCC_PCLK2_Div6&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00008000)&lt;/td&gt;
+          &lt;td&gt;六分频&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RCC_PCLK2_Div8&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x0000C000)&lt;/td&gt;
+          &lt;td&gt;八分频&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;ADC_Mode&lt;/th&gt;
+          &lt;th&gt;值&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_Independent&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00000000)&lt;/td&gt;
+          &lt;td&gt;独立模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_RegInjecSimult&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00010000)&lt;/td&gt;
+          &lt;td&gt;混合的同步规则+注入同步模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_RegSimult_AlterTrig&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00020000)&lt;/td&gt;
+          &lt;td&gt;混合的同步规则+交替触发模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_InjecSimult_FastInterl&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00030000)&lt;/td&gt;
+          &lt;td&gt;混合同步注入+快速交叉模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_InjecSimult_SlowInterl&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00040000)&lt;/td&gt;
+          &lt;td&gt;混合同步注入+慢速交叉模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_InjecSimult&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00050000)&lt;/td&gt;
+          &lt;td&gt;注入同步模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_RegSimult&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00060000)&lt;/td&gt;
+          &lt;td&gt;规则同步模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_FastInterl&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00070000)&lt;/td&gt;
+          &lt;td&gt;快速交叉模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_SlowInterl&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00080000)&lt;/td&gt;
+          &lt;td&gt;慢速交叉模式&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_Mode_AlterTrig&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00090000)&lt;/td&gt;
+          &lt;td&gt;交替触发模式&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;更多ADC_Mode的相关内容：STM32F10xxx参考手册（中文）.pdf 页码163/手册11.9&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;ADC_DataAlign&lt;/th&gt;
+          &lt;th&gt;值&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_DataAlign_Right&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00000000)&lt;/td&gt;
+          &lt;td&gt;右对齐&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_DataAlign_Left&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00000800)&lt;/td&gt;
+          &lt;td&gt;左对齐&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;ADC_ExternalTrigConv&lt;/th&gt;
+          &lt;th&gt;值&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T1_CC1&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00000000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T1_CC2&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00020000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T2_CC2&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00060000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T3_TRGO&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00080000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T4_CC4&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x000A0000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_Ext_IT11_TIM8_TRGO&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x000C0000)&lt;/td&gt;
+          &lt;td&gt;外部引脚/内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T1_CC3&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00040000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_None&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x000E0000)&lt;/td&gt;
+          &lt;td&gt;软件触发&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T3_CC1&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00000000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T2_CC3&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00020000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T8_CC1&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00060000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T8_TRGO&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x00080000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T5_CC1&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x000A0000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_ExternalTrigConv_T5_CC3&lt;/td&gt;
+          &lt;td&gt;((uint32_t)0x000C0000)&lt;/td&gt;
+          &lt;td&gt;内部信号&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;前六个与后六个分别对应ADC12和ADC3，第七、八个可用于ADC123
+更多外部触发相关内容：STM32F10xxx参考手册（中文）.pdf 页码162/手册11.7&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;ADC_SampleTime&lt;/th&gt;
+          &lt;th&gt;值&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_1Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x00)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 1.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_7Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x01)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 7.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_13Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x02)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 13.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_28Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x03)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 28.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_41Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x04)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 41.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_55Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x05)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 55.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_71Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x06)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 71.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC_SampleTime_239Cycles5&lt;/td&gt;
+          &lt;td&gt;((uint8_t)0x07)&lt;/td&gt;
+          &lt;td&gt;Sample time equal to 239.5 cycles&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        </item>
+        <item>
         <title>STM32简介</title>
         <link>https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/</link>
         <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>

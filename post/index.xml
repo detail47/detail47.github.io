@@ -7,7 +7,239 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 05 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>STM32简介</title>
+        <link>https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/</link>
+        <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/</guid>
+        <description>&lt;h2 id=&#34;stm32&#34;&gt;STM32
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;STM32是ST公司基于ARM Cortex-M内核开发的32位微控制器&lt;/li&gt;
+&lt;li&gt;STM32常应用在嵌入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制、娱乐电子产品等&lt;/li&gt;
+&lt;li&gt;STM32功能强大、性能优异、片上资源丰富、功耗低，是一款经典的嵌入式微控制器
+&lt;img src=&#34;https://detail47.github.io/dfb3f685c58d2103dcd0846709c9047452795487.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;
+&lt;img src=&#34;https://detail47.github.io/a00b89ecf89a7ab60cff4745eec4bf953c0343ea.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;arm&#34;&gt;ARM
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;ARM既指ARM公司，也指ARM处理器内核&lt;/li&gt;
+&lt;li&gt;ARM公司是全球领先的半导体知识产权（IP）提供商，全世界超过95%的智能手机和平板电脑都采用ARM架构&lt;/li&gt;
+&lt;li&gt;ARM公司设计ARM内核，半导体厂商完善内核周边电路并生产芯片
+&lt;img src=&#34;https://detail47.github.io/97722a87f118684210dcf81445a6e24edd699f05.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;stm32f103c8t6&#34;&gt;STM32F103C8T6
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/d01202200da39115d723fad74ff2f28968952221.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;系列：主流系列STM32F1&lt;/li&gt;
+&lt;li&gt;内核：ARM Cortex-M3&lt;/li&gt;
+&lt;li&gt;主频：72MHz&lt;/li&gt;
+&lt;li&gt;RAM：20K（SRAM）&lt;/li&gt;
+&lt;li&gt;ROM：64K（Flash）&lt;/li&gt;
+&lt;li&gt;供电：2.0~3.6V（标准3.3V）&lt;/li&gt;
+&lt;li&gt;封装：LQFP48&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;片上资源外设&#34;&gt;片上资源/外设
+&lt;/h3&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;英文缩写&lt;/th&gt;
+          &lt;th&gt;名称&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;NVIC&lt;/td&gt;
+          &lt;td&gt;嵌套向量中断控制器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SysTick&lt;/td&gt;
+          &lt;td&gt;系统滴答定时器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RCC&lt;/td&gt;
+          &lt;td&gt;复位和时钟控制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;GPIO&lt;/td&gt;
+          &lt;td&gt;通用IO口&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AFIO&lt;/td&gt;
+          &lt;td&gt;复用IO口&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;EXTI&lt;/td&gt;
+          &lt;td&gt;外部中断&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;TIM&lt;/td&gt;
+          &lt;td&gt;定时器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ADC&lt;/td&gt;
+          &lt;td&gt;模数转换器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DMA&lt;/td&gt;
+          &lt;td&gt;直接内存访问&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;USART&lt;/td&gt;
+          &lt;td&gt;同步/异步串口通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;I2C&lt;/td&gt;
+          &lt;td&gt;I2C通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SPI&lt;/td&gt;
+          &lt;td&gt;SPI通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CAN&lt;/td&gt;
+          &lt;td&gt;CAN通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;USB&lt;/td&gt;
+          &lt;td&gt;USB通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;RTC&lt;/td&gt;
+          &lt;td&gt;实时时钟&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CRC&lt;/td&gt;
+          &lt;td&gt;CRC校验&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;PWR&lt;/td&gt;
+          &lt;td&gt;电源控制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;BKP&lt;/td&gt;
+          &lt;td&gt;备份寄存器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;IWDG&lt;/td&gt;
+          &lt;td&gt;独立看门狗&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;WWDG&lt;/td&gt;
+          &lt;td&gt;窗口看门狗&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DAC&lt;/td&gt;
+          &lt;td&gt;数模转换器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SDIO&lt;/td&gt;
+          &lt;td&gt;SD卡接口&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;FSMC&lt;/td&gt;
+          &lt;td&gt;可变静态存储控制器&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;USB OTG&lt;/td&gt;
+          &lt;td&gt;USB主机接口&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;命名规则&#34;&gt;命名规则
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/df69db3107c50007c9f6a885a9de52ba12e05af2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;引脚定义&#34;&gt;引脚定义
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;引脚重映射&#34;&gt;引脚重映射
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;RCC_APB2PeriphClockCmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RCC_APB2Periph_AFIO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;GPIO_PinRemapConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIO_PartialRemap1_TIM2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;GPIO_PinRemapConfig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;GPIO_Remap_SWJ_JTAGDisable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ENABLE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;使用引脚重映射时，需要开启AFIO时钟&lt;/li&gt;
+&lt;li&gt;该代码禁用PA15和PB3的JTAG调试，重映射为TIM2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;更多PinRemapConfig的相关内容：STM32F10xxx参考手册（中文）.pdf 页码116/手册8.3&lt;/p&gt;
+&lt;h3 id=&#34;启动配置&#34;&gt;启动配置
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;最小系统电路&#34;&gt;最小系统电路
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/9dceeb01e1317cf2daae7809d89fd8b4614a64ee.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;rcc时钟树&#34;&gt;RCC时钟树
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/810bf82bf51d9f735645b0211f4bd4cbe1a79acf.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Chinese Test</title>
         <link>https://detail47.github.io/p/test-chinese/</link>
         <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>

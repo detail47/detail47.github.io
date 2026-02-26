@@ -631,19 +631,19 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
         </item>
         <item>
         <title>STM32简介</title>
-        <link>https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/</link>
+        <link>https://detail47.github.io/p/stm32-brief/</link>
         <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/</guid>
+        <guid>https://detail47.github.io/p/stm32-brief/</guid>
         <description>&lt;h2 id=&#34;stm32&#34;&gt;STM32
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;STM32是ST公司基于ARM Cortex-M内核开发的32位微控制器&lt;/li&gt;
 &lt;li&gt;STM32常应用在嵌入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制、娱乐电子产品等&lt;/li&gt;
 &lt;li&gt;STM32功能强大、性能优异、片上资源丰富、功耗低，是一款经典的嵌入式微控制器
-&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/dfb3f685c58d2103dcd0846709c9047452795487.png&#34;
+&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/dfb3f685c58d2103dcd0846709c9047452795487.png&#34;
 	width=&#34;964&#34;
 	height=&#34;1083&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/dfb3f685c58d2103dcd0846709c9047452795487_hu_25eb14301aec886.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/dfb3f685c58d2103dcd0846709c9047452795487_hu_41d6175304a26de3.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/dfb3f685c58d2103dcd0846709c9047452795487_hu_25eb14301aec886.png 480w, https://detail47.github.io/p/stm32-brief/dfb3f685c58d2103dcd0846709c9047452795487_hu_41d6175304a26de3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -652,10 +652,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 		data-flex-basis=&#34;213px&#34;
 	
 &gt;
-&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/a00b89ecf89a7ab60cff4745eec4bf953c0343ea.png&#34;
+&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/a00b89ecf89a7ab60cff4745eec4bf953c0343ea.png&#34;
 	width=&#34;617&#34;
 	height=&#34;450&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_4c03ead3bb61495d.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_2455fc8c73d31e59.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_4c03ead3bb61495d.png 480w, https://detail47.github.io/p/stm32-brief/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_2455fc8c73d31e59.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -670,10 +670,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 &lt;li&gt;ARM既指ARM公司，也指ARM处理器内核&lt;/li&gt;
 &lt;li&gt;ARM公司是全球领先的半导体知识产权（IP）提供商，全世界超过95%的智能手机和平板电脑都采用ARM架构&lt;/li&gt;
 &lt;li&gt;ARM公司设计ARM内核，半导体厂商完善内核周边电路并生产芯片
-&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/97722a87f118684210dcf81445a6e24edd699f05.png&#34;
+&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/97722a87f118684210dcf81445a6e24edd699f05.png&#34;
 	width=&#34;971&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/97722a87f118684210dcf81445a6e24edd699f05_hu_b83a08f3230d48ef.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/97722a87f118684210dcf81445a6e24edd699f05_hu_62c84e2b0e99030.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/97722a87f118684210dcf81445a6e24edd699f05_hu_b83a08f3230d48ef.png 480w, https://detail47.github.io/p/stm32-brief/97722a87f118684210dcf81445a6e24edd699f05_hu_62c84e2b0e99030.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -684,10 +684,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 &gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;stm32f103c8t6&#34;&gt;STM32F103C8T6
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/d01202200da39115d723fad74ff2f28968952221.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/d01202200da39115d723fad74ff2f28968952221.png&#34;
 	width=&#34;583&#34;
 	height=&#34;470&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/d01202200da39115d723fad74ff2f28968952221_hu_60ec725ac2fa99b5.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/d01202200da39115d723fad74ff2f28968952221_hu_4654de121e6ef83d.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/d01202200da39115d723fad74ff2f28968952221_hu_60ec725ac2fa99b5.png 480w, https://detail47.github.io/p/stm32-brief/d01202200da39115d723fad74ff2f28968952221_hu_4654de121e6ef83d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -813,10 +813,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;命名规则&#34;&gt;命名规则
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/df69db3107c50007c9f6a885a9de52ba12e05af2.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/df69db3107c50007c9f6a885a9de52ba12e05af2.png&#34;
 	width=&#34;814&#34;
 	height=&#34;946&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_8022f4c3f04c0878.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_722ea5839ec854ca.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_8022f4c3f04c0878.png 480w, https://detail47.github.io/p/stm32-brief/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_722ea5839ec854ca.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -826,10 +826,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;引脚定义&#34;&gt;引脚定义
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8.png&#34;
 	width=&#34;682&#34;
 	height=&#34;929&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_d6d5825db938eb15.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_f458986906816326.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_d6d5825db938eb15.png 480w, https://detail47.github.io/p/stm32-brief/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_f458986906816326.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -857,10 +857,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;更多PinRemapConfig的相关内容：STM32F10xxx参考手册（中文）.pdf 页码116/手册8.3&lt;/p&gt;
 &lt;h3 id=&#34;启动配置&#34;&gt;启动配置
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9.png&#34;
 	width=&#34;1656&#34;
 	height=&#34;544&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_8f42a8264c164e0e.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_b20b8b435d76bd2b.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_8f42a8264c164e0e.png 480w, https://detail47.github.io/p/stm32-brief/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_b20b8b435d76bd2b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -870,10 +870,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;最小系统电路&#34;&gt;最小系统电路
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/9dceeb01e1317cf2daae7809d89fd8b4614a64ee.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/9dceeb01e1317cf2daae7809d89fd8b4614a64ee.png&#34;
 	width=&#34;1620&#34;
 	height=&#34;891&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_e49a7a92defcaf64.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_64053577ea7bda22.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_e49a7a92defcaf64.png 480w, https://detail47.github.io/p/stm32-brief/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_64053577ea7bda22.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -883,10 +883,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$&lt;/li&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;rcc时钟树&#34;&gt;RCC时钟树
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/810bf82bf51d9f735645b0211f4bd4cbe1a79acf.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/stm32-brief/810bf82bf51d9f735645b0211f4bd4cbe1a79acf.png&#34;
 	width=&#34;814&#34;
 	height=&#34;886&#34;
-	srcset=&#34;https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_3902f15bfa10353b.png 480w, https://detail47.github.io/p/stm32%E7%AE%80%E4%BB%8B/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_1fb2e07121569530.png 1024w&#34;
+	srcset=&#34;https://detail47.github.io/p/stm32-brief/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_3902f15bfa10353b.png 480w, https://detail47.github.io/p/stm32-brief/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_1fb2e07121569530.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>电子 on Detail&#39;s Blog</title>
+        <link>https://detail47.github.io/categories/%E7%94%B5%E5%AD%90/</link>
+        <description>Recent content in 电子 on Detail&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Detail</copyright>
+        <lastBuildDate>Sun, 08 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/%E7%94%B5%E5%AD%90/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Buck电路</title>
+        <link>https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/</link>
+        <pubDate>Sun, 08 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/</guid>
+        <description>&lt;h2 id=&#34;原理图&#34;&gt;原理图
+&lt;/h2&gt;&lt;p&gt;下图电路为异步Buck电路，将图中二极管更换为MOS管则为同步Buck电路。
+&lt;img src=&#34;https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/4a5af6ba4a316822a0a46f3d2780e96081dee22a.png&#34;
+	width=&#34;1246&#34;
+	height=&#34;629&#34;
+	srcset=&#34;https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/4a5af6ba4a316822a0a46f3d2780e96081dee22a_hu_6ba185f20aa98bba.png 480w, https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/4a5af6ba4a316822a0a46f3d2780e96081dee22a_hu_40d1dfcb9b3c96ba.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;198&#34;
+		data-flex-basis=&#34;475px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;开关导通&#34;&gt;开关导通
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/5d9f71b8b96b8e37d32df56926c46afa540e1ab3.png&#34;
+	width=&#34;1080&#34;
+	height=&#34;452&#34;
+	srcset=&#34;https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/5d9f71b8b96b8e37d32df56926c46afa540e1ab3_hu_6d892ea60766fe04.png 480w, https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/5d9f71b8b96b8e37d32df56926c46afa540e1ab3_hu_3abfbbaa147c18b4.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;573px&#34;
+	
+&gt;
+开关导通时，二极管不导通，电感$\frac{\mathrm{d}i}{\mathrm{d}t}=\frac{V_i-V_o}{L}$为一常数。电流基本呈线性增大。&lt;/p&gt;
+&lt;h3 id=&#34;开关断开&#34;&gt;开关断开
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/21bf697a359d53aa8a6797a72d34f254e72ccbf1.png&#34;
+	width=&#34;1080&#34;
+	height=&#34;452&#34;
+	srcset=&#34;https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/21bf697a359d53aa8a6797a72d34f254e72ccbf1_hu_5a6a967736023501.png 480w, https://detail47.github.io/p/buck%E7%94%B5%E8%B7%AF/21bf697a359d53aa8a6797a72d34f254e72ccbf1_hu_441c0b3ecdf99a7.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;238&#34;
+		data-flex-basis=&#34;573px&#34;
+	
+&gt;
+开关断开时，二极管导通，电感$\frac{\mathrm{d}i}{\mathrm{d}t}=-\frac{V_d+V_o}{L}$为一常数。电流基本呈线性减小。&lt;/p&gt;
+&lt;h2 id=&#34;设计目标&#34;&gt;设计目标
+&lt;/h2&gt;&lt;h3 id=&#34;已知条件&#34;&gt;已知条件
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;输入电压 $V_i$&lt;/li&gt;
+&lt;li&gt;输出电压 $V_o$&lt;/li&gt;
+&lt;li&gt;开关频率 $f$&lt;/li&gt;
+&lt;li&gt;输入纹波要求 $\Delta V_i$&lt;/li&gt;
+&lt;li&gt;输出纹波要求 $\Delta V_o$&lt;/li&gt;
+&lt;li&gt;负载电阻 $R$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;求解值&#34;&gt;求解值
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;电感量 $L$&lt;/li&gt;
+&lt;li&gt;输入滤波电容 $C_i$&lt;/li&gt;
+&lt;li&gt;输出滤波电容 $C_o$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;设计计算&#34;&gt;设计计算
+&lt;/h2&gt;&lt;h3 id=&#34;占空比&#34;&gt;占空比
+&lt;/h3&gt;&lt;p&gt;在一个周期内电感电流增加量和减少量应一致。根据上文开关打开与关闭时，电感电流对时间的导数的表达式可得下式：&lt;/p&gt;
+$$
+\frac{T_{on}}{T_{off}}=\frac{V_o+V_d}{V_i-V_o}
+$$&lt;p&gt;变换得到伏秒法则：&lt;/p&gt;
+$$
+\begin{gather}
+    V_{L_{on}}\cdot T_{on}=V_{L_{off}}\cdot T_{off}\\
+    其中
+    \begin{cases}
+        V_{L_{on}}&amp;=V_i-V_o\\
+        V_{L_{off}}&amp;=V_o+V_d
+    \end{cases}
+\end{gather}
+$$&lt;p&gt;再根据$T=T_{on}+T_{off}=\frac1T$得：
+&lt;/p&gt;
+$$
+\begin{align}     
+    &amp;\begin{cases}         
+        T_{on}=\frac{V_o+V_d}{V_i+V_d}\cdot\frac1f \\
+        T_{off}=\frac{V_i-V_o}{V_i+V_d}\cdot\frac1f\\
+    \end{cases}\\
+    &amp;D=\frac{T_{on}}T=\frac{V_o+V_d}{V_i+V_d}\qquad 对于同步Buck:\ V_d=0
+\end{align}
+$$&lt;h3 id=&#34;电感选型&#34;&gt;电感选型
+&lt;/h3&gt;&lt;p&gt;在电感的选择上需要考虑两个参数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;电感感量 $L$&lt;/li&gt;
+&lt;li&gt;电感电流 $I_L$&lt;/li&gt;
+&lt;li&gt;平均电流 $I_L^*$&lt;/li&gt;
+&lt;li&gt;纹波电流 $\Delta I_L$
+为保证输出电容电压恒定：&lt;/li&gt;
+&lt;/ol&gt;
+$$
+I_L=I_o=\frac{V_o}R
+$$&lt;p&gt;开关导通时$U=V_i-V_o$ 导通时间$\Delta t=T_{on}=\frac{V_o+V_d}{V_i+V_d}\cdot\frac1f$
+因此$\Delta I_L = U \cdot \frac{\Delta t}L=\frac{V_o+V_d}{V_i+V_d}\cdot\frac1{f\cdot L}\cdot (V_i-V_o)$
+即：&lt;/p&gt;
+$$
+\Delta I_L=\frac{V_o+V_d}{f\cdot L}\cdot\frac{V_i-V_o}{V_i+V_d}\qquad
+    对于同步Buck:\ \Delta I_L=\frac{V_o}{f\cdot L}\cdot(1-\frac{V_o}{V_i})
+$$&lt;p&gt;电感峰值电流$I_{LP}=I_o +\frac{\Delta I_L}2$，在设计中要留有一定余量
+即：&lt;/p&gt;
+$$
+\begin{align}
+        &amp;I_{LP}=I_o+\frac{V_o+V_d}{2\cdot f\cdot L}\cdot\frac{V_i-V_o}{V_i+V_d}\\
+        &amp;对于同步Buck:\ I_{LP}=I_o+\frac{V_o}{2\cdot f\cdot L}\cdot(1-\frac{V_o}{V_i})
+    \end{align}
+$$&lt;p&gt;在设计中电感纹波电流$\Delta I_L$应该是$I_L$的 ==20%~40%== 为宜，即$\Delta I_L=(0.2\sim 0.4)\cdot I_L$
+因此即可得出电感的感值：&lt;/p&gt;
+$$
+\begin{align}
+    &amp;L=\frac{V_o+V_d}{f\cdot(0.2\sim 0.4)\cdot I_o}\cdot\frac{V_i-V_o}{V_i+V_d}\\
+    &amp;对于同步Buck:\ L=\frac{V_o}{f\cdot(0.2\sim 0.4)\cdot I_o}\cdot(1-\frac{V_o}{V_i})
+    \end{align}
+$$&lt;h3 id=&#34;输入滤波电容&#34;&gt;输入滤波电容
+&lt;/h3&gt;&lt;p&gt;实际应用中，输入电源到Buck电路间有较长的导线，导线有寄生电感。导致电源对输入的响应不能达到Buck电路需求，因此需要选择合适的输入电容。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>PID</title>
+        <link>https://detail47.github.io/p/pid/</link>
+        <pubDate>Sun, 08 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/pid/</guid>
+        <description>&lt;h2 id=&#34;pid概述&#34;&gt;PID概述
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/pid/4d305447b051dae9662e5cda9044118dd2f14ed8.png&#34;
+	width=&#34;880&#34;
+	height=&#34;289&#34;
+	srcset=&#34;https://detail47.github.io/p/pid/4d305447b051dae9662e5cda9044118dd2f14ed8_hu_951896eaa9d8701f.png 480w, https://detail47.github.io/p/pid/4d305447b051dae9662e5cda9044118dd2f14ed8_hu_20d3d450e5c5d238.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;304&#34;
+		data-flex-basis=&#34;730px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;激励为系统输入与输出之差&lt;/strong&gt;&lt;/p&gt;
+$$
+e(t)=R_{in}(t)-Y{out}(t)
+$$&lt;h2 id=&#34;pid公式&#34;&gt;PID公式
+&lt;/h2&gt;$$
+u(t)=K_p\cdot err(t)+K_i\int_{0}^{t}err(t)\,dx+K_d\frac{d\,err(t)}{dt}
+$$$$
+u(t)=K_c\,[e(t)+\frac{1}{T_i}\int_{0}^{t}e(t)\,dt+T_d\frac{d\,e(t)}{dt}]
+$$&lt;p&gt;有:&lt;/p&gt;
+$$
+K_i=\frac{K_c}{T_i}
+$$$$
+K_d=K_c\cdot T_d
+$$&lt;h2 id=&#34;ziegler-nichols方法&#34;&gt;Ziegler-Nichols方法
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;先给定一个$K_{cr}$（控制器增益）值，使系统处于临界震荡。&lt;/li&gt;
+&lt;li&gt;测定系统震荡周期$T_{cr}$&lt;/li&gt;
+&lt;li&gt;计算得到$K_c$、$T_i$和$T_d$的值&lt;/li&gt;
+&lt;li&gt;基于上一步得到的值微调参数&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;控制方式&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;$K_c$&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;$T_i$&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;$T_d$&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;P&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.5K_{cr}$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\infty$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;PI&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.45K_{cr}$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.83T_{cr}$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;PD&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.8K_{cr}$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$\infty$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.12T_{cr}$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;PID&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.6K_{cr}$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.5T_{cr}$&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;$0.12T_{cr}$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;以$0.5K_{cr}$为基础&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;增大$K_i$（即减小$T_i$），需微调增大$K_c$&lt;/li&gt;
+&lt;li&gt;增大$K_d$（即增大$T_d$），需微调减小$K_c$&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

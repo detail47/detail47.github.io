@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="江协科技STM32标准库学习笔记-STM32 ADC">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="STM32标准库学习笔记-STM32 ADC">
 <title>STM32 ADC</title>
 
 <link rel='canonical' href='https://detail47.github.io/p/stm32-adc/'>
 
 <link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32 ADC">
-<meta property='og:description' content="江协科技STM32标准库学习笔记-STM32 ADC">
+<meta property='og:description' content="STM32标准库学习笔记-STM32 ADC">
 <meta property='og:url' content='https://detail47.github.io/p/stm32-adc/'>
 <meta property='og:site_name' content='Detail&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-02-16T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="STM32 ADC">
-<meta name="twitter:description" content="江协科技STM32标准库学习笔记-STM32 ADC">
+<meta name="twitter:description" content="STM32标准库学习笔记-STM32 ADC">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -172,44 +172,6 @@
             </a>
         </li>
         
-        
-        <li >
-            <a href='/%E5%85%B3%E4%BA%8E/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <circle cx="12" cy="7" r="4" />
-  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-</svg>
-
-
-
-                
-                <span>关于</span>
-            </a>
-        </li>
-        
-        
-        <li >
-            <a href='/%E9%93%BE%E6%8E%A5/' >
-                
-                
-                
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
-  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
-</svg>
-
-
-
-                
-                <span>链接</span>
-            </a>
-        </li>
-        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -304,7 +266,7 @@
             
             
             
-            <a href="/categories/c/" style="background-color: hsl(10, 60%, 84%); color: hsl(10, 60%, 15%);">
+            <a href="/categories/c/" style="background-color: #9d3d2a; color: #fff;">
                 C
             </a>
         
@@ -318,7 +280,7 @@
     
         
         <h3 class="article-subtitle">
-            江协科技STM32标准库学习笔记-STM32 ADC
+            STM32标准库学习笔记-STM32 ADC
         </h3>
         
     </div>
@@ -339,7 +301,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published" datetime='2024-02-16T00:00:00Z'>2024-02-02</time>
+                <time class="article-time--published" datetime='2024-02-16T00:00:00Z'>2024-02-16</time>
             </div>
         
 
@@ -360,12 +322,13 @@
 <li>ADC（Analog-Digital Converter）模拟-数字转换器</li>
 <li>ADC可以将引脚上连续变化的模拟电压转换为内存中存储的数字变量，建立模拟电路到数字电路的桥梁</li>
 <li>12位逐次逼近型ADC，1us转换时间</li>
-<li>输入电压范围：0<del>3.3V，转换结果范围：0</del>4095</li>
+<li>输入电压范围：0-3.3V，转换结果范围：0-4095</li>
 <li>18个输入通道，可测量16个外部和2个内部信号源</li>
 <li>规则组和注入组两个转换单元</li>
 <li>模拟看门狗自动监测输入电压范围</li>
-<li>STM32F103C8T6 ADC资源：ADC1、ADC2，10个外部输入通道
-<img src="/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2.png"
+<li>STM32F103C8T6 ADC资源：ADC1、ADC2，10个外部输入通道</li>
+</ul>
+<p><img src="/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2.png"
 	width="1150"
 	height="735"
 	srcset="/p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_c791789cef5531ba.png 480w, /p/stm32-adc/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_6b5450006e7a4549.png 1024w"
@@ -376,8 +339,8 @@
 		data-flex-grow="156"
 		data-flex-basis="375px"
 	
->
-<img src="/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307.png"
+></p>
+<p><img src="/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307.png"
 	width="700"
 	height="911"
 	srcset="/p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_ce1c38ea4af32a7e.png 480w, /p/stm32-adc/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_809227f6153627ad.png 1024w"
@@ -388,8 +351,8 @@
 		data-flex-grow="76"
 		data-flex-basis="184px"
 	
->
-<img src="/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594.png"
+></p>
+<p><img src="/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594.png"
 	width="1758"
 	height="819"
 	srcset="/p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_76dda07ac24b0cef.png 480w, /p/stm32-adc/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_55b1ef43c2bc3ccf.png 1024w"
@@ -400,8 +363,7 @@
 		data-flex-grow="214"
 		data-flex-basis="515px"
 	
-></li>
-</ul>
+></p>
 <div class="table-wrapper"><table>
   <thead>
       <tr>
@@ -605,10 +567,14 @@
 <li>AD转换的步骤：采样，保持，量化，编码</li>
 <li>STM32 ADC的总转换时间为：
 
-$$T_{CONV} = T_{sampling} + 12.5T_{ADC}$$</li>
+$$
+  T_{CONV} = T_{sampling} + 12.5T_{ADC}
+  $$</li>
 <li>例如：当ADCCLK=14MHz，采样时间为1.5个ADC周期
 
-$$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$</li>
+$$
+  T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs
+  $$</li>
 </ul>
 <h2 id="代码">代码
 </h2><div class="highlight"><div class="chroma">
@@ -675,10 +641,10 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$</li>
 </span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_ScanConvMode</span> <span class="o">=</span> <span class="n">DISABLE</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">ADC_InitStructure</span><span class="p">.</span><span class="n">ADC_NbrOfChannel</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nf">ADC_Init</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ADC_InitStructure</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl"><span class="c1">//ADC使能
 </span></span></span><span class="line"><span class="cl"><span class="nf">ADC_Cmd</span><span class="p">(</span><span class="n">ADC1</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  
 </span></span><span class="line"><span class="cl"><span class="c1">//ADC校准
 </span></span></span><span class="line"><span class="cl"><span class="nf">ADC_ResetCalibration</span><span class="p">(</span><span class="n">ADC1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="nf">ADC_GetResetCalibrationStatus</span><span class="p">(</span><span class="n">ADC1</span><span class="p">)</span> <span class="o">==</span> <span class="n">SET</span><span class="p">);</span>
@@ -1037,12 +1003,64 @@ $$ T_{CONV} = (1.5 + 12.5)T_{ADC} = 14T_{ADC} = 1μs$$</li>
             
                 
 <article class="">
-    <a href="/p/stm32-brief/">
+    <a href="/p/stm32-spi/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">STM32简介</h2>
+            <h2 class="article-title">STM32 SPI</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-i2c/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 I2C</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-dma/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 DMA</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-usart/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 USART</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-tim/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 TIM</h2>
         </div>
     </a>
 </article>

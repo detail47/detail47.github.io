@@ -7,29 +7,77 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Fri, 16 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Math</title>
+        <link>https://detail47.github.io/categories/math/</link>
+        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/math/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/math/math.webp" alt="Featured image of post Math" /&gt;</description>
+        </item>
+        <item>
+        <title>MATLAB</title>
+        <link>https://detail47.github.io/categories/matlab/</link>
+        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/matlab/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/matlab/matlab.jpg" alt="Featured image of post MATLAB" /&gt;</description>
+        </item>
+        <item>
+        <title>SAR</title>
+        <link>https://detail47.github.io/categories/sar/</link>
+        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/sar/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/sar/SAR.jpg" alt="Featured image of post SAR" /&gt;</description>
+        </item>
+        <item>
+        <title>TomoSAR</title>
+        <link>https://detail47.github.io/categories/tomosar/</link>
+        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/tomosar/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/tomosar/tomosar.png" alt="Featured image of post TomoSAR" /&gt;</description>
+        </item>
+        <item>
+        <title>电子</title>
+        <link>https://detail47.github.io/categories/%E7%94%B5%E5%AD%90/</link>
+        <pubDate>Sun, 08 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/%E7%94%B5%E5%AD%90/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/%E7%94%B5%E5%AD%90/ele.png" alt="Featured image of post 电子" /&gt;</description>
+        </item>
+        <item>
         <title>C</title>
         <link>https://detail47.github.io/categories/c/</link>
-        <pubDate>Fri, 16 Feb 2024 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
         
         <guid>https://detail47.github.io/categories/c/</guid>
-        <description></description>
+        <description>&lt;img src="https://detail47.github.io/categories/c/c.png" alt="Featured image of post C" /&gt;</description>
         </item>
         <item>
         <title>STM32</title>
         <link>https://detail47.github.io/categories/stm32/</link>
-        <pubDate>Fri, 16 Feb 2024 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
         
         <guid>https://detail47.github.io/categories/stm32/</guid>
         <description>&lt;img src="https://detail47.github.io/categories/stm32/stm32-chip.png" alt="Featured image of post STM32" /&gt;</description>
         </item>
         <item>
-        <title>Test</title>
-        <link>https://detail47.github.io/categories/test/</link>
+        <title>InSAR</title>
+        <link>https://detail47.github.io/categories/insar/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/categories/test/</guid>
-        <description>&lt;img src="https://detail47.github.io/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <guid>https://detail47.github.io/categories/insar/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/insar/InSAR.jpg" alt="Featured image of post InSAR" /&gt;</description>
+        </item>
+        <item>
+        <title>Python</title>
+        <link>https://detail47.github.io/categories/python/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/python/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/python/python.jpg" alt="Featured image of post Python" /&gt;</description>
         </item>
         
     </channel>

@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="迭代硬阈值算法（Iterative Hard Thresholding, IHT）">
+<title>IHT</title>
+
+<link rel='canonical' href='https://detail47.github.io/p/iht/'>
+
+<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="IHT">
+<meta property='og:description' content="迭代硬阈值算法（Iterative Hard Thresholding, IHT）">
+<meta property='og:url' content='https://detail47.github.io/p/iht/'>
+<meta property='og:site_name' content='Detail&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-02-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-02-10T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="IHT">
+<meta name="twitter:description" content="迭代硬阈值算法（Iterative Hard Thresholding, IHT）">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_c89fa279e410603e.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😉</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Detail&#39;s Blog</a></h1>
+            <h2 class="site-description">本站点作为个人学习笔记</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='mailto:linxiangxi@outlook.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/detail47'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#基本原理">基本原理</a></li>
+    <li><a href="#推导过程">推导过程</a>
+      <ol>
+        <li><a href="#替代目标函数surrogate-objective-function">替代目标函数（Surrogate Objective Function）</a></li>
+        <li><a href="#替代目标函数变形">替代目标函数变形</a></li>
+        <li><a href="#极值点获取">极值点获取</a></li>
+        <li><a href="#迭代公式获取">迭代公式获取</a></li>
+      </ol>
+    </li>
+    <li><a href="#代码">代码</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/sar/" style="background-color: #9d3d2a; color: #fff;">
+                SAR
+            </a>
+        
+            
+            
+            
+            <a href="/categories/tomosar/" style="background-color: #9d3d2a; color: #fff;">
+                TomoSAR
+            </a>
+        
+            
+            
+            
+            <a href="/categories/math/" style="background-color: #9d3d2a; color: #fff;">
+                Math
+            </a>
+        
+            
+            
+            
+            <a href="/categories/matlab/" style="background-color: #9d3d2a; color: #fff;">
+                MATLAB
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/iht/">IHT</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            迭代硬阈值算法（Iterative Hard Thresholding, IHT）
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-02-10T00:00:00Z'>2026-02-10</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="基本原理">基本原理
+</h2><p>迭代硬阈值算法（Iterative Hard Thresholding, IHT），在提出时称M-Sparse Algorithm。$M$稀疏问题可以表示为
+</p>
+$$
+    \min_\mathbf y\lVert \mathbf x - \Phi\mathbf y \rVert^2_2\quad \text{s.t.}\quad \lVert\mathbf y\rVert_0\le M,
+$$<p>可以得到其迭代算法</p>
+$$
+    \mathbf y^{n+1}=H_M(\mathbf y^n+\Phi^\text H(\mathbf x-\Phi\mathbf y^n)),
+$$<p>其中，$H_M$为非线性算子，其返回$M$维最大幅值</p>
+$$
+    H_M(y_i)=
+    \left\{ 
+        \begin{align}
+            0\quad \lvert y_i\rvert\lt\lambda^{0.5}_M(\mathbf y)\\
+            y_i\quad \lvert y_i\rvert\ge\lambda^{0.5}_M(\mathbf y)
+        \end{align}
+    \right..
+$$<h2 id="推导过程">推导过程
+</h2><h3 id="替代目标函数surrogate-objective-function">替代目标函数（Surrogate Objective Function）
+</h3>$$
+    C_M^S(\mathbf{y,z})=\lVert \mathbf{x-\Phi y} \rVert_2^2 - \lVert \mathbf{\Phi y-\Phi z} \rVert_2^2 + \lVert \mathbf{y-z} \rVert_2^2 \qquad \lVert\mathbf\Phi\rVert_2\lt1,
+$$<p>当$\mathbf{y=z}$时，该函数即为原目标函数，其余情况下均大于目标函数。$\lVert\mathbf\Phi\rVert_2\lt1$由$0\lt eig(\mathbf I-\mathbf \Phi^\text{H} \mathbf\Phi)\lt 1$推导出。</p>
+<h3 id="替代目标函数变形">替代目标函数变形
+</h3>$$
+    C_M^S(\mathbf{y,z})=\sum_i[y_i^2-2y_i(z_i+\phi_i^\text{T}\mathbf x-\phi_i^\text{T}\mathbf{\Phi z})]+\lVert\mathbf x\rVert_2^2+\lVert\mathbf z\rVert_2^2+\lVert\mathbf{\Phi z}\rVert_2^2,
+$$<p>由于优化目标为$\mathbf y$，而后面三项与其无关。因此，对其优化时忽略这三项不影响结果。</p>
+$$
+    C_M^S(\mathbf{y,z})\propto\sum_i[y_i^2-2y_i(z_i+\phi_i^\text{T}\mathbf x-\phi_i^\text{T}\mathbf{\Phi z})].
+$$<h3 id="极值点获取">极值点获取
+</h3>$$
+    y_i^*=z_i+\phi_i^\text H\mathbf x-\phi_i^\text H\mathbf{\Phi z},
+$$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\sum_i{-(y_i^*)^2}$。</p>
+<h3 id="迭代公式获取">迭代公式获取
+</h3><p>考虑到$\lVert\mathbf y\rVert_0\le M$的约束，需要保留$\lVert\mathbf y^*\rVert$的最大$M$项，即使用硬阈值函数。</p>
+<h2 id="代码">代码
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span><span class="lnt">352
+</span><span class="lnt">353
+</span><span class="lnt">354
+</span><span class="lnt">355
+</span><span class="lnt">356
+</span><span class="lnt">357
+</span><span class="lnt">358
+</span><span class="lnt">359
+</span><span class="lnt">360
+</span><span class="lnt">361
+</span><span class="lnt">362
+</span><span class="lnt">363
+</span><span class="lnt">364
+</span><span class="lnt">365
+</span><span class="lnt">366
+</span><span class="lnt">367
+</span><span class="lnt">368
+</span><span class="lnt">369
+</span><span class="lnt">370
+</span><span class="lnt">371
+</span><span class="lnt">372
+</span><span class="lnt">373
+</span><span class="lnt">374
+</span><span class="lnt">375
+</span><span class="lnt">376
+</span><span class="lnt">377
+</span><span class="lnt">378
+</span><span class="lnt">379
+</span><span class="lnt">380
+</span><span class="lnt">381
+</span><span class="lnt">382
+</span><span class="lnt">383
+</span><span class="lnt">384
+</span><span class="lnt">385
+</span><span class="lnt">386
+</span><span class="lnt">387
+</span><span class="lnt">388
+</span><span class="lnt">389
+</span><span class="lnt">390
+</span><span class="lnt">391
+</span><span class="lnt">392
+</span><span class="lnt">393
+</span><span class="lnt">394
+</span><span class="lnt">395
+</span><span class="lnt">396
+</span><span class="lnt">397
+</span><span class="lnt">398
+</span><span class="lnt">399
+</span><span class="lnt">400
+</span><span class="lnt">401
+</span><span class="lnt">402
+</span><span class="lnt">403
+</span><span class="lnt">404
+</span><span class="lnt">405
+</span><span class="lnt">406
+</span><span class="lnt">407
+</span><span class="lnt">408
+</span><span class="lnt">409
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="k">function</span><span class="w"> </span>[s, err_mse, iter_time]<span class="p">=</span><span class="nf">hard_l0_Mterm</span><span class="p">(</span>x,A,m,M,varargin<span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c">% hard_l0_Mterm: Hard thresholding algorithm that keeps exactly M elements </span>
+</span></span><span class="line"><span class="cl"><span class="c">% in each iteration. </span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% This algorithm has certain performance guarantees as described in [1],</span>
+</span></span><span class="line"><span class="cl"><span class="c">% [2] and [3].</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Usage</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   [s, err_mse, iter_time]=hard_l0_Mterm(x,P,m,M,&#39;option_name&#39;,&#39;option_value&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Input</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   Mandatory:</span>
+</span></span><span class="line"><span class="cl"><span class="c">%               x   Observation vector to be decomposed</span>
+</span></span><span class="line"><span class="cl"><span class="c">%               P   Either:</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                       1) An nxm matrix (n must be dimension of x)</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                       2) A function handle (type &#34;help function_format&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c">%                          for more information)</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                          Also requires specification of P_trans option.</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                       3) An object handle (type &#34;help object_format&#34; for </span>
+</span></span><span class="line"><span class="cl"><span class="c">%                          more information)</span>
+</span></span><span class="line"><span class="cl"><span class="c">%               m   length of s </span>
+</span></span><span class="line"><span class="cl"><span class="c">%               M   non-zero elements to keep in each iteration</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   Possible additional options:</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   (specify as many as you want using &#39;option_name&#39;,&#39;option_value&#39; pairs)</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   See below for explanation of options:</span>
+</span></span><span class="line"><span class="cl"><span class="c">%__________________________________________________________________________</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   option_name    |     available option_values                | default</span>
+</span></span><span class="line"><span class="cl"><span class="c">%--------------------------------------------------------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   stopTol        | number (see below)                         | 1e-16</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   P_trans        | function_handle (see below)                | </span>
+</span></span><span class="line"><span class="cl"><span class="c">%   maxIter        | positive integer (see below)               | n^2</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   verbose        | true, false                                | false</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   start_val      | vector of length m                         | zeros</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   step_size      | number                                     | 0 (auto)</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   stopping criteria used : (OldRMS-NewRMS)/RMS(x) &lt; stopTol</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   stopTol: Value for stopping criterion.</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   P_trans: If P is a function handle, then P_trans has to be specified and </span>
+</span></span><span class="line"><span class="cl"><span class="c">%            must be a function handle. </span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   maxIter: Maximum number of allowed iterations.</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   verbose: Logical value to allow algorithm progress to be displayed.</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   start_val: Allows algorithms to start from partial solution.</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Outputs</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%    s              Solution vector </span>
+</span></span><span class="line"><span class="cl"><span class="c">%    err_mse        Vector containing mse of approximation error for each </span>
+</span></span><span class="line"><span class="cl"><span class="c">%                   iteration</span>
+</span></span><span class="line"><span class="cl"><span class="c">%    iter_time      Vector containing computation times for each iteration</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Description</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   Implements the M-sparse algorithm described in [1], [2] and [3].</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   This algorithm takes a gradient step and then thresholds to only retain</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   M non-zero elements. It allows the step-size to be calculated</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   automatically as described in [3] and is therefore now independent from </span>
+</span></span><span class="line"><span class="cl"><span class="c">%   a rescaling of P.</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   </span>
+</span></span><span class="line"><span class="cl"><span class="c">%   </span>
+</span></span><span class="line"><span class="cl"><span class="c">% References</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   [1]  T. Blumensath and M.E. Davies, &#34;Iterative Thresholding for Sparse </span>
+</span></span><span class="line"><span class="cl"><span class="c">%        Approximations&#34;, submitted, 2007</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   [2]  T. Blumensath and M. Davies; &#34;Iterative Hard Thresholding for </span>
+</span></span><span class="line"><span class="cl"><span class="c">%        Compressed Sensing&#34; to appear Applied and Computational Harmonic </span>
+</span></span><span class="line"><span class="cl"><span class="c">%        Analysis </span>
+</span></span><span class="line"><span class="cl"><span class="c">%   [3] T. Blumensath and M. Davies; &#34;A modified Iterative Hard </span>
+</span></span><span class="line"><span class="cl"><span class="c">%        Thresholding algorithm with guaranteed performance and stability&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c">%        in preparation (title may change) </span>
+</span></span><span class="line"><span class="cl"><span class="c">% See Also</span>
+</span></span><span class="line"><span class="cl"><span class="c">%   hard_l0_reg</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Copyright (c) 2007 Thomas Blumensath</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% The University of Edinburgh</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Email: thomas.blumensath@ed.ac.uk</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Comments and bug reports welcome</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% This file is part of sparsity Version 0.4</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Created: April 2007</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Modified January 2009</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Part of this toolbox was developed with the support of EPSRC Grant</span>
+</span></span><span class="line"><span class="cl"><span class="c">% D000246/1</span>
+</span></span><span class="line"><span class="cl"><span class="c">%</span>
+</span></span><span class="line"><span class="cl"><span class="c">% Please read COPYRIGHT.m for terms and conditions.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                    Default values and initialisation</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">n1</span> <span class="n">n2</span><span class="p">]=</span><span class="nb">size</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">n2</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span><span class="p">=</span><span class="n">n1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span> <span class="n">n1</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">=</span><span class="n">x</span><span class="o">&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span><span class="p">=</span><span class="n">n2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">   <span class="n">error</span><span class="p">(</span><span class="s">&#39;x must be a vector.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">sigsize</span>     <span class="p">=</span> <span class="n">x</span><span class="o">&#39;*</span><span class="n">x</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">oldERR</span>      <span class="p">=</span> <span class="n">sigsize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">err_mse</span>     <span class="p">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="n">iter_time</span>   <span class="p">=</span> <span class="p">[];</span>
+</span></span><span class="line"><span class="cl"><span class="n">STOPTOL</span>     <span class="p">=</span> <span class="mf">1e-16</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">MAXITER</span>     <span class="p">=</span> <span class="n">n</span>^<span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">verbose</span>     <span class="p">=</span> <span class="n">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">initial_given</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s_initial</span>   <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">MU</span>          <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">verbose</span>
+</span></span><span class="line"><span class="cl">   <span class="n">display</span><span class="p">(</span><span class="s">&#39;Initialising...&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                           Output variables</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="n">nargout</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">        <span class="n">comp_err</span><span class="p">=</span><span class="n">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">comp_time</span><span class="p">=</span><span class="n">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">2</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">comp_err</span><span class="p">=</span><span class="n">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">comp_time</span><span class="p">=</span><span class="n">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">comp_err</span><span class="p">=</span><span class="n">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">comp_time</span><span class="p">=</span><span class="n">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="p">(</span><span class="s">&#39;Please assign output variable.&#39;</span><span class="p">)</span>        
+</span></span><span class="line"><span class="cl">    <span class="k">otherwise</span>
+</span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="p">(</span><span class="s">&#39;Too many output arguments specified&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                       Look through options</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">% Put option into nice format</span>
+</span></span><span class="line"><span class="cl"><span class="n">Options</span><span class="p">={};</span>
+</span></span><span class="line"><span class="cl"><span class="n">OS</span><span class="p">=</span><span class="n">nargin</span><span class="o">-</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">OS</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="p">},</span><span class="s">&#39;cell&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CellSize</span><span class="p">=</span><span class="nb">length</span><span class="p">(</span><span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ThisCell</span><span class="p">=</span><span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="nb">j</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">CellSize</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Options</span><span class="p">{</span><span class="n">c</span><span class="p">}=</span><span class="n">ThisCell</span><span class="p">{</span><span class="nb">j</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span><span class="p">=</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Options</span><span class="p">{</span><span class="n">c</span><span class="p">}=</span><span class="n">varargin</span><span class="p">{</span><span class="nb">i</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">c</span><span class="p">=</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="n">OS</span><span class="p">=</span><span class="nb">length</span><span class="p">(</span><span class="n">Options</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">rem</span><span class="p">(</span><span class="n">OS</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">   <span class="n">error</span><span class="p">(</span><span class="s">&#39;Something is wrong with argument name and argument value pairs.&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="n">OS</span>
+</span></span><span class="line"><span class="cl">   <span class="k">switch</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;stopTol&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;numeric&#39;</span><span class="p">)</span> <span class="p">;</span> <span class="n">STOPTOL</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>   
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;stopTol must be number. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;P_trans&#39;</span><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;function_handle&#39;</span><span class="p">);</span> <span class="n">Pt</span> <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>   
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;P_trans must be function _handle. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;maxIter&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;numeric&#39;</span><span class="p">);</span> <span class="n">MAXITER</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>             
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;maxIter must be a number. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;verbose&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;logical&#39;</span><span class="p">);</span> <span class="n">verbose</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>   
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;verbose must be a logical. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span> 
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;start_val&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;numeric&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">length</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">})</span> <span class="o">==</span> <span class="n">m</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">s_initial</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>  
+</span></span><span class="line"><span class="cl">                <span class="n">initial_given</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;start_val must be a vector of length m. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;step_size&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;numeric&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">})</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">MU</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>   
+</span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;Stepsize must be between a positive number. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        <span class="k">otherwise</span>
+</span></span><span class="line"><span class="cl">            <span class="n">error</span><span class="p">(</span><span class="s">&#39;Unrecognised option. Exiting.&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">   <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">nargout</span> <span class="o">&gt;</span><span class="p">=</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">err_mse</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">MAXITER</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">nargout</span> <span class="o">==</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iter_time</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">MAXITER</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                        Make P and Pt functions</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span>          <span class="n">isa</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;float&#39;</span><span class="p">)</span>      <span class="n">P</span> <span class="p">=@(</span><span class="n">z</span><span class="p">)</span> <span class="n">A</span><span class="o">*</span><span class="n">z</span><span class="p">;</span>  <span class="n">Pt</span> <span class="p">=@(</span><span class="n">z</span><span class="p">)</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span>      <span class="n">isobject</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>         <span class="n">P</span> <span class="p">=@(</span><span class="n">z</span><span class="p">)</span> <span class="n">A</span><span class="o">*</span><span class="n">z</span><span class="p">;</span>  <span class="n">Pt</span> <span class="p">=@(</span><span class="n">z</span><span class="p">)</span> <span class="n">A</span><span class="o">&#39;*</span><span class="n">z</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elseif</span>      <span class="n">isa</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;function_handle&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">try</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span>          <span class="n">isa</span><span class="p">(</span><span class="n">Pt</span><span class="p">,</span><span class="s">&#39;function_handle&#39;</span><span class="p">);</span> <span class="n">P</span><span class="p">=</span><span class="n">A</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>        <span class="n">error</span><span class="p">(</span><span class="s">&#39;If P is a function handle, Pt also needs to be a function handle. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">catch</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;If P is a function handle, Pt needs to be specified. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>        <span class="n">error</span><span class="p">(</span><span class="s">&#39;P is of unsupported type. Use matrix, function_handle or object. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                        Do we start from zero or not?</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">initial_given</span> <span class="o">==</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">length</span><span class="p">(</span><span class="nb">find</span><span class="p">(</span><span class="n">s_initial</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">M</span>
+</span></span><span class="line"><span class="cl">        <span class="n">display</span><span class="p">(</span><span class="s">&#39;Initial vector has more than M non-zero elements. Keeping only M largest.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span>                   <span class="p">=</span>   <span class="n">s_initial</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span><span class="p">(</span><span class="n">sortind</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">))</span> <span class="p">=</span>   <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Ps</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Residual</span>            <span class="p">=</span>   <span class="n">x</span><span class="o">-</span><span class="n">Ps</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">oldERR</span>      <span class="p">=</span> <span class="n">Residual</span><span class="o">&#39;*</span><span class="n">Residual</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s_initial</span>   <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Residual</span>    <span class="p">=</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span>           <span class="p">=</span> <span class="n">s_initial</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Ps</span>          <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">oldERR</span>      <span class="p">=</span> <span class="n">sigsize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                 Random Check to see if dictionary norm is below 1 </span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">x_test</span><span class="p">=</span><span class="nb">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x_test</span><span class="p">=</span><span class="n">x_test</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">x_test</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nP</span><span class="p">=</span><span class="n">norm</span><span class="p">(</span><span class="n">P</span><span class="p">(</span><span class="n">x_test</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">MU</span><span class="o">*</span><span class="n">nP</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">display</span><span class="p">(</span><span class="s">&#39;WARNING! Algorithm likely to become unstable.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">display</span><span class="p">(</span><span class="s">&#39;Use smaller step-size or || P ||_2 &lt; 1.&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                        Main algorithm</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">verbose</span>
+</span></span><span class="line"><span class="cl">   <span class="n">display</span><span class="p">(</span><span class="s">&#39;Main iterations...&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="n">tic</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">done</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">iter</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">~</span><span class="n">done</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">MU</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c">%Calculate optimal step size and do line search</span>
+</span></span><span class="line"><span class="cl">        <span class="n">olds</span>                <span class="p">=</span>   <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">oldPs</span>               <span class="p">=</span>   <span class="n">Ps</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">IND</span>                 <span class="p">=</span>   <span class="n">s</span><span class="o">~=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">d</span>                   <span class="p">=</span>   <span class="n">Pt</span><span class="p">(</span><span class="n">Residual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c">% If the current vector is zero, we take the largest elements in d</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sum</span><span class="p">(</span><span class="n">IND</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="p">[</span><span class="n">dsort</span> <span class="n">sortdind</span><span class="p">]</span>    <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">IND</span><span class="p">(</span><span class="n">sortdind</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">))</span>  <span class="p">=</span>   <span class="mi">1</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">         <span class="k">end</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">id</span>                  <span class="p">=</span>   <span class="p">(</span><span class="n">IND</span><span class="o">.*</span><span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Pd</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mu</span>                  <span class="p">=</span>   <span class="n">id</span><span class="o">&#39;*</span><span class="n">id</span><span class="o">/</span><span class="p">(</span><span class="n">Pd</span><span class="o">&#39;*</span><span class="n">Pd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span>                   <span class="p">=</span>   <span class="n">olds</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">(</span><span class="n">sortind</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">))</span> <span class="p">=</span>   <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Ps</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c">% Calculate step-size requirement </span>
+</span></span><span class="line"><span class="cl">        <span class="n">omega</span>               <span class="p">=</span>   <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">olds</span><span class="p">)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">Ps</span><span class="o">-</span><span class="n">oldPs</span><span class="p">))</span>^<span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c">% As long as the support changes and mu &gt; omega, we decrease mu</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">mu</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">0.99</span><span class="p">)</span><span class="o">*</span><span class="n">omega</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span><span class="p">(</span><span class="n">xor</span><span class="p">(</span><span class="n">IND</span><span class="p">,</span><span class="n">s</span><span class="o">~=</span><span class="mi">0</span><span class="p">))</span><span class="o">~=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span><span class="p">(</span><span class="n">IND</span><span class="p">)</span><span class="o">~=</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="c">%             display([&#39;decreasing mu&#39;])</span>
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    <span class="c">% We use a simple line search, halving mu in each step</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">mu</span>                  <span class="p">=</span>   <span class="n">mu</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">s</span>                   <span class="p">=</span>   <span class="n">olds</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">s</span><span class="p">(</span><span class="n">sortind</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">))</span> <span class="p">=</span>   <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Ps</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="c">% Calculate step-size requirement </span>
+</span></span><span class="line"><span class="cl">                    <span class="n">omega</span>               <span class="p">=</span>   <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">olds</span><span class="p">)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">Ps</span><span class="o">-</span><span class="n">oldPs</span><span class="p">))</span>^<span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="c">% Use fixed step size</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span>                   <span class="p">=</span>   <span class="n">s</span> <span class="o">+</span> <span class="n">MU</span> <span class="o">*</span> <span class="n">Pt</span><span class="p">(</span><span class="n">Residual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">(</span><span class="n">sortind</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">))</span> <span class="p">=</span>   <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Ps</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Residual</span>            <span class="p">=</span>   <span class="n">x</span><span class="o">-</span><span class="n">Ps</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">     <span class="n">ERR</span><span class="p">=</span><span class="n">Residual</span><span class="o">&#39;*</span><span class="n">Residual</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">comp_err</span>
+</span></span><span class="line"><span class="cl">         <span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">)=</span><span class="n">ERR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">end</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">comp_time</span>
+</span></span><span class="line"><span class="cl">         <span class="n">iter_time</span><span class="p">(</span><span class="n">iter</span><span class="p">)=</span><span class="n">toc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                        Are we done yet?</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="n">comp_err</span> <span class="o">&amp;&amp;</span> <span class="n">iter</span> <span class="o">&gt;</span><span class="p">=</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">             <span class="k">if</span> <span class="p">((</span><span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">))</span><span class="o">/</span><span class="n">sigsize</span><span class="o">&lt;</span><span class="n">STOPTOL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                 <span class="k">if</span> <span class="n">verbose</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">display</span><span class="p">([</span><span class="s">&#39;Stopping. Approximation error changed less than &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">STOPTOL</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">                 <span class="k">end</span>
+</span></span><span class="line"><span class="cl">                <span class="n">done</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">             <span class="k">elseif</span> <span class="n">verbose</span> <span class="o">&amp;&amp;</span> <span class="n">toc</span><span class="o">-</span><span class="n">t</span><span class="o">&gt;</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">                <span class="n">display</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;Iteration %i. --- %i mse change&#39;</span><span class="p">,</span><span class="n">iter</span> <span class="p">,(</span><span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">))</span><span class="o">/</span><span class="n">sigsize</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">t</span><span class="p">=</span><span class="n">toc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">             <span class="k">end</span>
+</span></span><span class="line"><span class="cl">         <span class="k">else</span>
+</span></span><span class="line"><span class="cl">             <span class="k">if</span> <span class="p">((</span><span class="n">oldERR</span> <span class="o">-</span> <span class="n">ERR</span><span class="p">)</span><span class="o">/</span><span class="n">sigsize</span> <span class="o">&lt;</span> <span class="n">STOPTOL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">iter</span> <span class="o">&gt;</span><span class="p">=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                 <span class="k">if</span> <span class="n">verbose</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">display</span><span class="p">([</span><span class="s">&#39;Stopping. Approximation error changed less than &#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">STOPTOL</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">                 <span class="k">end</span>
+</span></span><span class="line"><span class="cl">                <span class="n">done</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">             <span class="k">elseif</span> <span class="n">verbose</span> <span class="o">&amp;&amp;</span> <span class="n">toc</span><span class="o">-</span><span class="n">t</span><span class="o">&gt;</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">                <span class="n">display</span><span class="p">(</span><span class="n">sprintf</span><span class="p">(</span><span class="s">&#39;Iteration %i. --- %i mse change&#39;</span><span class="p">,</span><span class="n">iter</span> <span class="p">,(</span><span class="n">oldERR</span> <span class="o">-</span> <span class="n">ERR</span><span class="p">)</span><span class="o">/</span><span class="n">sigsize</span><span class="p">))</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">t</span><span class="p">=</span><span class="n">toc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">             <span class="k">end</span>
+</span></span><span class="line"><span class="cl">         <span class="k">end</span>
+</span></span><span class="line"><span class="cl">         
+</span></span><span class="line"><span class="cl">    <span class="c">% Also stop if residual gets too small or maxIter reached</span>
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">comp_err</span>
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-16</span>
+</span></span><span class="line"><span class="cl">             <span class="n">display</span><span class="p">(</span><span class="s">&#39;Stopping. Exact signal representation found!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">             <span class="n">done</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="k">end</span>
+</span></span><span class="line"><span class="cl">     <span class="k">elseif</span> <span class="n">iter</span><span class="o">&gt;</span><span class="mi">1</span> 
+</span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="n">ERR</span><span class="o">&lt;</span><span class="mf">1e-16</span>
+</span></span><span class="line"><span class="cl">             <span class="n">display</span><span class="p">(</span><span class="s">&#39;Stopping. Exact signal representation found!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">             <span class="n">done</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">         <span class="k">end</span>
+</span></span><span class="line"><span class="cl">     <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">iter</span> <span class="o">&gt;</span><span class="p">=</span> <span class="n">MAXITER</span>
+</span></span><span class="line"><span class="cl">         <span class="n">display</span><span class="p">(</span><span class="s">&#39;Stopping. Maximum number of iterations reached!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">         <span class="n">done</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">     <span class="k">end</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                    If not done, take another round</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="o">~</span><span class="n">done</span>
+</span></span><span class="line"><span class="cl">        <span class="n">iter</span><span class="p">=</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">oldERR</span><span class="p">=</span><span class="n">ERR</span><span class="p">;</span>        
+</span></span><span class="line"><span class="cl">     <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl"><span class="c">%                  Only return as many elements as iterations</span>
+</span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">nargout</span> <span class="o">&gt;</span><span class="p">=</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">err_mse</span> <span class="p">=</span> <span class="n">err_mse</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">iter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">nargout</span> <span class="o">==</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iter_time</span> <span class="p">=</span> <span class="n">iter_time</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">iter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">verbose</span>
+</span></span><span class="line"><span class="cl">   <span class="n">display</span><span class="p">(</span><span class="s">&#39;Done&#39;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/mm-%E4%BC%98%E5%8C%96%E6%A1%86%E6%9E%B6/">
+        
+        
+            <div class="article-image">
+                <img src="/p/mm-%E4%BC%98%E5%8C%96%E6%A1%86%E6%9E%B6/b5b3d6bcffab9a324c9342ea9be2ec59.43e1468037d6ed1e60738651fcfda82e_hu_26e8ae42dbf361e9.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MM 优化框架"
+                        
+                        data-hash="md5-Q&#43;FGgDfW7R5gc4ZR/P2oLg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MM 优化框架</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E6%88%90%E5%83%8F%E9%A2%84%E5%A4%84%E7%90%86/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%88%90%E5%83%8F%E9%A2%84%E5%A4%84%E7%90%86/intf.9cd6746367cb1257ffb55c2d69246dea_hu_68adf9eb59e1e685.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 成像预处理"
+                        
+                        data-hash="md5-nNZ0Y2fLElf/tVwtaSRt6g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">成像预处理</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/%E5%8E%8B%E7%BC%A9%E6%84%9F%E7%9F%A5/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%8E%8B%E7%BC%A9%E6%84%9F%E7%9F%A5/eLnOuUWj6iMTxmh.065cb9912ba0b087f85646bfd26e61c2_hu_ef7bf6d8e52c4da.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 压缩感知"
+                        
+                        data-hash="md5-Bly5kSugsIf4Vka/0m5hwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">压缩感知</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sar%E5%87%A0%E4%BD%95/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sar%E5%87%A0%E4%BD%95/SAR.4b286ddefb71e2f90b0a0c5b4402cfd1_hu_9c5ede2852814e82.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SAR几何"
+                        
+                        data-hash="md5-Syht3vtx4vkLCgxbRALP0Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SAR几何</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Detail
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

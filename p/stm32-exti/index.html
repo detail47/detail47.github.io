@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="STM32标准库学习笔记-STM32 EXTI">
+<title>STM32 EXTI</title>
+
+<link rel='canonical' href='https://detail47.github.io/p/stm32-exti/'>
+
+<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32 EXTI">
+<meta property='og:description' content="STM32标准库学习笔记-STM32 EXTI">
+<meta property='og:url' content='https://detail47.github.io/p/stm32-exti/'>
+<meta property='og:site_name' content='Detail&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2024-02-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-02-02T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="STM32 EXTI">
+<meta name="twitter:description" content="STM32标准库学习笔记-STM32 EXTI">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_c89fa279e410603e.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😉</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Detail&#39;s Blog</a></h1>
+            <h2 class="site-description">本站点作为个人学习笔记</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='mailto:linxiangxi@outlook.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/detail47'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#中断">中断</a>
+      <ol>
+        <li><a href="#stm32中断">STM32中断</a></li>
+      </ol>
+    </li>
+    <li><a href="#nvic">NVIC</a>
+      <ol>
+        <li><a href="#基本结构">基本结构</a>
+          <ol>
+            <li><a href="#优先级分组">优先级分组</a></li>
+          </ol>
+        </li>
+        <li><a href="#代码">代码</a>
+          <ol>
+            <li><a href="#中断通道以stm32f10x_为准">中断通道（以STM32F10X_MD为准）</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#exti">EXTI</a>
+      <ol>
+        <li><a href="#基本结构-1">基本结构</a></li>
+        <li><a href="#代码-1">代码</a></li>
+      </ol>
+    </li>
+    <li><a href="#afio">AFIO</a>
+      <ol>
+        <li><a href="#基本结构-2">基本结构</a></li>
+        <li><a href="#代码-2">代码</a></li>
+      </ol>
+    </li>
+    <li><a href="#外部中断完整配置流程">外部中断完整配置流程</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/stm32/" style="background-color: #9d3d2a; color: #fff;">
+                STM32
+            </a>
+        
+            
+            
+            
+            <a href="/categories/c/" style="background-color: #9d3d2a; color: #fff;">
+                C
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/stm32-exti/">STM32 EXTI</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            STM32标准库学习笔记-STM32 EXTI
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2024-02-02T00:00:00Z'>2024-02-02</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="中断">中断
+</h2><ul>
+<li>中断：在主程序运行过程中，出现了特定的中断触发条件（中断源），使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行</li>
+<li>中断优先级：当有多个中断源同时申请中断时，CPU会根据中断源的轻重缓急进行裁决，优先响应更加紧急的中断源</li>
+<li>中断嵌套：当一个中断程序正在运行时，又有新的更高优先级的中断源申请中断，CPU再次暂停当前中断程序，转而去处理新的中断程序，处理完成后依次进行返回</li>
+</ul>
+<h3 id="stm32中断">STM32中断
+</h3><ul>
+<li>68个可屏蔽中断通道，包含EXTI、TIM、ADC、USART、SPI、I2C、RTC等多个外设</li>
+<li>使用NVIC统一管理中断，每个中断通道都拥有16个可编程的优先等级，可对优先级进行分组，进一步设置抢占优先级和响应优先级</li>
+</ul>
+<p><img src="/p/stm32-exti/12b992e6974270b3bcf51db87a41099d1c50107e.png"
+	width="590"
+	height="442"
+	srcset="/p/stm32-exti/12b992e6974270b3bcf51db87a41099d1c50107e_hu_f91ae198c59cffb3.png 480w, /p/stm32-exti/12b992e6974270b3bcf51db87a41099d1c50107e_hu_f50fa3cf01131c21.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="133"
+		data-flex-basis="320px"
+	
+></p>
+<p><img src="/p/stm32-exti/db76a403f40da74f949aabb7dc0626ed6dd0c9a3.png"
+	width="590"
+	height="452"
+	srcset="/p/stm32-exti/db76a403f40da74f949aabb7dc0626ed6dd0c9a3_hu_d1fa059c445bd5bf.png 480w, /p/stm32-exti/db76a403f40da74f949aabb7dc0626ed6dd0c9a3_hu_38b61f6470ce220f.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="313px"
+	
+></p>
+<p><img src="/p/stm32-exti/239d153d18bbd827da7c2fed2a10ccc8f0a97f54.png"
+	width="591"
+	height="418"
+	srcset="/p/stm32-exti/239d153d18bbd827da7c2fed2a10ccc8f0a97f54_hu_84d5bcc0fe92f55e.png 480w, /p/stm32-exti/239d153d18bbd827da7c2fed2a10ccc8f0a97f54_hu_dca5e963aef0ecbd.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="339px"
+	
+></p>
+<p><img src="/p/stm32-exti/4ad9b0db22e8b6df2e0158faaffff06010e76dfa.png"
+	width="591"
+	height="223"
+	srcset="/p/stm32-exti/4ad9b0db22e8b6df2e0158faaffff06010e76dfa_hu_7ac2f7dd370fc241.png 480w, /p/stm32-exti/4ad9b0db22e8b6df2e0158faaffff06010e76dfa_hu_c96dd9aed55a1515.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="265"
+		data-flex-basis="636px"
+	
+></p>
+<h2 id="nvic">NVIC
+</h2><h3 id="基本结构">基本结构
+</h3><p><img src="/p/stm32-exti/db36b7e903bb3bb1ace0adceb1ae2264ed34529c.png"
+	width="1346"
+	height="876"
+	srcset="/p/stm32-exti/db36b7e903bb3bb1ace0adceb1ae2264ed34529c_hu_27e75706fd2f9fd5.png 480w, /p/stm32-exti/db36b7e903bb3bb1ace0adceb1ae2264ed34529c_hu_c5f45bf1dd24a520.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="153"
+		data-flex-basis="368px"
+	
+></p>
+<h4 id="优先级分组">优先级分组
+</h4><ul>
+<li>NVIC的中断优先级由优先级寄存器的4位（0~15）决定，这4位可以进行切分，分为高n位的抢占优先级和低4-n位的响应优先级</li>
+<li>抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队，抢占优先级和响应优先级均相同的按中断号排队</li>
+</ul>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>分组方式</th>
+          <th>抢占优先级</th>
+          <th>响应优先级</th>
+          <th>宏</th>
+          <th>值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>分组0</td>
+          <td>0位，取值为0</td>
+          <td>4位，取值为0~15</td>
+          <td>NVIC_PriorityGroup_0</td>
+          <td>((uint32_t)0x700)</td>
+      </tr>
+      <tr>
+          <td>分组1</td>
+          <td>1位，取值为0~1</td>
+          <td>3位，取值为0~7</td>
+          <td>NVIC_PriorityGroup_1</td>
+          <td>((uint32_t)0x600)</td>
+      </tr>
+      <tr>
+          <td>分组2</td>
+          <td>2位，取值为0~3</td>
+          <td>2位，取值为0~3</td>
+          <td>NVIC_PriorityGroup_2</td>
+          <td>((uint32_t)0x500)</td>
+      </tr>
+      <tr>
+          <td>分组3</td>
+          <td>3位，取值为0~7</td>
+          <td>1位，取值为0~1</td>
+          <td>NVIC_PriorityGroup_3</td>
+          <td>((uint32_t)0x400)</td>
+      </tr>
+      <tr>
+          <td>分组4</td>
+          <td>4位，取值为0~15</td>
+          <td>0位，取值为0</td>
+          <td>NVIC_PriorityGroup_4</td>
+          <td>((uint32_t)0x300)</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="代码">代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//NVIC中断优先级分组
+</span></span></span><span class="line"><span class="cl"><span class="nf">NVIC_PriorityGroupConfig</span><span class="p">(</span><span class="n">NVIC_PriorityGroup_2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//NVIC配置
+</span></span></span><span class="line"><span class="cl"><span class="n">NVIC_InitTypeDef</span> <span class="n">NVIC_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannel</span> <span class="o">=</span> <span class="n">EXTI15_10_IRQn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannelCmd</span> <span class="o">=</span> <span class="n">ENABLE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannelPreemptionPriority</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannelSubPriority</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">NVIC_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">NVIC_InitStructure</span><span class="p">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>NVIC_InitTypeDef</code>为NVIC初始化结构体</p>
+<ol>
+<li><code>NVIC_IRQChannel</code>为中断通道 <strong>( IRQChannel )</strong></li>
+<li><code>NVIC_IRQChannelCmd</code>为通道使能：<code>ENABLE</code>为开启，<code>DISABLE</code>为关闭</li>
+<li><code>NVIC_IRQChannelPreemptionPriority</code>为抢占优先级</li>
+<li><code>NVIC_IRQChannelSubPriority</code>为响应优先级
+中断触发后，将会进入中断函数 <code>void xHandler(void)</code></li>
+<li><code>EXTI_GetITStatus</code>函数可获取某个中断标志位</li>
+<li><code>EXTI_ClearITPendingBit</code>函数可清除某个中断标志位（<strong><code>&lt;u&gt;</code>必须 <code>&lt;/u&gt;</code></strong>）</li>
+</ol>
+<h4 id="中断通道以stm32f10x_为准">中断通道（以<a class="link" href="https://blog.csdn.net/weiaipan1314/article/details/112596356"  target="_blank" rel="noopener"
+    >STM32F10X_MD</a>为准）
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>NVIC_IRQChannel</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>WWDG_IRQn</td>
+          <td>0</td>
+          <td>Window WatchDog Interrupt</td>
+      </tr>
+      <tr>
+          <td>PVD_IRQn</td>
+          <td>1</td>
+          <td>PVD through EXTI Line detection Interrupt</td>
+      </tr>
+      <tr>
+          <td>TAMPER_IRQn</td>
+          <td>2</td>
+          <td>Tamper Interrupt</td>
+      </tr>
+      <tr>
+          <td>RTC_IRQn</td>
+          <td>3</td>
+          <td>RTC global Interrupt</td>
+      </tr>
+      <tr>
+          <td>FLASH_IRQn</td>
+          <td>4</td>
+          <td>FLASH global Interrupt</td>
+      </tr>
+      <tr>
+          <td>RCC_IRQn</td>
+          <td>5</td>
+          <td>RCC global Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI0_IRQn</td>
+          <td>6</td>
+          <td>EXTI Line0 Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI1_IRQn</td>
+          <td>7</td>
+          <td>EXTI Line1 Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI2_IRQn</td>
+          <td>8</td>
+          <td>EXTI Line2 Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI3_IRQn</td>
+          <td>9</td>
+          <td>EXTI Line3 Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI4_IRQn</td>
+          <td>10</td>
+          <td>EXTI Line4 Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel1_IRQn</td>
+          <td>11</td>
+          <td>DMA1 Channel 1 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel2_IRQn</td>
+          <td>12</td>
+          <td>DMA1 Channel 2 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel3_IRQn</td>
+          <td>13</td>
+          <td>DMA1 Channel 3 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel4_IRQn</td>
+          <td>14</td>
+          <td>DMA1 Channel 4 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel5_IRQn</td>
+          <td>15</td>
+          <td>DMA1 Channel 5 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel6_IRQn</td>
+          <td>16</td>
+          <td>DMA1 Channel 6 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>DMA1_Channel7_IRQn</td>
+          <td>17</td>
+          <td>DMA1 Channel 7 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>ADC1_2_IRQn</td>
+          <td>18</td>
+          <td>ADC1 and ADC2 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>USB_HP_CAN1_TX_IRQn</td>
+          <td>19</td>
+          <td>USB Device High Priority or CAN1 TX Interrupts</td>
+      </tr>
+      <tr>
+          <td>USB_LP_CAN1_RX0_IRQn</td>
+          <td>20</td>
+          <td>USB Device Low Priority or CAN1 RX0 Interrupts</td>
+      </tr>
+      <tr>
+          <td>CAN1_RX1_IRQn</td>
+          <td>21</td>
+          <td>CAN1 RX1 Interrupt</td>
+      </tr>
+      <tr>
+          <td>CAN1_SCE_IRQn</td>
+          <td>22</td>
+          <td>CAN1 SCE Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI9_5_IRQn</td>
+          <td>23</td>
+          <td>External Line[9:5] Interrupts</td>
+      </tr>
+      <tr>
+          <td>TIM1_BRK_IRQn</td>
+          <td>24</td>
+          <td>TIM1 Break Interrupt</td>
+      </tr>
+      <tr>
+          <td>TIM1_UP_IRQn</td>
+          <td>25</td>
+          <td>TIM1 Update Interrupt</td>
+      </tr>
+      <tr>
+          <td>TIM1_TRG_COM_IRQn</td>
+          <td>26</td>
+          <td>TIM1 Trigger and Commutation Interrupt</td>
+      </tr>
+      <tr>
+          <td>TIM1_CC_IRQn</td>
+          <td>27</td>
+          <td>TIM1 Capture Compare Interrupt</td>
+      </tr>
+      <tr>
+          <td>TIM2_IRQn</td>
+          <td>28</td>
+          <td>TIM2 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>TIM3_IRQn</td>
+          <td>29</td>
+          <td>TIM3 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>TIM4_IRQn</td>
+          <td>30</td>
+          <td>TIM4 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>I2C1_EV_IRQn</td>
+          <td>31</td>
+          <td>I2C1 Event Interrupt</td>
+      </tr>
+      <tr>
+          <td>I2C1_ER_IRQn</td>
+          <td>32</td>
+          <td>I2C1 Error Interrupt</td>
+      </tr>
+      <tr>
+          <td>I2C2_EV_IRQn</td>
+          <td>33</td>
+          <td>I2C2 Event Interrupt</td>
+      </tr>
+      <tr>
+          <td>I2C2_ER_IRQn</td>
+          <td>34</td>
+          <td>I2C2 Error Interrupt</td>
+      </tr>
+      <tr>
+          <td>SPI1_IRQn</td>
+          <td>35</td>
+          <td>SPI1 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>SPI2_IRQn</td>
+          <td>36</td>
+          <td>SPI2 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>USART1_IRQn</td>
+          <td>37</td>
+          <td>USART1 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>USART2_IRQn</td>
+          <td>38</td>
+          <td>USART2 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>USART3_IRQn</td>
+          <td>39</td>
+          <td>USART3 global Interrupt</td>
+      </tr>
+      <tr>
+          <td>EXTI15_10_IRQn</td>
+          <td>40</td>
+          <td>External Line[15:10] Interrupts</td>
+      </tr>
+      <tr>
+          <td>RTCAlarm_IRQn</td>
+          <td>41</td>
+          <td>RTC Alarm through EXTI Line Interrupt</td>
+      </tr>
+      <tr>
+          <td>USBWakeUp_IRQn</td>
+          <td>42</td>
+          <td>USB Device WakeUp from suspend through EXTI Line Interrupt</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="exti">EXTI
+</h2><h3 id="基本结构-1">基本结构
+</h3><p><img src="/p/stm32-exti/acd053d182aa5dfdf7d6b41e0f366351369772dd.png"
+	width="1604"
+	height="876"
+	srcset="/p/stm32-exti/acd053d182aa5dfdf7d6b41e0f366351369772dd_hu_a71bce1ec40dd78.png 480w, /p/stm32-exti/acd053d182aa5dfdf7d6b41e0f366351369772dd_hu_592844ad0b18d0c3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="439px"
+	
+></p>
+<ul>
+<li>EXTI（Extern Interrupt）外部中断</li>
+<li>EXTI可以监测指定GPIO口的电平信号，当其指定的GPIO口产生电平变化时，EXTI将立即向NVIC发出中断申请，经过NVIC裁决后即可中断CPU主程序，使CPU执行EXTI对应的中断程序</li>
+<li>支持的触发方式：上升沿/下降沿/双边沿/软件触发</li>
+<li>支持的GPIO口：所有GPIO口，但相同的Pin不能同时触发中断</li>
+<li>通道数：16个GPIO_Pin，外加PVD输出、RTC闹钟、USB唤醒、以太网唤醒</li>
+<li>触发响应方式：中断响应/事件响应</li>
+</ul>
+<h3 id="代码-1">代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">EXTI_InitTypeDef</span> <span class="n">EXTI_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EXTI_InitStructure</span><span class="p">.</span><span class="n">EXTI_Line</span> <span class="o">=</span> <span class="n">EXTI_Line14</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EXTI_InitStructure</span><span class="p">.</span><span class="n">EXTI_LineCmd</span> <span class="o">=</span> <span class="n">ENABLE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EXTI_InitStructure</span><span class="p">.</span><span class="n">EXTI_Mode</span> <span class="o">=</span> <span class="n">EXTI_Mode_Interrupt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EXTI_InitStructure</span><span class="p">.</span><span class="n">EXTI_Trigger</span> <span class="o">=</span> <span class="n">EXTI_Trigger_Falling</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">EXTI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">EXTI_InitStructure</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>EXTI_Line</code>为中断线来源</li>
+<li><code>EXTI_LineCmd</code>为中断线使能：<code>ENABLE</code>为开启，<code>DISABLE</code>为关闭</li>
+<li><code>EXTI_Mode</code>为EXTI的模式</li>
+<li><code>EXTI_Trigger</code>为触发边缘</li>
+</ol>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>EXTI_Line</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>EXTI_Line0</td>
+          <td>((uint32_t)0x00001)</td>
+          <td>External interrupt line 0</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line1</td>
+          <td>((uint32_t)0x00002)</td>
+          <td>External interrupt line 1</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line2</td>
+          <td>((uint32_t)0x00004)</td>
+          <td>External interrupt line 2</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line3</td>
+          <td>((uint32_t)0x00008)</td>
+          <td>External interrupt line 3</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line4</td>
+          <td>((uint32_t)0x00010)</td>
+          <td>External interrupt line 4</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line5</td>
+          <td>((uint32_t)0x00020)</td>
+          <td>External interrupt line 5</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line6</td>
+          <td>((uint32_t)0x00040)</td>
+          <td>External interrupt line 6</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line7</td>
+          <td>((uint32_t)0x00080)</td>
+          <td>External interrupt line 7</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line8</td>
+          <td>((uint32_t)0x00100)</td>
+          <td>External interrupt line 8</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line9</td>
+          <td>((uint32_t)0x00200)</td>
+          <td>External interrupt line 9</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line10</td>
+          <td>((uint32_t)0x00400)</td>
+          <td>External interrupt line 10</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line11</td>
+          <td>((uint32_t)0x00800)</td>
+          <td>External interrupt line 11</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line12</td>
+          <td>((uint32_t)0x01000)</td>
+          <td>External interrupt line 12</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line13</td>
+          <td>((uint32_t)0x02000)</td>
+          <td>External interrupt line 13</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line14</td>
+          <td>((uint32_t)0x04000)</td>
+          <td>External interrupt line 14</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line15</td>
+          <td>((uint32_t)0x08000)</td>
+          <td>External interrupt line 15</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line16</td>
+          <td>((uint32_t)0x10000)</td>
+          <td>External interrupt line 16 Connected to the PVD Output</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line17</td>
+          <td>((uint32_t)0x20000)</td>
+          <td>External interrupt line 17 Connected to the RTC Alarm event</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line18</td>
+          <td>((uint32_t)0x40000)</td>
+          <td>External interrupt line 18 Connected to the USB Device/USB OTG FS Wakeup from suspend event</td>
+      </tr>
+      <tr>
+          <td>EXTI_Line19</td>
+          <td>((uint32_t)0x80000)</td>
+          <td>External interrupt line 19 Connected to the Ethernet Wakeup event</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="afio">AFIO
+</h2><h3 id="基本结构-2">基本结构
+</h3><p><img src="/p/stm32-exti/65b9f6d44f29c597b86b2658134048a61ae7d8cf.png"
+	width="857"
+	height="922"
+	srcset="/p/stm32-exti/65b9f6d44f29c597b86b2658134048a61ae7d8cf_hu_7a29d3ff55c315a3.png 480w, /p/stm32-exti/65b9f6d44f29c597b86b2658134048a61ae7d8cf_hu_521db81e123c1758.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="92"
+		data-flex-basis="223px"
+	
+></p>
+<ul>
+<li>AFIO主要用于引脚复用功能的选择和重定义</li>
+<li>在STM32中，AFIO主要完成两个任务：复用功能引脚重映射、中断引脚选择</li>
+</ul>
+<h3 id="代码-2">代码
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//开启时钟
+</span></span></span><span class="line"><span class="cl"><span class="nf">RCC_APB2PeriphClockCmd</span><span class="p">(</span><span class="n">RCC_APB2Periph_AFIO</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//配置AFIO
+</span></span></span><span class="line"><span class="cl"><span class="nf">GPIO_EXTILineConfig</span><span class="p">(</span><span class="n">GPIO_PortSourceGPIOB</span><span class="p">,</span> <span class="n">GPIO_PinSource14</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>GPIO_PortSourceGPIOx</code>为选择的GPIO_Port</li>
+<li><code>GPIO_PinSource</code>为选择的GPIO_Pin</li>
+</ol>
+<h2 id="外部中断完整配置流程">外部中断完整配置流程
+</h2><ol>
+<li>配置时钟
+<ol>
+<li>GPIO时钟 <code>RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);</code></li>
+<li>AFIO时钟 <code>RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO, ENABLE);</code></li>
+</ol>
+</li>
+<li>配置GPIO <code>GPIO_Init(GPIOB, &amp;GPIO_InitStructure);</code></li>
+<li>配置AFIO <code>GPIO_EXTILineConfig(GPIO_PortSourceGPIOB, GPIO_PinSource14);</code></li>
+<li>配置EXTI <code>EXTI_Init(&amp;EXTI_InitStructure);</code></li>
+<li>配置NVIC
+<ol>
+<li>中断分组 <code>NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);</code></li>
+<li>中断配置 <code>NVIC_Init(&amp;NVIC_InitStructure);</code></li>
+</ol>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/stm32-spi/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 SPI</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-i2c/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 I2C</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-dma/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 DMA</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-usart/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 USART</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/stm32-adc/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 ADC</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Detail
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

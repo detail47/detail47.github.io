@@ -7,7 +7,68 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/tomosar/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/tomosar/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>PGD</title>
+        <link>https://detail47.github.io/p/pgd/</link>
+        <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/pgd/</guid>
+        <description>&lt;h2 id=&#34;基本原理&#34;&gt;基本原理
+&lt;/h2&gt;&lt;p&gt;近端梯度下降（Proximal Gradient Descent）是梯度下降方法的一种，其适用于目标函数存在不可微部分的凸优化问题。问题描述为
+&lt;/p&gt;
+$$
+	\mathbf x = \arg\min_\mathbf x {g(\mathbf x)+h(\mathbf x)},
+$$&lt;p&gt;
+其中，$g(\mathbf x)$为可微凸函数、$h(\mathbf x)$为不可微凸函数。&lt;/p&gt;
+&lt;h2 id=&#34;求解方法&#34;&gt;求解方法
+&lt;/h2&gt;&lt;p&gt;求解该类型凸优化问题可以通过近端映射（Proximal Mapping）和梯度迭代的手段实现。近端映射函数定义为
+&lt;/p&gt;
+$$
+	\text{prox}_{h,t}(\mathbf x) = \arg\min_\mathbf z{\frac1{2t}\lVert\mathbf x-\mathbf z\rVert^2_2+h(\mathbf z)},
+$$&lt;p&gt;
+梯度迭代方法为
+&lt;/p&gt;
+$$
+	\begin{align*}
+	&amp;\mathbf z^{(k)}=\mathbf x^{(k)}-t_k\nabla g(\mathbf x^{(k)}) \\
+	&amp;\mathbf x^{(k+1)}=\text{prox}_{h,t_k}(\mathbf z^{(k)})
+	\end{align*}
+$$&lt;h3 id=&#34;证明&#34;&gt;证明
+&lt;/h3&gt;&lt;p&gt;对$g(\mathbf x)$在$\mathbf x^{(k)}$处做二阶泰勒展开，令$L=\nabla^2g(\mathbf x)=\frac1t$
+&lt;/p&gt;
+$$
+		\begin{align*}
+		\arg\min_\mathbf x g(\mathbf x)+h(\mathbf x) &amp;\approx \arg\min_\mathbf x{g(\mathbf x^{(k)})+\nabla g(\mathbf x^{(k)})^\text T (\mathbf x -\mathbf x^{(k)})+\frac12(\mathbf x-\mathbf x^{(k)})^\text T\nabla^2g(\mathbf x^{(k)})(\mathbf x-\mathbf x^{(k)})}+h(\mathbf x) \\
+		\mathbf{\hat x}&amp;= \arg\min_\mathbf x{\nabla g(\mathbf x^{(k)})^\text T (\mathbf x -\mathbf x^{(k)})+\frac1{2t}(\mathbf x-\mathbf x^{(k)})^\text T(\mathbf x-\mathbf x^{(k)})}+h(\mathbf x) \\
+		&amp;= \arg\min_\mathbf x\sum_i{[\nabla g(\mathbf x^{(k)})]_i (x_i -x_i^{(k)})+\frac1{2t}(x_i-x_i^{(k)})^2}+h(\mathbf x) \\ 
+		&amp;= \arg\min_\mathbf x\frac1{2t}\sum_i{2t[\nabla g(\mathbf x^{(k)})]_i (x_i -x_i^{(k)})+(x_i-x_i^{(k)})^2}+h(\mathbf x) \\ 
+		&amp;= \arg\min_\mathbf x\frac1{2t}\sum_i{t^2[\nabla g(\mathbf x^{(k)})]_i^2+2t[\nabla g(\mathbf x^{(k)})]_i (x_i -x_i^{(k)})+(x_i-x_i^{(k)})^2}+h(\mathbf x) \\ 
+		&amp;= \arg\min_\mathbf x\frac1{2t}\sum_i{[x_i-x_i^{(k)}+t[\nabla g(\mathbf x^{(k)})]_i]^2}+h(\mathbf x) \\ 
+		&amp;= \arg\min_\mathbf x\frac1{2t}{\lVert\mathbf x-[\mathbf x^{(k)}-t\nabla g(\mathbf x^{(k)})]\rVert^2_2}+h(\mathbf x) \\ 
+	\end{align*}.
+$$&lt;p&gt;
+令$\mathbf z^{(k)}=\mathbf x^{(k)}-t\nabla g(\mathbf x^{(k)})$，原问题即可转换为近端映射
+&lt;/p&gt;
+$$
+	\begin{align*}
+	\mathbf{\hat x} &amp;= \arg\min_\mathbf x\frac1{2t}{\lVert\mathbf x-\mathbf z\rVert^2_2}+h(\mathbf x) \\
+	&amp;=\text{prox}_{h,t}(\mathbf z)
+	\end{align*}.
+$$&lt;p&gt;
+设定合适的参数，即可使用迭代方法求得$\arg\min_\mathbf x g(\mathbf x)+h(\mathbf x)$的结果。&lt;/p&gt;
+&lt;h3 id=&#34;lipschitz常数&#34;&gt;Lipschitz常数
+&lt;/h3&gt;&lt;p&gt;假定目标凸函数满足梯度上的Lipschitz连续。当步长$t\le\frac1L$时，保证多次迭代后能收敛到梯度为0的点。梯度Lipschitz连续表示为
+&lt;/p&gt;
+$$
+	\frac{\lVert\nabla f(a)-\nabla f(b)\rVert_2}{\lVert a-b\rVert_2} \le L(f) \quad \forall a,b\in\text{dom}f,
+$$&lt;p&gt;
+函数$\nabla f$的Lipschitz常数为
+&lt;/p&gt;
+$$
+	L = \sup\frac{\lVert\nabla f(a)-\nabla f(b)\rVert_2}{\lVert a-b\rVert_2}
+$$</description>
+        </item>
+        <item>
         <title>IHT</title>
         <link>https://detail47.github.io/p/iht/</link>
         <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>

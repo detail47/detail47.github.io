@@ -7,13 +7,29 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Math</title>
         <link>https://detail47.github.io/categories/math/</link>
-        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
         
         <guid>https://detail47.github.io/categories/math/</guid>
         <description>&lt;img src="https://detail47.github.io/categories/math/math.webp" alt="Featured image of post Math" /&gt;</description>
+        </item>
+        <item>
+        <title>SAR</title>
+        <link>https://detail47.github.io/categories/sar/</link>
+        <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/sar/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/sar/SAR.jpg" alt="Featured image of post SAR" /&gt;</description>
+        </item>
+        <item>
+        <title>TomoSAR</title>
+        <link>https://detail47.github.io/categories/tomosar/</link>
+        <pubDate>Wed, 04 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/categories/tomosar/</guid>
+        <description>&lt;img src="https://detail47.github.io/categories/tomosar/tomosar.png" alt="Featured image of post TomoSAR" /&gt;</description>
         </item>
         <item>
         <title>MATLAB</title>
@@ -22,22 +38,6 @@
         
         <guid>https://detail47.github.io/categories/matlab/</guid>
         <description>&lt;img src="https://detail47.github.io/categories/matlab/matlab.jpg" alt="Featured image of post MATLAB" /&gt;</description>
-        </item>
-        <item>
-        <title>SAR</title>
-        <link>https://detail47.github.io/categories/sar/</link>
-        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://detail47.github.io/categories/sar/</guid>
-        <description>&lt;img src="https://detail47.github.io/categories/sar/SAR.jpg" alt="Featured image of post SAR" /&gt;</description>
-        </item>
-        <item>
-        <title>TomoSAR</title>
-        <link>https://detail47.github.io/categories/tomosar/</link>
-        <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
-        
-        <guid>https://detail47.github.io/categories/tomosar/</guid>
-        <description>&lt;img src="https://detail47.github.io/categories/tomosar/tomosar.png" alt="Featured image of post TomoSAR" /&gt;</description>
         </item>
         <item>
         <title>电子</title>

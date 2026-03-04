@@ -89,11 +89,11 @@ $$
 		L &amp;= \sup\frac{\lVert\nabla f(\mathbf x+\mathbf x_0)-\nabla f(\mathbf x)\rVert_2}{\lVert\mathbf x_0\rVert_2} \\
 		&amp;= \sup\frac{\lVert 2A^\text T [A(\mathbf x+\mathbf x_0)-\mathbf b]-2A^\text T (A\mathbf x-\mathbf b)\rVert_2}{\lVert\mathbf x_0\rVert_2} \\
 		&amp;= \sup\frac{2\lVert A^\text TA\mathbf x_0\rVert_2}{\lVert\mathbf x_0\rVert_2} \\
-		&amp;\le\frac{2\lVert\lambda_\max(A^\text TA)\mathbf x_0\rVert_2}{\lVert\mathbf x_0\rVert_2} \\
-		&amp;=2\lambda_\max(A^\text TA)
+		&amp;\le\frac{2\lVert\lambda_\text{max}(A^\text TA)\mathbf x_0\rVert_2}{\lVert\mathbf x_0\rVert_2} \\
+		&amp;=2\lambda_\text{max}(A^\text TA)
 	\end{align*}
 $$&lt;p&gt;
-其中$\lambda_\max(\cdot)$表示取最大特征值，令$t=\frac1L=\frac1{2\lambda_\max(A^\text TA)}$&lt;/p&gt;
+其中$\lambda_\text{max}(\cdot)$表示取最大特征值，令$t=\frac1L=\frac1{2\lambda_\text{max}(A^\text TA)}$&lt;/p&gt;
 &lt;h4 id=&#34;回溯型步长&#34;&gt;回溯型步长
 &lt;/h4&gt;&lt;p&gt;当矩阵$A$很大时，不容易计算$A^\text TA$的特征值，或者不知道矩阵$A$时，可以通过回溯搜索的方式估计Lipschitz常数。将$f(\mathbf x)$泰勒展开并放缩得到上界函数
 &lt;/p&gt;

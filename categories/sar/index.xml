@@ -25,10 +25,10 @@ $$&lt;p&gt;其中，$H_M$为非线性算子，其返回$M$维最大幅值&lt;/p&
 $$
     H_M(y_i)=
     \left\{ 
-        \begin{align}
+        \begin{align*}
             0\quad \lvert y_i\rvert\lt\lambda^{0.5}_M(\mathbf y)\\
             y_i\quad \lvert y_i\rvert\ge\lambda^{0.5}_M(\mathbf y)
-        \end{align}
+        \end{align*}
     \right..
 $$&lt;h2 id=&#34;推导过程&#34;&gt;推导过程
 &lt;/h2&gt;&lt;h3 id=&#34;替代目标函数surrogate-objective-function&#34;&gt;替代目标函数（Surrogate Objective Function）
@@ -998,20 +998,20 @@ $$
 f\left( x,y \right) =f\left( Q_{11} \right) w_{11}+f\left( Q_{21} \right) w_{21}+f\left( Q_{12} \right) w_{12}+f\left( Q_{22} \right) w_{22}
 $$$$
 \left\{
-    \begin{align}
+    \begin{align*}
     w_{11} &amp;= \frac{(x_2-x)(y_2-y)}{(x_2-x_1)(y_2-y_1)}\\
     w_{21} &amp;= \frac{(x-x_1)(y_2-y)}{(x_2-x_1)(y_2-y_1)}\\
     w_{12} &amp;= \frac{(x_2-x)(y-y_1)}{(x_2-x_1)(y_2-y_1)}\\
     w_{22} &amp;= \frac{(x-x_1)(y-y_1)}{(x_2-x_1)(y_2-y_1)}
-    \end{align}
+    \end{align*}
     \right.
 $$&lt;h2 id=&#34;干涉&#34;&gt;干涉
 &lt;/h2&gt;&lt;p&gt;干涉图由主辅图像共轭相乘得到，相干图由干涉图用$9\times 9$窗口均值滤波并归一化得到。&lt;sup id=&#34;fnref2:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 $$
-\begin{align}
+\begin{align*}
 u_{int}&amp;=u_m\cdot u_{s}^{*}=a_ma_s\cdot e^{j\left( \varphi _m-\varphi _s \right)}=a_{int}e^{j\varphi} \\
 \varphi &amp;=\varphi _\text{flat}+\varphi _\text{topo}+\varphi _\text{atm}+\varphi _\text{noise}
-\end{align}
+\end{align*}
 $$$$
 \gamma =\frac{|E\left[ M\cdot S^* \right] |}{\sqrt{E\left[\mid M\mid ^2 \right] E\left[\mid S\mid ^2 \right]}}
 $$&lt;h2 id=&#34;去平地效应&#34;&gt;去平地效应
@@ -1022,21 +1022,21 @@ $$$$
 \varphi_\text{const}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}(R_{0}-R_{\text{eq}})}{R_{0}tan\left( \theta \right)}
 $$&lt;p&gt;去平地效应后的干涉图相位:&lt;/p&gt;
 $$
-\begin{align}
+\begin{align*}
     \varphi _1&amp;     =\varphi +\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta \text{R}}{Rtan\left( \theta \right)}\\
     &amp;       =\varphi _\text{topo}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise}\\
-\end{align}
+\end{align*}
 $$&lt;h2 id=&#34;去dem相位&#34;&gt;去DEM相位
 &lt;/h2&gt;&lt;p&gt;使用轨道数据将DEM数据逐点从WGS84坐标系转换到雷达距离-方位坐标系，使用线性插值将得到的数据插值到整个雷达距离-方位坐标系。通过高程相位的公式得到 &lt;sup id=&#34;fnref4:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 $$
 \varphi _\text{dem}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\text{H}_\text{dem}}{R\sin \left( \theta \right)}
 $$&lt;p&gt;去DEM相位后的干涉图相位:&lt;/p&gt;
 $$
-\begin{align}
+\begin{align*}
     \varphi _2&amp;     =\varphi _1-\varphi _\text{dem}\\
     &amp;       =\varphi _\text{topo}-\varphi _\text{dem}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise}\\
     &amp;       =-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta H}{R\sin \left( \theta \right)}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise} \quad\quad (\Delta H = H - H_\text{dem})\\
-\end{align}
+\end{align*}
 $$&lt;h2 id=&#34;滤波&#34;&gt;滤波
 &lt;/h2&gt;&lt;p&gt;使用Goldstein滤波，将干涉图分成相互重叠的小块。对每个小块做傅里叶变换，得到其频谱$Z(u,v)$ , 用其对干涉图进行处理。$S[\cdot]$ 为平滑算子，使用$3\times 3$的均值滤波。Goldstein滤波窗口大小为$32\times 32$ , 步长为8 。&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 $$
@@ -1190,10 +1190,10 @@ $$&lt;h3 id=&#34;聚焦&#34;&gt;聚焦
 &lt;/h3&gt;&lt;p&gt;聚焦处理时，附加相位项可以在信号处理过程中予以补偿，故此时合成孔径的长度可由实际天线波束宽度所能覆盖的长度$L_e$所决定。
 有效阵列长度$L_e$，天线波束宽度$\theta_B$：&lt;/p&gt;
 $$
-\begin{align}
+\begin{align*}
     L_e &amp;= r\cdot \theta_B\\
     \theta_B &amp;=\frac\lambda D
-    \end{align}
+    \end{align*}
 $$&lt;h4 id=&#34;聚焦处理的分辨率&#34;&gt;聚焦处理的分辨率
 &lt;/h4&gt;$$
 \delta\gamma_\alpha=\frac{D}{2}

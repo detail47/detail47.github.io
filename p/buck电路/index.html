@@ -386,13 +386,13 @@ $$
 $$<p>再根据$T=T_{on}+T_{off}=\frac1T$得：
 </p>
 $$
-\begin{align}     
+\begin{align*}     
     &\begin{cases}         
         T_{on}=\frac{V_o+V_d}{V_i+V_d}\cdot\frac1f \\
         T_{off}=\frac{V_i-V_o}{V_i+V_d}\cdot\frac1f\\
     \end{cases}\\
     &D=\frac{T_{on}}T=\frac{V_o+V_d}{V_i+V_d}\qquad 对于同步Buck:\ V_d=0
-\end{align}
+\end{align*}
 $$<h3 id="电感选型">电感选型
 </h3><p>在电感的选择上需要考虑两个参数</p>
 <ol>
@@ -413,17 +413,17 @@ $$
 $$<p>电感峰值电流$I_{LP}=I_o +\frac{\Delta I_L}2$，在设计中要留有一定余量
 即：</p>
 $$
-\begin{align}
+\begin{align*}
         &I_{LP}=I_o+\frac{V_o+V_d}{2\cdot f\cdot L}\cdot\frac{V_i-V_o}{V_i+V_d}\\
         &对于同步Buck:\ I_{LP}=I_o+\frac{V_o}{2\cdot f\cdot L}\cdot(1-\frac{V_o}{V_i})
-    \end{align}
+    \end{align*}
 $$<p>在设计中电感纹波电流$\Delta I_L$应该是$I_L$的 ==20%~40%== 为宜，即$\Delta I_L=(0.2\sim 0.4)\cdot I_L$
 因此即可得出电感的感值：</p>
 $$
-\begin{align}
+\begin{align*}
     &L=\frac{V_o+V_d}{f\cdot(0.2\sim 0.4)\cdot I_o}\cdot\frac{V_i-V_o}{V_i+V_d}\\
     &对于同步Buck:\ L=\frac{V_o}{f\cdot(0.2\sim 0.4)\cdot I_o}\cdot(1-\frac{V_o}{V_i})
-    \end{align}
+    \end{align*}
 $$<h3 id="输入滤波电容">输入滤波电容
 </h3><p>实际应用中，输入电源到Buck电路间有较长的导线，导线有寄生电感。导致电源对输入的响应不能达到Buck电路需求，因此需要选择合适的输入电容。</p>
 

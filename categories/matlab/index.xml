@@ -25,10 +25,10 @@ $$&lt;p&gt;其中，$H_M$为非线性算子，其返回$M$维最大幅值&lt;/p&
 $$
     H_M(y_i)=
     \left\{ 
-        \begin{align}
+        \begin{align*}
             0\quad \lvert y_i\rvert\lt\lambda^{0.5}_M(\mathbf y)\\
             y_i\quad \lvert y_i\rvert\ge\lambda^{0.5}_M(\mathbf y)
-        \end{align}
+        \end{align*}
     \right..
 $$&lt;h2 id=&#34;推导过程&#34;&gt;推导过程
 &lt;/h2&gt;&lt;h3 id=&#34;替代目标函数surrogate-objective-function&#34;&gt;替代目标函数（Surrogate Objective Function）

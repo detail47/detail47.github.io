@@ -376,20 +376,20 @@ $$
 f\left( x,y \right) =f\left( Q_{11} \right) w_{11}+f\left( Q_{21} \right) w_{21}+f\left( Q_{12} \right) w_{12}+f\left( Q_{22} \right) w_{22}
 $$$$
 \left\{
-    \begin{align}
+    \begin{align*}
     w_{11} &= \frac{(x_2-x)(y_2-y)}{(x_2-x_1)(y_2-y_1)}\\
     w_{21} &= \frac{(x-x_1)(y_2-y)}{(x_2-x_1)(y_2-y_1)}\\
     w_{12} &= \frac{(x_2-x)(y-y_1)}{(x_2-x_1)(y_2-y_1)}\\
     w_{22} &= \frac{(x-x_1)(y-y_1)}{(x_2-x_1)(y_2-y_1)}
-    \end{align}
+    \end{align*}
     \right.
 $$<h2 id="干涉">干涉
 </h2><p>干涉图由主辅图像共轭相乘得到，相干图由干涉图用$9\times 9$窗口均值滤波并归一化得到。<sup id="fnref2:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 $$
-\begin{align}
+\begin{align*}
 u_{int}&=u_m\cdot u_{s}^{*}=a_ma_s\cdot e^{j\left( \varphi _m-\varphi _s \right)}=a_{int}e^{j\varphi} \\
 \varphi &=\varphi _\text{flat}+\varphi _\text{topo}+\varphi _\text{atm}+\varphi _\text{noise}
-\end{align}
+\end{align*}
 $$$$
 \gamma =\frac{|E\left[ M\cdot S^* \right] |}{\sqrt{E\left[\mid M\mid ^2 \right] E\left[\mid S\mid ^2 \right]}}
 $$<h2 id="去平地效应">去平地效应
@@ -400,21 +400,21 @@ $$$$
 \varphi_\text{const}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}(R_{0}-R_{\text{eq}})}{R_{0}tan\left( \theta \right)}
 $$<p>去平地效应后的干涉图相位:</p>
 $$
-\begin{align}
+\begin{align*}
     \varphi _1&     =\varphi +\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta \text{R}}{Rtan\left( \theta \right)}\\
     &       =\varphi _\text{topo}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise}\\
-\end{align}
+\end{align*}
 $$<h2 id="去dem相位">去DEM相位
 </h2><p>使用轨道数据将DEM数据逐点从WGS84坐标系转换到雷达距离-方位坐标系，使用线性插值将得到的数据插值到整个雷达距离-方位坐标系。通过高程相位的公式得到 <sup id="fnref4:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></p>
 $$
 \varphi _\text{dem}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\text{H}_\text{dem}}{R\sin \left( \theta \right)}
 $$<p>去DEM相位后的干涉图相位:</p>
 $$
-\begin{align}
+\begin{align*}
     \varphi _2&     =\varphi _1-\varphi _\text{dem}\\
     &       =\varphi _\text{topo}-\varphi _\text{dem}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise}\\
     &       =-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta H}{R\sin \left( \theta \right)}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise} \quad\quad (\Delta H = H - H_\text{dem})\\
-\end{align}
+\end{align*}
 $$<h2 id="滤波">滤波
 </h2><p>使用Goldstein滤波，将干涉图分成相互重叠的小块。对每个小块做傅里叶变换，得到其频谱$Z(u,v)$ , 用其对干涉图进行处理。$S[\cdot]$ 为平滑算子，使用$3\times 3$的均值滤波。Goldstein滤波窗口大小为$32\times 32$ , 步长为8 。<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup><sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup></p>
 $$

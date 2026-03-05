@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>通信 on Detail&#39;s Blog</title>
+        <link>https://detail47.github.io/categories/communication/</link>
+        <description>Recent content in 通信 on Detail&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Detail</copyright>
+        <lastBuildDate>Sat, 17 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/communication/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>极化码</title>
+        <link>https://detail47.github.io/p/201401c60122/</link>
+        <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/201401c60122/</guid>
+        <description>&lt;h2 id=&#34;背景&#34;&gt;背景
+&lt;/h2&gt;&lt;p&gt;1948年，Claude Shannon在《通信的数学理论》中提出了香农定理，指出了在一个有噪信道中，只要信息的传输速率低于信道容量，总可以找到一种编码方式使得当编码序列足够长时信息实现无差错传输。&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 香农定理宣告了在噪声环境下可靠通信的可能性，但是也留下了巨大的挑战，因为他并没有给出这种编码的具体实现方式。为此，在今后的长达半世纪的时间里，无数科学家前仆后继，对此开展大量研究，形成了从汉明码到极化码的突破。信道编码的目的是提高信号传输的可靠性。信道编码的基本原理是在信号码元序列中增加监督码元，并利用监督码元去发现或纠正传输中发生的错误。&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; 在香农定理理论框架的推动下，信道编码的技术经历了多次重要的突破。
+早期的信道编码采用代数的编码方式，如汉明码等，引入奇偶校验的概念，通过构造多项式来实现差错控制。后来引入了概率论工具，Wozencraft、Viterbi提出了最大似然译码，使卷积码在通信系统中得到广泛应用。&lt;sup id=&#34;fnref1:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;但由于译码复杂度呈指数级增长，在实际应用中，这一译码方式受限于设备性能。
+20世纪90年代，信道编码技术再次迎来重大突破。Claude Berrou提出了Turbo码。通过递归系统卷积码编码器和交织器，配合迭代译码算法，使信道编码效率接近香农极限，并且由于引入了交织器，译码的复杂度仅呈线性增长。&lt;sup id=&#34;fnref2:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; Turbo码的提出开创了信道编码的革命性时代，成为3G/4G移动通信的核心技术，推动了现代移动通信的发展。Turbo码的强大不言而喻，但是它存在的译码复杂度高、时延大、存在错误平层、短码性能不佳、对硬件资源要求高等问题，难以满足现代5G要求的低时延，高可靠性，使得它在5G网络中不能得到广泛应用。&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;
+5G中应用最广泛的是LDPC码和Polar码。LDPC码又称低密度奇偶校验码，于1963年由Robert Gallager提出，是一种具有稀疏校验矩阵的线性分组纠错码。由于校验矩阵的稀疏性，LDPC码的编码和译码复杂度较低，适合硬件实现，支持并行处理，提高了译码速度和效率，LDPC码在长码上性能极佳，在5G移动通信中被用作数据信道的编码方案。&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt; Polar码又称极化码，于2008年由Erdal Arikan提出，是一种基于信道极化理论的前向错误更正编码方式。它通过将多个独立信道转化为两类极端信道&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;，实现高效可靠的编码传输，与前面几种码类相比，极化码首次达到香农极限，在短码上性能优异，在5G移动通信中被用作控制信道的编码方案。&lt;sup id=&#34;fnref1:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基本原理&#34;&gt;基本原理
+&lt;/h2&gt;&lt;p&gt;极化码的核心思想是的信道极化理论，其包括信道合并(Channel Combining)和信道分裂(Channel Splitting)。当合并的信道数量趋于无穷大时，会出现极化现象。这些信道一部分会趋于无噪信道，另一部分会趋于全噪信道。这时，一部分信道是信道容量将接近1的“好信道”，其余信道是信道容量接近0的“坏信道”。于是就可以在“好信道”上发送信息比特，而在“坏信道”上发送休眠比特。&lt;sup id=&#34;fnref:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h3 id=&#34;信道对称容量&#34;&gt;信道对称容量
+&lt;/h3&gt;&lt;p&gt;信道对称容量是一种衡量信道速率的度量。平稳无记忆信道容量为输入与输出的平均互信息的最大值，即$C \triangleq \operatorname{max}_{p(x)}I(X;Y)$。对于一个二进制输入离散无记忆信道(B-DMC) $W : X \to Y$,转移概率为$W(y|x)$ 有：&lt;sup id=&#34;fnref1:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref:7&#34;&gt;&lt;a href=&#34;#fn:7&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$C = \operatorname{max}_{p(x_i)}\sum_i\sum_j{p(x_i)p(y_j|x_i)}\operatorname{log}{\frac{p(y_j|x_i)}{\sum_i{p(x_i)p(y_j|x_i)}}}$$&lt;p&gt; 对于离散对称信道，当输入等概率分布时达到信道容量，因此有：&lt;/p&gt;
+$$I(W) \triangleq \sum_{y \in Y}\sum_{x \in X}{\frac{1}{2}W(y|x)\operatorname{log}{\frac{W(y|x)}{\frac{1}{2}W(y|0)+\frac{1}{2}W(y|1)}}}$$&lt;h3 id=&#34;信道极化理论&#34;&gt;信道极化理论
+&lt;/h3&gt;&lt;h4 id=&#34;信道合并&#34;&gt;信道合并
+&lt;/h4&gt;&lt;p&gt;信道合并是指将N个独立的B-DMC信道W，递归地组成一个联合信道$W_N:X_N\to Y_N, (N=2^n)$，这里的N个信道并非真的有N个物理意义上的信道，这些信道在实现上可以以时分复用的形式使用同一信道。&lt;sup id=&#34;fnref2:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref:8&#34;&gt;&lt;a href=&#34;#fn:8&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;
+当$n=0$时，$W_1=W$，信道即为原来的信道。
+当$n=1$时，$W_2:X^2\to Y^2$ ，两个$W_1$信道合并成为$W_2$。
+这时我们计算$U\to X$的转移矩阵：
+&lt;/p&gt;
+$$
+		G_2=
+		\left[
+		\begin{matrix}
+		1&amp;0\\
+		1&amp;1
+		\end{matrix}
+		\right]
+	$$&lt;p&gt;
+信道的状态转移矩阵为：
+&lt;/p&gt;
+$$
+		\begin{align*}
+		W_2(y_1,y_2|u_1,u_2)&amp;=W(y_1|x_1)W(y_2|x_2)\\
+		&amp;=W(y_1|u_1\oplus u_2)W(y_2|u_2)\\
+		&amp;=W^2(y^2_1|u^2_1G_2)
+		\end{align*}
+	$$&lt;p&gt;
+当$n=2$时，$W_4:X^4\to Y^4$ ，两个$W_2$信道合并成为$W_4$。
+同理可以得出
+&lt;/p&gt;
+$$
+	\begin{align*}
+	G_4 &amp;=
+		\left[
+		\begin{matrix}
+		G_2&amp;0\\
+		0&amp;G_2
+		\end{matrix}
+		\right]
+		R_4
+		\left[
+		\begin{matrix}
+		G_2&amp;0\\
+		0&amp;G_2
+		\end{matrix}
+		\right]
+		\\
+		&amp;=
+		\left[
+		\begin{matrix}
+		1&amp;0&amp;0&amp;0\\
+		1&amp;0&amp;1&amp;0\\
+		1&amp;1&amp;0&amp;0\\
+		1&amp;1&amp;1&amp;1
+		\end{matrix}
+		\right]
+	\end{align*}
+$$&lt;p&gt;
+综上，可以得到组合信道$W_N:X_N\to Y_N$转移概率：
+&lt;/p&gt;
+$$
+	W_N(y^N_1|u^N_1)=W^N(y^N_1|u^N_1G_N)
+$$&lt;h4 id=&#34;信道分裂&#34;&gt;信道分裂
+&lt;/h4&gt;&lt;p&gt;信道分裂是将组合信道$W_N:X_N\to Y_N$分裂为N个二进制信道$W^{(i)}_N:X\to Y^N\times X^{i-1}$：
+&lt;/p&gt;
+$$
+	W^{(i)}_N(y^N_1,u^{i-1}_1|u_i)=\sum_{u^N_{i+1}\in X^{N-i}}{\frac{1}{2^{N-1}}W_N(y^N_1|u^N_1)}
+$$&lt;p&gt;
+这里的第i个信道是一输入$N+i-1$输出的信道，这些信道的信道容量有差别。极化码正是利用了信道合并和分裂，将N个信道容量相同的信道变成N个信道容量不相同的信道。&lt;sup id=&#34;fnref1:8&#34;&gt;&lt;a href=&#34;#fn:8&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h4 id=&#34;信道极化&#34;&gt;信道极化
+&lt;/h4&gt;&lt;p&gt;当$W$ 为删除概率为$\alpha$ 的二进制对称删除信道(BEC)时，其信道容量为：
+&lt;/p&gt;
+$$
+	\begin{align*}
+	C &amp;= \operatorname{max}_{p(x_i)}\{I(X;Y)\}\\
+	&amp;= \operatorname{max}_{p(x_i)}\{H(Y)-H(Y|X)\}\\
+	&amp;=H(\alpha,\frac{1-\alpha}{2},\frac{1-\alpha}{2})-H(\alpha,1-\alpha)\\
+	&amp;=1-\alpha
+	\end{align*}
+$$&lt;p&gt;
+以$W_2$为例。信道$W_2$分裂为信道$W^1_2:u_1\to y_1,y_2$ 和$W^2_2:u_2\to y_1,y_2,\hat u_1$ 。已知$x_1=u_1\oplus u_2$，$x_2=u_2$，可得$u_1=x_1\oplus x_2$，$u_2=x_2$
+对于信道$W^1_2$，当$x_1$或$x_2$被删除时，$u_1$无法被译码。这时：
+&lt;/p&gt;
+$$
+	\begin{align*}
+	P_e(u_1)&amp;=\alpha(1-\alpha)+(1-\alpha)\alpha+\alpha^2\\
+	&amp;=2\alpha-\alpha^2
+	\end{align*}
+$$&lt;p&gt;
+对于信道$W^2_2$，情况有所不同，$u_2=u_1\oplus x_1$ 或$u_2=x_2$，其中$u_1$是已知的。只有当$x_1$和$x_2$被删除时，$u_2$无法被译码&lt;sup id=&#34;fnref:9&#34;&gt;&lt;a href=&#34;#fn:9&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;9&lt;/a&gt;&lt;/sup&gt;，这时：
+&lt;/p&gt;
+$$
+	P_e(u_2)=\alpha^2
+$$&lt;p&gt;
+由此，原本的信道被分为了一个“好信道”和一个“坏信道”。然后对这一单元递归操作，构建出“更好的信道”。
+取$\alpha=0.5$ ，对两个信道合并的极化信道来说：$C(W^1_2)=0.25$、$C(W^2_2)=0.75$。当信道增加到四个时，$C(W^1_4)=0.06$、$C(W^2_4)=0.56$、$C(W^3_4)=0.44$、$C(W^4_4)=0.94$。可以看出当N足够大时，好信道上的误码率将足够小，从而实现可靠通信。Erdal Arikan证明当N足够大时，“好信道”占比为信道容量，因此在无限码长的情况下极化码可以达到香农极限。&lt;sup id=&#34;fnref1:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h3 id=&#34;极化码编码和译码&#34;&gt;极化码编码和译码
+&lt;/h3&gt;&lt;h4 id=&#34;极化码编码&#34;&gt;极化码编码
+&lt;/h4&gt;&lt;p&gt;在极化码的编码过程中，需要选择可靠性最高的$k$个信道来传输信息比特，而其余的$N-k$个信道则用于传输冻结比特。这些冻结比特不携带信息且对于接收端已知。根据极化码的基本原理，可以得到极化码的生成矩阵：&lt;sup id=&#34;fnref3:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref1:9&#34;&gt;&lt;a href=&#34;#fn:9&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;9&lt;/a&gt;&lt;/sup&gt;
+&lt;/p&gt;
+$$
+	G_N=B_NF^{\otimes n}\qquad 
+	\left\{ 
+		\begin{align*}
+		B_2&amp;=I_2\\
+		B_N&amp;=R_N(I_2\otimes B_{\frac{N}{2}})\\
+		F&amp;=
+		\left[
+		\begin{matrix}
+		1&amp;0\\
+		1&amp;1
+		\end{matrix}
+		\right]
+		\end{align*}
+	\right.
+$$&lt;h4 id=&#34;极化码译码&#34;&gt;极化码译码
+&lt;/h4&gt;&lt;p&gt;极化码译码最基础的方法是串行消除译码，串行消除译码利用似然比，由$\hat u_1$开始，逐个译码。&lt;sup id=&#34;fnref4:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref2:9&#34;&gt;&lt;a href=&#34;#fn:9&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;9&lt;/a&gt;&lt;/sup&gt;
+对于最小译码单元$W_2$信道。假设，我们已知信道$W$的转移矩阵，即可通过$y_i$求得$P(\hat x_i=0)$和 $P(\hat x_i=1)$。$x_i$的似然比为
+&lt;/p&gt;
+$$
+	LR(\hat x_i) = \frac{P(\hat x_i=0)}{P(\hat x_i=1)}
+$$&lt;p&gt;
+这时可以得出$\hat u_1$和$\hat u_2$的似然比：
+&lt;/p&gt;
+$$
+	\begin{align*}
+	LR(\hat u_1)&amp;=\frac{P(\hat u_1=0)}{P(\hat u_1=1)}\\
+	&amp;=\frac{P(\hat x_1=0)P(\hat x_2=0)+P(\hat x_1=1)P(\hat x_2=1)}
+		{P(\hat x_1=0)P(\hat x_2=1)+P(\hat x_1=1)P(\hat x_2=0)}\\
+	&amp;=\frac{1+LR(\hat x_1)LR(\hat x_2)}{LR(\hat x_1)+LR(\hat x_2)}\\
+	\end{align*}
+$$&lt;p&gt;
+由于译码$\hat u_2$时$\hat u_1$已知，因此需要分类讨论：
+&lt;/p&gt;
+$$
+	LR(\hat u_2)=
+	\begin{cases}
+	\frac{P(\hat x_1=0)P(\hat x_2=0)}{P(\hat x_1=1)P(\hat x_2=1)}
+	=LR(\hat x_1)LR(\hat x_2) &amp;\hat u_1=0\\
+	\frac{P(\hat x_1=1)P(\hat x_2=0)}{P(\hat x_1=0)P(\hat x_2=1)}
+	=\frac{LR(\hat x_2)}{LR(\hat x_1)} &amp;\hat u_1=1\\
+	\end{cases}
+$$&lt;p&gt;
+于是有$\hat u_1$和$\hat u_2$的似然比：
+&lt;/p&gt;
+$$
+	\left\{
+	\begin{align*}
+	LR(\hat u_1)&amp;=\frac{1+LR(\hat x_1)LR(\hat x_2)}{LR(\hat x_1)+LR(\hat x_2)}\\
+	LR(\hat u_2)&amp;=[LR(\hat x_1)]^{1-2\hat u_1}LR(\hat x_2)
+	\end{align*}
+	\right.
+$$&lt;p&gt;
+由于串行消除译码有前面比特判决出错影响后续判决的缺点，Tal等人提出了SCL译码算法。SCL译码在SC译码算法基础上做出改进，采用多条译码路径，克服了SC译码算法的缺点。其他译码算法还有PC-SCL、Fast-PC-SCL等&lt;sup id=&#34;fnref:10&#34;&gt;&lt;a href=&#34;#fn:10&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;10&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结
+&lt;/h2&gt;&lt;p&gt;总的来说，极化码的提出不仅是对香农编码定理的一大重要扩展，更是促进了人类社会的进步。极化码的优势在于它是唯一被严格证明可达到香农极限的编码方案，低复杂度编译码、灵活码率适配能力和低时延等特性使得它在众多编译码方案中脱颖而出。极化码虽已在5G控制信道中应用，但在走向更广泛实用的过程中，仍面临几个关键挑战。其在译码延迟问题、长码性能与复杂度平衡、信道估计敏感、硬件实现等方面亟待解决。极化码作为编码理论的里程碑，在5G及未来通信中仍具重要地位，但其实际部署需持续平衡性能、复杂度和工程可行性。&lt;sup id=&#34;fnref:11&#34;&gt;&lt;a href=&#34;#fn:11&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;11&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;C. E. Shannon. A mathematical theory of communication[J]. The Bell System Technical Journal&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;樊昌信，曹丽娜. 通信原理(第七版)[M]. 北京：国防工业出版社，1980.&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref2:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;深度求索.DeepSeek-V3.2. &amp;ldquo;为我讲述Turbo码的缺点和其未被选为5G信道编码技术的原因&amp;rdquo;[CP/OL]. (2025-12-20). &lt;a class=&#34;link&#34; href=&#34;https://chat.deepseek.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://chat.deepseek.com&lt;/a&gt;.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;深度求索.DeepSeek-V3.2. &amp;ldquo;5G技术两种信道编码的特点&amp;rdquo;[CP/OL]. (2025-12-20). &lt;a class=&#34;link&#34; href=&#34;https://chat.deepseek.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://chat.deepseek.com&lt;/a&gt;.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
+&lt;p&gt;E. Arikan. Channel Polarization: A Method for Constructing Capacity-Achieving Codes for Symmetric Binary-Input Memoryless Channels[J]. IEEE Transactions on Information Theory&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:6&#34;&gt;
+&lt;p&gt;里奇流. 5G 信道编码技术—Polar码[EB/OL]. (2023-04-17)[2025-12-20]. 知乎. &lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/622619502&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/622619502&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref2:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref3:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref4:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:7&#34;&gt;
+&lt;p&gt;张小飞，邵汉钦，吴启晖，徐大专. 信息论与编码[M]. 北京：电子工业出版社，2018&amp;#160;&lt;a href=&#34;#fnref:7&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:8&#34;&gt;
+&lt;p&gt;陈小龙. 极化码的编译码算法研究及FPGA实现[D]. 西安：西安电子科技大学，2025&amp;#160;&lt;a href=&#34;#fnref:8&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:8&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:9&#34;&gt;
+&lt;p&gt;Orhan Gazi. Polar Codes: A Non-Trivial Approach to Channel Coding[M]. Springer Topics in Signal Processing，2019&amp;#160;&lt;a href=&#34;#fnref:9&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:9&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref2:9&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:10&#34;&gt;
+&lt;p&gt;李俊毅，邢莉娟，李卓. 奇偶校验极化码的快速串行抵消列表译码算法[A]. 《电子学报》&amp;#160;&lt;a href=&#34;#fnref:10&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:11&#34;&gt;
+&lt;p&gt;深度求索.DeepSeek-V3.2. &amp;ldquo;极化码的优点和挑战&amp;rdquo;[CP/OL]. (2025-12-20). &lt;a class=&#34;link&#34; href=&#34;https://chat.deepseek.com&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://chat.deepseek.com&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:11&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

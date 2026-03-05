@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>SAR on Detail&#39;s Blog</title>
+        <link>https://detail47.github.io/categories/sar/</link>
+        <description>Recent content in SAR on Detail&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Detail</copyright>
+        <lastBuildDate>Fri, 21 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/sar/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>成像预处理</title>
+        <link>https://detail47.github.io/p/ef19b4e4cb07/</link>
+        <pubDate>Fri, 21 Nov 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/ef19b4e4cb07/</guid>
+        <description>&lt;img src="https://detail47.github.io/p/ef19b4e4cb07/intf.png" alt="Featured image of post 成像预处理" /&gt;&lt;h2 id=&#34;流程图&#34;&gt;流程图
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/ef19b4e4cb07/c73f449f945dc6a6754db03c02b9a2a42363b70b.png&#34;
+	width=&#34;937&#34;
+	height=&#34;342&#34;
+	srcset=&#34;https://detail47.github.io/p/ef19b4e4cb07/c73f449f945dc6a6754db03c02b9a2a42363b70b_hu_87a0c12cf566e6fe.png 480w, https://detail47.github.io/p/ef19b4e4cb07/c73f449f945dc6a6754db03c02b9a2a42363b70b_hu_f8c035f16438c33e.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;273&#34;
+		data-flex-basis=&#34;657px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配准&#34;&gt;配准
+&lt;/h2&gt;&lt;h3 id=&#34;强度图像金字塔&#34;&gt;强度图像金字塔
+&lt;/h3&gt;&lt;p&gt;使用主辅图像的幅值构建影像金字塔，自顶向下逐层对图像进行匹配。&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;使得每轮匹配的搜索范围都相对较小，快速接近对应位置。代码中采用4层金字塔，上一层图像为下一层图像在距离向和方位向分别进行2倍下采样得到。匹配窗口为$21\times 21$、每层最大偏移为$15\times 15$、控制点数量为64。图像偏移量为控制点偏移量的均值。控制点匹配采用归一化相关匹配，使用相关性最高的偏移量为该控制点的偏移量。&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$
+R\left( x,y \right) =\frac{\sum_{x^\prime ,y^\prime }{M\left( x^\prime ,y^\prime  \right) \cdot S\left( x+x^\prime ,y+y^\prime \right)}}{\sqrt{\sum_{x^\prime ,y^\prime }{M\left( x^\prime ,y^\prime \right) ^2}\cdot \sum_{x^\prime ,y^\prime}{S\left( x+x^\prime ,y+y^\prime \right) ^2}}}
+$$&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/ef19b4e4cb07/418dfb5a7ca52e99e527c36836b5f9de182de2f7.png&#34;
+	width=&#34;489&#34;
+	height=&#34;193&#34;
+	srcset=&#34;https://detail47.github.io/p/ef19b4e4cb07/418dfb5a7ca52e99e527c36836b5f9de182de2f7_hu_de82341958f298c6.png 480w, https://detail47.github.io/p/ef19b4e4cb07/418dfb5a7ca52e99e527c36836b5f9de182de2f7_hu_d7e1c08bb8191de0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;253&#34;
+		data-flex-basis=&#34;608px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;最大频谱法精匹配&#34;&gt;最大频谱法精匹配
+&lt;/h3&gt;&lt;p&gt;使用最大频谱法对主辅图像进行匹配，使得主辅图像对齐到亚像元级别以满足后续处理需求。代码中采用的匹配窗口为$15\times 15$、最大偏移为$3\times 3$、控制点数量为64，计算前在图像距离向和方位向上分别进行5倍上采样。控制点偏移量使用最大频谱法得到的信噪比最大的偏移量。&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$
+u_{int}=u_m\cdot u_{s}^{*}=a_ma_s\cdot e^{j\left( \varphi _m-\varphi _s \right)}
+$$$$
+SNR=\frac{f_{max}}{\sum{f_{i,j}}-f_{max}}
+$$&lt;p&gt;图像偏移量使用控制点去除奇异值点和信噪比较低的点后，使用三阶多项式拟合。&lt;sup id=&#34;fnref1:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$
+\left\{ \begin{array}{l}
+    \Delta x=a_0+a_1\cdot x+a_2\cdot y+a_3\cdot xy+a_4\cdot x^2+a_5\cdot y^2+a_6\cdot x^2y+a_7\cdot xy^2+a_8\cdot x^3+a_9\cdot y^3\\
+    \Delta y=b_0+b_1\cdot x+b_2\cdot y+b_3\cdot xy+b_4\cdot x^2+b_5\cdot y^2+b_6\cdot x^2y+b_7\cdot xy^2+b_8\cdot x^3+b_9\cdot y^3\\
+\end{array} \right.
+$$&lt;h3 id=&#34;插值&#34;&gt;插值
+&lt;/h3&gt;&lt;p&gt;应用偏移量到辅图像上采用复数双线性插值&lt;/p&gt;
+$$
+f\left( x,y \right) =f\left( Q_{11} \right) w_{11}+f\left( Q_{21} \right) w_{21}+f\left( Q_{12} \right) w_{12}+f\left( Q_{22} \right) w_{22}
+$$$$
+\left\{
+    \begin{align*}
+    w_{11} &amp;= \frac{(x_2-x)(y_2-y)}{(x_2-x_1)(y_2-y_1)}\\
+    w_{21} &amp;= \frac{(x-x_1)(y_2-y)}{(x_2-x_1)(y_2-y_1)}\\
+    w_{12} &amp;= \frac{(x_2-x)(y-y_1)}{(x_2-x_1)(y_2-y_1)}\\
+    w_{22} &amp;= \frac{(x-x_1)(y-y_1)}{(x_2-x_1)(y_2-y_1)}
+    \end{align*}
+    \right.
+$$&lt;h2 id=&#34;干涉&#34;&gt;干涉
+&lt;/h2&gt;&lt;p&gt;干涉图由主辅图像共轭相乘得到，相干图由干涉图用$9\times 9$窗口均值滤波并归一化得到。&lt;sup id=&#34;fnref2:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$
+\begin{align*}
+u_{int}&amp;=u_m\cdot u_{s}^{*}=a_ma_s\cdot e^{j\left( \varphi _m-\varphi _s \right)}=a_{int}e^{j\varphi} \\
+\varphi &amp;=\varphi _\text{flat}+\varphi _\text{topo}+\varphi _\text{atm}+\varphi _\text{noise}
+\end{align*}
+$$$$
+\gamma =\frac{|E\left[ M\cdot S^* \right] |}{\sqrt{E\left[\mid M\mid ^2 \right] E\left[\mid S\mid ^2 \right]}}
+$$&lt;h2 id=&#34;去平地效应&#34;&gt;去平地效应
+&lt;/h2&gt;&lt;p&gt;斜距$R$和入射角$\theta$在SML文件中得到，使用线性插值对斜距$R$进行插值。$\Delta 𝑅$为当前像元与第一个像元斜距之差。 &lt;sup id=&#34;fnref3:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt; $R_0$为第一个像元的斜距，$R_{eq}$为干涉相位为0时对应的斜距。&lt;/p&gt;
+$$
+\varphi _\text{flat}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta \text{R}}{Rtan\left( \theta \right)}+\varphi _\text{const}
+$$$$
+\varphi_\text{const}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}(R_{0}-R_{\text{eq}})}{R_{0}tan\left( \theta \right)}
+$$&lt;p&gt;去平地效应后的干涉图相位:&lt;/p&gt;
+$$
+\begin{align*}
+    \varphi _1&amp;     =\varphi +\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta \text{R}}{Rtan\left( \theta \right)}\\
+    &amp;       =\varphi _\text{topo}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise}\\
+\end{align*}
+$$&lt;h2 id=&#34;去dem相位&#34;&gt;去DEM相位
+&lt;/h2&gt;&lt;p&gt;使用轨道数据将DEM数据逐点从WGS84坐标系转换到雷达距离-方位坐标系，使用线性插值将得到的数据插值到整个雷达距离-方位坐标系。通过高程相位的公式得到 &lt;sup id=&#34;fnref4:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$
+\varphi _\text{dem}=-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\text{H}_\text{dem}}{R\sin \left( \theta \right)}
+$$&lt;p&gt;去DEM相位后的干涉图相位:&lt;/p&gt;
+$$
+\begin{align*}
+    \varphi _2&amp;     =\varphi _1-\varphi _\text{dem}\\
+    &amp;       =\varphi _\text{topo}-\varphi _\text{dem}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise}\\
+    &amp;       =-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta H}{R\sin \left( \theta \right)}+\varphi _\text{atm}+\varphi _\text{const}+\varphi _\text{noise} \quad\quad (\Delta H = H - H_\text{dem})\\
+\end{align*}
+$$&lt;h2 id=&#34;滤波&#34;&gt;滤波
+&lt;/h2&gt;&lt;p&gt;使用Goldstein滤波，将干涉图分成相互重叠的小块。对每个小块做傅里叶变换，得到其频谱$Z(u,v)$ , 用其对干涉图进行处理。$S[\cdot]$ 为平滑算子，使用$3\times 3$的均值滤波。Goldstein滤波窗口大小为$32\times 32$ , 步长为8 。&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+$$
+H(u,v) = S[ \lvert Z(u,v)\rvert ]^{1-\bar \gamma}\cdot Z(u,v)
+$$&lt;p&gt;忽略残余噪声，滤波后干涉图相位:&lt;/p&gt;
+$$
+\varphi_3 = =-\frac{4\pi}{\lambda}\cdot \frac{B_{\bot}\Delta H}{R\sin \left( \theta \right)}+\varphi _\text{atm}+\varphi _\text{const}\\
+$$&lt;h2 id=&#34;大气相位校正&#34;&gt;大气相位校正
+&lt;/h2&gt;&lt;p&gt;经过去平地效应和去DEM相位后，相位还剩余高频的相对高程相位与低频的大气相位和固定相位。对相位使用高通滤波器去除大气相位和固定相位。&lt;sup id=&#34;fnref:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt; 假设$E[\Delta H]=0$&lt;/p&gt;
+$$
+\varphi _3=k\Delta H+\varphi _\text{atm}+\varphi _\text{const} \quad\quad ( k=-\frac{4\pi B_{\bot}}{\lambda Rsin(\theta)})
+$$&lt;p&gt;去大气相位后的干涉图相位:&lt;/p&gt;
+$$
+\varphi _4=HPF( \varphi _3) =k\Delta H
+$$&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;靳国旺. InSAR获取高精度DEM关键处理技术研究[D]. 解放军信息工程大学, 2007.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
+&lt;p&gt;OpenCV计算机视觉库. 模板匹配[EB/OL], (2025-7-3). &lt;a class=&#34;link&#34; href=&#34;https://docs.opencv.ac.cn/4.12.0/de/da9/tutorial_template_matching.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.opencv.ac.cn/4.12.0/de/da9/tutorial_template_matching.html&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
+&lt;p&gt;杨红磊, 彭军还, 康志忠. InSAR技术原理及实践[M]. 北京：科学出版社, 2021.&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref2:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref3:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref4:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
+&lt;p&gt;BARAN I, STEWART M P, KAMPES B M, 等. A modification to the goldstein radar interferogram filter[J]. IEEE Transactions on Geoscience and Remote Sensing, 2003, 41(9): 2114-2118.&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
+&lt;p&gt;Nome2s. InSARFilter[CP/OL], (2025-10-21). &lt;a class=&#34;link&#34; href=&#34;https://github.com/Nome2s/InSARFilter&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/Nome2s/InSARFilter&lt;/a&gt;.&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:6&#34;&gt;
+&lt;p&gt;FORNARO G, LOMBARDINI F, SERAFINO F. Three-dimensional multipass SAR focusing: experiments with long-term spaceborne data[J]. IEEE Transactions on Geoscience and Remote Sensing, 2005, 43(4): 702-714.&amp;#160;&lt;a href=&#34;#fnref:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        <item>
+        <title>SAR几何</title>
+        <link>https://detail47.github.io/p/54560ba54cb9/</link>
+        <pubDate>Tue, 15 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://detail47.github.io/p/54560ba54cb9/</guid>
+        <description>&lt;img src="https://detail47.github.io/p/54560ba54cb9/SAR.jpg" alt="Featured image of post SAR几何" /&gt;&lt;h2 id=&#34;sar几何&#34;&gt;SAR几何
+&lt;/h2&gt;&lt;h3 id=&#34;参考方向&#34;&gt;参考方向
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;$x$: azimuth 传感器的飞行方向，也称为沿轨道方向&lt;/li&gt;
+&lt;li&gt;$r$: range 天线的视线（LOS）方向，也称为倾斜范围&lt;/li&gt;
+&lt;li&gt;$\theta$: elevation angle 高程角，即垂直于方位角平面。高程$s$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;分辨率&#34;&gt;分辨率
+&lt;/h3&gt;&lt;h4 id=&#34;飞行方向&#34;&gt;飞行方向
+&lt;/h4&gt;$$
+\rho_x = \frac{\lambda r}{2\Delta x}
+$$&lt;h4 id=&#34;视线方向&#34;&gt;视线方向
+&lt;/h4&gt;$$
+\rho_r = \frac{c}{2W}
+$$&lt;h4 id=&#34;高程方向tomosar&#34;&gt;高程方向（TomoSAR）
+&lt;/h4&gt;$$
+\rho_s = = \frac{\lambda r}{2\Delta b}
+$$&lt;h2 id=&#34;sar原理&#34;&gt;SAR原理
+&lt;/h2&gt;&lt;h3 id=&#34;实际孔径天线&#34;&gt;实际孔径天线
+&lt;/h3&gt;&lt;p&gt;阵列天线长$L$，均匀加权。工作波长$\lambda$ ，目标偏离视轴角度$\theta$，$x$为接收点偏离相位基准点的位置。回波信号单程相位差：&lt;/p&gt;
+$$
+\varphi(x) = \frac{2\pi}{\lambda}xsin\theta
+$$&lt;p&gt;天线方向图函数：&lt;/p&gt;
+$$
+F(\theta)=\frac{1}{L}\int^{L/2}_{-L/2}e^{j\varphi(x)}dx=\frac{sin(\frac{\pi}{\lambda}Lsin\theta)}{\frac{\pi}{\lambda}Lsin\theta}
+$$&lt;p&gt;收发双程半功率点分辨率：&lt;/p&gt;
+$$
+\delta r_c|_{3dB}(双程)\approx 0.64\frac{\lambda r}{L}
+$$&lt;p&gt;离散阵元阵列天线方向图函数：&lt;/p&gt;
+$$
+F(\theta)=\frac{sin[\frac{\pi Nd}{\lambda}sin\theta]}{Nsin(\frac{\pi d}{\lambda}sin\theta)}
+$$&lt;h3 id=&#34;非聚焦&#34;&gt;非聚焦
+&lt;/h3&gt;&lt;p&gt;双程相位差：&lt;/p&gt;
+$$
+\varphi(x)=\frac{4\pi}{\lambda}xsin\theta \approx \frac{4\pi v_pTy}{\lambda r}
+$$&lt;p&gt;天线方向图函数：&lt;/p&gt;
+$$
+F(\theta)=\frac{sin\frac{2\pi v_pTy}{\lambda r}}{\frac{2\pi v_pTy}{\lambda r}}\quad\quad y=r\theta
+$$&lt;p&gt;$\frac{2}{\pi}$幅度处定义的瑞利分辨率：&lt;/p&gt;
+$$
+\delta\gamma_\alpha=\frac{\lambda r}{2L}\quad\quad L=v_pT
+$$&lt;p&gt;在非聚焦处理时，阵面上信号的相位差将影响合成孔径天线波束展宽和
+副瓣恶化，为此，孔径$L$受到限制：$L_{max}=\sqrt{\lambda r}$，这时$\Delta r \le \frac{\lambda}{8}$。&lt;/p&gt;
+&lt;h4 id=&#34;非聚焦处理的分辨率&#34;&gt;非聚焦处理的分辨率
+&lt;/h4&gt;$$
+\delta\gamma_\alpha=\frac{1}{2}\sqrt{\lambda r}
+$$&lt;h3 id=&#34;聚焦&#34;&gt;聚焦
+&lt;/h3&gt;&lt;p&gt;聚焦处理时，附加相位项可以在信号处理过程中予以补偿，故此时合成孔径的长度可由实际天线波束宽度所能覆盖的长度$L_e$所决定。
+有效阵列长度$L_e$，天线波束宽度$\theta_B$：&lt;/p&gt;
+$$
+\begin{align*}
+    L_e &amp;= r\cdot \theta_B\\
+    \theta_B &amp;=\frac\lambda D
+    \end{align*}
+$$&lt;h4 id=&#34;聚焦处理的分辨率&#34;&gt;聚焦处理的分辨率
+&lt;/h4&gt;$$
+\delta\gamma_\alpha=\frac{D}{2}
+$$</description>
+        </item>
+        
+    </channel>
+</rss>

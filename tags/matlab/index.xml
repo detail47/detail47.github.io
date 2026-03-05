@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>MATLAB on Detail&#39;s Blog</title>
-        <link>https://detail47.github.io/tags/matlab/</link>
+        <link>https://blog.detail.eu.org/tags/matlab/</link>
         <description>Recent content in MATLAB on Detail&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>zh-cn</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/tags/matlab/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 10 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/tags/matlab/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>IHT</title>
-        <link>https://detail47.github.io/p/25e9de417a75/</link>
+        <link>https://blog.detail.eu.org/p/25e9de417a75/</link>
         <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/25e9de417a75/</guid>
+        <guid>https://blog.detail.eu.org/p/25e9de417a75/</guid>
         <description>&lt;h2 id=&#34;基本原理&#34;&gt;基本原理
 &lt;/h2&gt;&lt;p&gt;迭代硬阈值算法（Iterative Hard Thresholding, IHT），在提出时称M-Sparse Algorithm。$M$稀疏问题可以表示为&lt;/p&gt;
 $$

@@ -2,23 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>电子 on Detail&#39;s Blog</title>
-        <link>https://detail47.github.io/categories/electronic/</link>
+        <link>https://blog.detail.eu.org/categories/electronic/</link>
         <description>Recent content in 电子 on Detail&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>zh-cn</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Sun, 08 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/electronic/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 08 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/categories/electronic/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Buck电路</title>
-        <link>https://detail47.github.io/p/4770f89000ca/</link>
+        <link>https://blog.detail.eu.org/p/4770f89000ca/</link>
         <pubDate>Sun, 08 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/4770f89000ca/</guid>
+        <guid>https://blog.detail.eu.org/p/4770f89000ca/</guid>
         <description>&lt;h2 id=&#34;原理图&#34;&gt;原理图
 &lt;/h2&gt;&lt;p&gt;下图电路为异步Buck电路，将图中二极管更换为MOS管则为同步Buck电路。
-&lt;img src=&#34;https://detail47.github.io/p/4770f89000ca/4a5af6ba4a316822a0a46f3d2780e96081dee22a.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/4770f89000ca/4a5af6ba4a316822a0a46f3d2780e96081dee22a.png&#34;
 	width=&#34;1246&#34;
 	height=&#34;629&#34;
-	srcset=&#34;https://detail47.github.io/p/4770f89000ca/4a5af6ba4a316822a0a46f3d2780e96081dee22a_hu_6ba185f20aa98bba.png 480w, https://detail47.github.io/p/4770f89000ca/4a5af6ba4a316822a0a46f3d2780e96081dee22a_hu_40d1dfcb9b3c96ba.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/4770f89000ca/4a5af6ba4a316822a0a46f3d2780e96081dee22a_hu_6ba185f20aa98bba.png 480w, https://blog.detail.eu.org/p/4770f89000ca/4a5af6ba4a316822a0a46f3d2780e96081dee22a_hu_40d1dfcb9b3c96ba.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -28,10 +28,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;开关导通&#34;&gt;开关导通
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/4770f89000ca/5d9f71b8b96b8e37d32df56926c46afa540e1ab3.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/4770f89000ca/5d9f71b8b96b8e37d32df56926c46afa540e1ab3.png&#34;
 	width=&#34;1080&#34;
 	height=&#34;452&#34;
-	srcset=&#34;https://detail47.github.io/p/4770f89000ca/5d9f71b8b96b8e37d32df56926c46afa540e1ab3_hu_6d892ea60766fe04.png 480w, https://detail47.github.io/p/4770f89000ca/5d9f71b8b96b8e37d32df56926c46afa540e1ab3_hu_3abfbbaa147c18b4.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/4770f89000ca/5d9f71b8b96b8e37d32df56926c46afa540e1ab3_hu_6d892ea60766fe04.png 480w, https://blog.detail.eu.org/p/4770f89000ca/5d9f71b8b96b8e37d32df56926c46afa540e1ab3_hu_3abfbbaa147c18b4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -42,10 +42,10 @@
 &gt;
 开关导通时，二极管不导通，电感$\frac{\mathrm{d}i}{\mathrm{d}t}=\frac{V_i-V_o}{L}$为一常数。电流基本呈线性增大。&lt;/p&gt;
 &lt;h3 id=&#34;开关断开&#34;&gt;开关断开
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/4770f89000ca/21bf697a359d53aa8a6797a72d34f254e72ccbf1.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/4770f89000ca/21bf697a359d53aa8a6797a72d34f254e72ccbf1.png&#34;
 	width=&#34;1080&#34;
 	height=&#34;452&#34;
-	srcset=&#34;https://detail47.github.io/p/4770f89000ca/21bf697a359d53aa8a6797a72d34f254e72ccbf1_hu_5a6a967736023501.png 480w, https://detail47.github.io/p/4770f89000ca/21bf697a359d53aa8a6797a72d34f254e72ccbf1_hu_441c0b3ecdf99a7.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/4770f89000ca/21bf697a359d53aa8a6797a72d34f254e72ccbf1_hu_5a6a967736023501.png 480w, https://blog.detail.eu.org/p/4770f89000ca/21bf697a359d53aa8a6797a72d34f254e72ccbf1_hu_441c0b3ecdf99a7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

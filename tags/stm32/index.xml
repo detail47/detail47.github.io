@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>STM32 on Detail&#39;s Blog</title>
-        <link>https://detail47.github.io/tags/stm32/</link>
+        <link>https://blog.detail.eu.org/tags/stm32/</link>
         <description>Recent content in STM32 on Detail&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>zh-cn</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Mon, 26 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/tags/stm32/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/tags/stm32/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>STM32 SPI</title>
-        <link>https://detail47.github.io/p/71c43867a359/</link>
+        <link>https://blog.detail.eu.org/p/71c43867a359/</link>
         <pubDate>Mon, 26 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/71c43867a359/</guid>
+        <guid>https://blog.detail.eu.org/p/71c43867a359/</guid>
         <description>&lt;h2 id=&#34;spi简介&#34;&gt;SPI简介
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;SPI（Serial Peripheral Interface）是由Motorola公司开发的一种通用数据总线&lt;/li&gt;
@@ -25,10 +25,10 @@
 &lt;li&gt;所有SPI设备的SCK、MOSI、MISO分别连在一起&lt;/li&gt;
 &lt;li&gt;主机另外引出多条SS控制线，分别接到各从机的SS引脚&lt;/li&gt;
 &lt;li&gt;输出引脚配置为推挽输出，输入引脚配置为浮空或上拉输入
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/65ac02c4401bc4d2520d4213a32b3a9f7cb3cdba.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/65ac02c4401bc4d2520d4213a32b3a9f7cb3cdba.png&#34;
 	width=&#34;982&#34;
 	height=&#34;582&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/65ac02c4401bc4d2520d4213a32b3a9f7cb3cdba_hu_8aa9a142a700388f.png 480w, https://detail47.github.io/p/71c43867a359/65ac02c4401bc4d2520d4213a32b3a9f7cb3cdba_hu_3ecf626c15a9abba.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/65ac02c4401bc4d2520d4213a32b3a9f7cb3cdba_hu_8aa9a142a700388f.png 480w, https://blog.detail.eu.org/p/71c43867a359/65ac02c4401bc4d2520d4213a32b3a9f7cb3cdba_hu_3ecf626c15a9abba.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -37,10 +37,10 @@
 		data-flex-basis=&#34;404px&#34;
 	
 &gt;
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/35d2d89ca1f74ffc54ca5e5308f84156de8a79a5.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/35d2d89ca1f74ffc54ca5e5308f84156de8a79a5.png&#34;
 	width=&#34;1472&#34;
 	height=&#34;709&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/35d2d89ca1f74ffc54ca5e5308f84156de8a79a5_hu_4455c4a522a9e2b4.png 480w, https://detail47.github.io/p/71c43867a359/35d2d89ca1f74ffc54ca5e5308f84156de8a79a5_hu_36da4e81ff49c679.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/35d2d89ca1f74ffc54ca5e5308f84156de8a79a5_hu_4455c4a522a9e2b4.png 480w, https://blog.detail.eu.org/p/71c43867a359/35d2d89ca1f74ffc54ca5e5308f84156de8a79a5_hu_36da4e81ff49c679.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -54,10 +54,10 @@
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;起始条件：SS从高电平切换到低电平&lt;/li&gt;
 &lt;li&gt;终止条件：SS从低电平切换到高电平
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/6fb03e8b53cceef93e1e70c0baf044259b2de7cc.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/6fb03e8b53cceef93e1e70c0baf044259b2de7cc.png&#34;
 	width=&#34;726&#34;
 	height=&#34;175&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/6fb03e8b53cceef93e1e70c0baf044259b2de7cc_hu_bd894a553f67cefa.png 480w, https://detail47.github.io/p/71c43867a359/6fb03e8b53cceef93e1e70c0baf044259b2de7cc_hu_44b84fad365bb423.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/6fb03e8b53cceef93e1e70c0baf044259b2de7cc_hu_bd894a553f67cefa.png 480w, https://blog.detail.eu.org/p/71c43867a359/6fb03e8b53cceef93e1e70c0baf044259b2de7cc_hu_44b84fad365bb423.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -71,10 +71,10 @@
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;CPOL=0：空闲状态时，SCK为低电平&lt;/li&gt;
 &lt;li&gt;CPHA=0：SCK第一个边沿移入数据，第二个边沿移出数据
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/000a5f33de376c52dd6b03784e01eb70d24619e0.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/000a5f33de376c52dd6b03784e01eb70d24619e0.png&#34;
 	width=&#34;826&#34;
 	height=&#34;278&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/000a5f33de376c52dd6b03784e01eb70d24619e0_hu_f5c0b5e1ec06b954.png 480w, https://detail47.github.io/p/71c43867a359/000a5f33de376c52dd6b03784e01eb70d24619e0_hu_a202b08652abaf64.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/000a5f33de376c52dd6b03784e01eb70d24619e0_hu_f5c0b5e1ec06b954.png 480w, https://blog.detail.eu.org/p/71c43867a359/000a5f33de376c52dd6b03784e01eb70d24619e0_hu_a202b08652abaf64.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -88,10 +88,10 @@
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;CPOL=0：空闲状态时，SCK为低电平&lt;/li&gt;
 &lt;li&gt;CPHA=1：SCK第一个边沿移出数据，第二个边沿移入数据
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/4a3e9bd79770aee75596d47c4a648af2e24ed962.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/4a3e9bd79770aee75596d47c4a648af2e24ed962.png&#34;
 	width=&#34;821&#34;
 	height=&#34;286&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/4a3e9bd79770aee75596d47c4a648af2e24ed962_hu_fd9d21d314594f50.png 480w, https://detail47.github.io/p/71c43867a359/4a3e9bd79770aee75596d47c4a648af2e24ed962_hu_697bb0d997276307.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/4a3e9bd79770aee75596d47c4a648af2e24ed962_hu_fd9d21d314594f50.png 480w, https://blog.detail.eu.org/p/71c43867a359/4a3e9bd79770aee75596d47c4a648af2e24ed962_hu_697bb0d997276307.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -105,10 +105,10 @@
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;CPOL=1：空闲状态时，SCK为高电平&lt;/li&gt;
 &lt;li&gt;CPHA=0：SCK第一个边沿移入数据，第二个边沿移出数据
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/d888433609b3f0811540bf711c065323cf43b944.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/d888433609b3f0811540bf711c065323cf43b944.png&#34;
 	width=&#34;821&#34;
 	height=&#34;266&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/d888433609b3f0811540bf711c065323cf43b944_hu_237c7de922a1fd61.png 480w, https://detail47.github.io/p/71c43867a359/d888433609b3f0811540bf711c065323cf43b944_hu_bf8e3d395eb76eb0.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/d888433609b3f0811540bf711c065323cf43b944_hu_237c7de922a1fd61.png 480w, https://blog.detail.eu.org/p/71c43867a359/d888433609b3f0811540bf711c065323cf43b944_hu_bf8e3d395eb76eb0.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -122,10 +122,10 @@
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;CPOL=1：空闲状态时，SCK为高电平&lt;/li&gt;
 &lt;li&gt;CPHA=1：SCK第一个边沿移出数据，第二个边沿移入数据
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/2a2be4bac41907f04739c12f623b69338d61b764.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/2a2be4bac41907f04739c12f623b69338d61b764.png&#34;
 	width=&#34;823&#34;
 	height=&#34;271&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/2a2be4bac41907f04739c12f623b69338d61b764_hu_c496445025a7279d.png 480w, https://detail47.github.io/p/71c43867a359/2a2be4bac41907f04739c12f623b69338d61b764_hu_76234c68a7782b5.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/2a2be4bac41907f04739c12f623b69338d61b764_hu_c496445025a7279d.png 480w, https://blog.detail.eu.org/p/71c43867a359/2a2be4bac41907f04739c12f623b69338d61b764_hu_76234c68a7782b5.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -138,10 +138,10 @@
 &lt;h3 id=&#34;spi时序&#34;&gt;SPI时序
 &lt;/h3&gt;&lt;h4 id=&#34;发送指令&#34;&gt;发送指令
 &lt;/h4&gt;&lt;p&gt;向SS指定的设备，发送指令（0x06）
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/091a775e3a7e3d471fc4a90400831951e2798ab6.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/091a775e3a7e3d471fc4a90400831951e2798ab6.png&#34;
 	width=&#34;834&#34;
 	height=&#34;617&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/091a775e3a7e3d471fc4a90400831951e2798ab6_hu_3d634879eb65e807.png 480w, https://detail47.github.io/p/71c43867a359/091a775e3a7e3d471fc4a90400831951e2798ab6_hu_26027bf46790751e.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/091a775e3a7e3d471fc4a90400831951e2798ab6_hu_3d634879eb65e807.png 480w, https://blog.detail.eu.org/p/71c43867a359/091a775e3a7e3d471fc4a90400831951e2798ab6_hu_26027bf46790751e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -152,10 +152,10 @@
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;指定地址写&#34;&gt;指定地址写
 &lt;/h4&gt;&lt;p&gt;向SS指定的设备，发送写指令（0x02），随后在指定地址（Address[23:0]）下，写入指定数据（Data）
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/b54df6292ef04e792fc7c3abdb3564f24a9fdd7d.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/b54df6292ef04e792fc7c3abdb3564f24a9fdd7d.png&#34;
 	width=&#34;1890&#34;
 	height=&#34;350&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/b54df6292ef04e792fc7c3abdb3564f24a9fdd7d_hu_5ccb1f82bea4429c.png 480w, https://detail47.github.io/p/71c43867a359/b54df6292ef04e792fc7c3abdb3564f24a9fdd7d_hu_7cb577edccc6483.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/b54df6292ef04e792fc7c3abdb3564f24a9fdd7d_hu_5ccb1f82bea4429c.png 480w, https://blog.detail.eu.org/p/71c43867a359/b54df6292ef04e792fc7c3abdb3564f24a9fdd7d_hu_7cb577edccc6483.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -166,10 +166,10 @@
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;指定地址读&#34;&gt;指定地址读
 &lt;/h4&gt;&lt;p&gt;向SS指定的设备，发送读指令（0x03），随后在指定地址（Address[23:0]）下，读取从机数据（Data）
-&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/9795cb0456e05f4d31d773247d3a7e1c6026b4bd.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/9795cb0456e05f4d31d773247d3a7e1c6026b4bd.png&#34;
 	width=&#34;1890&#34;
 	height=&#34;350&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/9795cb0456e05f4d31d773247d3a7e1c6026b4bd_hu_571044eb23c3154d.png 480w, https://detail47.github.io/p/71c43867a359/9795cb0456e05f4d31d773247d3a7e1c6026b4bd_hu_4dba2791fd5822a9.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/9795cb0456e05f4d31d773247d3a7e1c6026b4bd_hu_571044eb23c3154d.png 480w, https://blog.detail.eu.org/p/71c43867a359/9795cb0456e05f4d31d773247d3a7e1c6026b4bd_hu_4dba2791fd5822a9.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -190,10 +190,10 @@
 &lt;/ul&gt;
 &lt;p&gt;实际外设:
 STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/d616f993d3cd93c8dcce46ad4f191e17cebafbca.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/d616f993d3cd93c8dcce46ad4f191e17cebafbca.png&#34;
 	width=&#34;1098&#34;
 	height=&#34;882&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/d616f993d3cd93c8dcce46ad4f191e17cebafbca_hu_9e2710519f028d60.png 480w, https://detail47.github.io/p/71c43867a359/d616f993d3cd93c8dcce46ad4f191e17cebafbca_hu_2ce188cc50c1f247.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/d616f993d3cd93c8dcce46ad4f191e17cebafbca_hu_9e2710519f028d60.png 480w, https://blog.detail.eu.org/p/71c43867a359/d616f993d3cd93c8dcce46ad4f191e17cebafbca_hu_2ce188cc50c1f247.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -202,10 +202,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 		data-flex-basis=&#34;298px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/e42bf870e593eff62438230dc60a31f718eee53b.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/e42bf870e593eff62438230dc60a31f718eee53b.png&#34;
 	width=&#34;1755&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/e42bf870e593eff62438230dc60a31f718eee53b_hu_e2aa20055d19502b.png 480w, https://detail47.github.io/p/71c43867a359/e42bf870e593eff62438230dc60a31f718eee53b_hu_c87182dbb3da0868.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/e42bf870e593eff62438230dc60a31f718eee53b_hu_e2aa20055d19502b.png 480w, https://blog.detail.eu.org/p/71c43867a359/e42bf870e593eff62438230dc60a31f718eee53b_hu_c87182dbb3da0868.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -214,10 +214,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 		data-flex-basis=&#34;514px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/f403292a13c9250f2345a0384e13fd742c2b0195.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/f403292a13c9250f2345a0384e13fd742c2b0195.png&#34;
 	width=&#34;1384&#34;
 	height=&#34;902&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/f403292a13c9250f2345a0384e13fd742c2b0195_hu_5731483dc8dbb7c3.png 480w, https://detail47.github.io/p/71c43867a359/f403292a13c9250f2345a0384e13fd742c2b0195_hu_203cb90c54a46d11.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/f403292a13c9250f2345a0384e13fd742c2b0195_hu_5731483dc8dbb7c3.png 480w, https://blog.detail.eu.org/p/71c43867a359/f403292a13c9250f2345a0384e13fd742c2b0195_hu_203cb90c54a46d11.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -226,10 +226,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 		data-flex-basis=&#34;368px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/71c43867a359/2bf787dd54245c1b264f0c4e70a6f80fccc78ea2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/71c43867a359/2bf787dd54245c1b264f0c4e70a6f80fccc78ea2.png&#34;
 	width=&#34;1384&#34;
 	height=&#34;667&#34;
-	srcset=&#34;https://detail47.github.io/p/71c43867a359/2bf787dd54245c1b264f0c4e70a6f80fccc78ea2_hu_fb9fae1739f37c37.png 480w, https://detail47.github.io/p/71c43867a359/2bf787dd54245c1b264f0c4e70a6f80fccc78ea2_hu_f783f073ddfdfc27.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/71c43867a359/2bf787dd54245c1b264f0c4e70a6f80fccc78ea2_hu_fb9fae1739f37c37.png 480w, https://blog.detail.eu.org/p/71c43867a359/2bf787dd54245c1b264f0c4e70a6f80fccc78ea2_hu_f783f073ddfdfc27.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -374,10 +374,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
         </item>
         <item>
         <title>STM32 I2C</title>
-        <link>https://detail47.github.io/p/cb436af4435d/</link>
+        <link>https://blog.detail.eu.org/p/cb436af4435d/</link>
         <pubDate>Tue, 20 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/cb436af4435d/</guid>
+        <guid>https://blog.detail.eu.org/p/cb436af4435d/</guid>
         <description>&lt;h2 id=&#34;i2c简介&#34;&gt;I2C简介
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;I2C（Inter IC Bus）是由Philips公司开发的一种通用数据总线&lt;/li&gt;
@@ -392,10 +392,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;li&gt;设备的SCL和SDA均要配置成开漏输出模式&lt;/li&gt;
 &lt;li&gt;SCL和SDA各添加一个上拉电阻，阻值一般为4.7KΩ左右&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/31ccb88bf87dd201536a5d304ed80a46972493fe.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/31ccb88bf87dd201536a5d304ed80a46972493fe.png&#34;
 	width=&#34;964&#34;
 	height=&#34;460&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/31ccb88bf87dd201536a5d304ed80a46972493fe_hu_51b0d8e8ec744f00.png 480w, https://detail47.github.io/p/cb436af4435d/31ccb88bf87dd201536a5d304ed80a46972493fe_hu_562e683a9ddcaedd.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/31ccb88bf87dd201536a5d304ed80a46972493fe_hu_51b0d8e8ec744f00.png 480w, https://blog.detail.eu.org/p/cb436af4435d/31ccb88bf87dd201536a5d304ed80a46972493fe_hu_562e683a9ddcaedd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -404,10 +404,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 		data-flex-basis=&#34;502px&#34;
 	
 &gt;
-&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/2168e48105b14cc537fe1de5f4aaa70f73ef9dcf.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/2168e48105b14cc537fe1de5f4aaa70f73ef9dcf.png&#34;
 	width=&#34;722&#34;
 	height=&#34;460&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/2168e48105b14cc537fe1de5f4aaa70f73ef9dcf_hu_51f93f0c3cfab150.png 480w, https://detail47.github.io/p/cb436af4435d/2168e48105b14cc537fe1de5f4aaa70f73ef9dcf_hu_b687d19276346e55.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/2168e48105b14cc537fe1de5f4aaa70f73ef9dcf_hu_51f93f0c3cfab150.png 480w, https://blog.detail.eu.org/p/cb436af4435d/2168e48105b14cc537fe1de5f4aaa70f73ef9dcf_hu_b687d19276346e55.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -421,10 +421,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;li&gt;起始条件：SCL高电平期间，SDA从高电平切换到低电平&lt;/li&gt;
 &lt;li&gt;终止条件：SCL高电平期间，SDA从低电平切换到高电平&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/4edcb3174050174eda84418e7bdde0b21601a7da.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/4edcb3174050174eda84418e7bdde0b21601a7da.png&#34;
 	width=&#34;689&#34;
 	height=&#34;235&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/4edcb3174050174eda84418e7bdde0b21601a7da_hu_6e7df752f33ce646.png 480w, https://detail47.github.io/p/cb436af4435d/4edcb3174050174eda84418e7bdde0b21601a7da_hu_d8d23d2dba4bf1f6.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/4edcb3174050174eda84418e7bdde0b21601a7da_hu_6e7df752f33ce646.png 480w, https://blog.detail.eu.org/p/cb436af4435d/4edcb3174050174eda84418e7bdde0b21601a7da_hu_d8d23d2dba4bf1f6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -436,10 +436,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;发送一个字节：SCL低电平期间，主机将数据位依次放到SDA线上（高位先行），然后释放SCL，从机将在SCL高电平期间读取数据位，所以SCL高电平期间SDA不允许有数据变化，依次循环上述过程8次，即可发送一个字节&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/d5beb120130f98d74cfe1ab4fa84086ac15a1048.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/d5beb120130f98d74cfe1ab4fa84086ac15a1048.png&#34;
 	width=&#34;800&#34;
 	height=&#34;197&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/d5beb120130f98d74cfe1ab4fa84086ac15a1048_hu_2f6c4fb01e6737ff.png 480w, https://detail47.github.io/p/cb436af4435d/d5beb120130f98d74cfe1ab4fa84086ac15a1048_hu_d650b47553b5b8cb.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/d5beb120130f98d74cfe1ab4fa84086ac15a1048_hu_2f6c4fb01e6737ff.png 480w, https://blog.detail.eu.org/p/cb436af4435d/d5beb120130f98d74cfe1ab4fa84086ac15a1048_hu_d650b47553b5b8cb.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -451,10 +451,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;接收一个字节：SCL低电平期间，从机将数据位依次放到SDA线上（高位先行），然后释放SCL，主机将在SCL高电平期间读取数据位，所以SCL高电平期间SDA不允许有数据变化，依次循环上述过程8次，即可接收一个字节（主机在接收之前，需要释放SDA）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/769979e331395594ca80189871ccda8405dad02e.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/769979e331395594ca80189871ccda8405dad02e.png&#34;
 	width=&#34;779&#34;
 	height=&#34;190&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/769979e331395594ca80189871ccda8405dad02e_hu_a5b9d815fc8bd12c.png 480w, https://detail47.github.io/p/cb436af4435d/769979e331395594ca80189871ccda8405dad02e_hu_ad5f0ec537468028.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/769979e331395594ca80189871ccda8405dad02e_hu_a5b9d815fc8bd12c.png 480w, https://blog.detail.eu.org/p/cb436af4435d/769979e331395594ca80189871ccda8405dad02e_hu_ad5f0ec537468028.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -467,10 +467,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;li&gt;发送应答：主机在接收完一个字节之后，在下一个时钟发送一位数据，数据0表示应答，数据1表示非应答&lt;/li&gt;
 &lt;li&gt;接收应答：主机在发送完一个字节之后，在下一个时钟接收一位数据，判断从机是否应答，数据0表示应答，数据1表示非应答（主机在接收之前，需要释放SDA）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/63f4d93e60dfda02aa441b2ba603d3a7b9278046.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/63f4d93e60dfda02aa441b2ba603d3a7b9278046.png&#34;
 	width=&#34;754&#34;
 	height=&#34;179&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/63f4d93e60dfda02aa441b2ba603d3a7b9278046_hu_ae659cdd24d5cefe.png 480w, https://detail47.github.io/p/cb436af4435d/63f4d93e60dfda02aa441b2ba603d3a7b9278046_hu_b00006a00efb52e7.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/63f4d93e60dfda02aa441b2ba603d3a7b9278046_hu_ae659cdd24d5cefe.png 480w, https://blog.detail.eu.org/p/cb436af4435d/63f4d93e60dfda02aa441b2ba603d3a7b9278046_hu_b00006a00efb52e7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -482,10 +482,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;h3 id=&#34;i2c时序&#34;&gt;I2C时序
 &lt;/h3&gt;&lt;h4 id=&#34;指定地址写&#34;&gt;指定地址写
 &lt;/h4&gt;&lt;p&gt;对于指定设备（Slave Address），在指定地址（Reg Address）下，写入指定数据（Data）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/0d7b687afc0036017ef2cb84f8eae2082d9003f3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/0d7b687afc0036017ef2cb84f8eae2082d9003f3.png&#34;
 	width=&#34;1748&#34;
 	height=&#34;411&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/0d7b687afc0036017ef2cb84f8eae2082d9003f3_hu_b833a3b41e44f4c8.png 480w, https://detail47.github.io/p/cb436af4435d/0d7b687afc0036017ef2cb84f8eae2082d9003f3_hu_cf954a3a44452f1.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/0d7b687afc0036017ef2cb84f8eae2082d9003f3_hu_b833a3b41e44f4c8.png 480w, https://blog.detail.eu.org/p/cb436af4435d/0d7b687afc0036017ef2cb84f8eae2082d9003f3_hu_cf954a3a44452f1.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -496,10 +496,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;当前地址读&#34;&gt;当前地址读
 &lt;/h4&gt;&lt;p&gt;对于指定设备（Slave Address），在当前地址指针指示的地址下，读取从机数据（Data）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/db46160d3f76ada474458ba8efabc7e47eb687cd.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/db46160d3f76ada474458ba8efabc7e47eb687cd.png&#34;
 	width=&#34;1528&#34;
 	height=&#34;504&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/db46160d3f76ada474458ba8efabc7e47eb687cd_hu_74d53347a66bc72a.png 480w, https://detail47.github.io/p/cb436af4435d/db46160d3f76ada474458ba8efabc7e47eb687cd_hu_5c9dae9b2aeb0b72.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/db46160d3f76ada474458ba8efabc7e47eb687cd_hu_74d53347a66bc72a.png 480w, https://blog.detail.eu.org/p/cb436af4435d/db46160d3f76ada474458ba8efabc7e47eb687cd_hu_5c9dae9b2aeb0b72.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -510,10 +510,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;指定地址读&#34;&gt;指定地址读
 &lt;/h4&gt;&lt;p&gt;对于指定设备（Slave Address），在指定地址（Reg Address）下，读取从机数据（Data）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/30b2f3274a5ccde050588deb9a7f1b3295fcaffe.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/30b2f3274a5ccde050588deb9a7f1b3295fcaffe.png&#34;
 	width=&#34;1892&#34;
 	height=&#34;336&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/30b2f3274a5ccde050588deb9a7f1b3295fcaffe_hu_3aedd80136c90794.png 480w, https://detail47.github.io/p/cb436af4435d/30b2f3274a5ccde050588deb9a7f1b3295fcaffe_hu_165540a0be06fcf1.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/30b2f3274a5ccde050588deb9a7f1b3295fcaffe_hu_3aedd80136c90794.png 480w, https://blog.detail.eu.org/p/cb436af4435d/30b2f3274a5ccde050588deb9a7f1b3295fcaffe_hu_165540a0be06fcf1.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -533,10 +533,10 @@ STM32F103C8T6 硬件SPI资源：SPI1、SPI2&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;实际外设:
 STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/3d65bb9cff4ba913603434aba379e56af74ac79e.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/3d65bb9cff4ba913603434aba379e56af74ac79e.png&#34;
 	width=&#34;970&#34;
 	height=&#34;882&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/3d65bb9cff4ba913603434aba379e56af74ac79e_hu_d61108161fc4dd4d.png 480w, https://detail47.github.io/p/cb436af4435d/3d65bb9cff4ba913603434aba379e56af74ac79e_hu_49802af25fafcc6b.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/3d65bb9cff4ba913603434aba379e56af74ac79e_hu_d61108161fc4dd4d.png 480w, https://blog.detail.eu.org/p/cb436af4435d/3d65bb9cff4ba913603434aba379e56af74ac79e_hu_49802af25fafcc6b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -545,10 +545,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 		data-flex-basis=&#34;263px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/8efa34d47159523adde964f15523d7d632be4b10.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/8efa34d47159523adde964f15523d7d632be4b10.png&#34;
 	width=&#34;1755&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/8efa34d47159523adde964f15523d7d632be4b10_hu_19860239ac384538.png 480w, https://detail47.github.io/p/cb436af4435d/8efa34d47159523adde964f15523d7d632be4b10_hu_88c17e0f0eb57ea8.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/8efa34d47159523adde964f15523d7d632be4b10_hu_19860239ac384538.png 480w, https://blog.detail.eu.org/p/cb436af4435d/8efa34d47159523adde964f15523d7d632be4b10_hu_88c17e0f0eb57ea8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -558,10 +558,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;序列图&#34;&gt;序列图
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/29d2b2e80a4ac8e30906b5007835c3129295319b.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/29d2b2e80a4ac8e30906b5007835c3129295319b.png&#34;
 	width=&#34;1418&#34;
 	height=&#34;814&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/29d2b2e80a4ac8e30906b5007835c3129295319b_hu_19ac6df377be764e.png 480w, https://detail47.github.io/p/cb436af4435d/29d2b2e80a4ac8e30906b5007835c3129295319b_hu_3f1fba6fd7d1e3a7.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/29d2b2e80a4ac8e30906b5007835c3129295319b_hu_19ac6df377be764e.png 480w, https://blog.detail.eu.org/p/cb436af4435d/29d2b2e80a4ac8e30906b5007835c3129295319b_hu_3f1fba6fd7d1e3a7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -570,10 +570,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 		data-flex-basis=&#34;418px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/cb436af4435d/c7601e6923662938926bf2dd46c1035a23208a97.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/cb436af4435d/c7601e6923662938926bf2dd46c1035a23208a97.png&#34;
 	width=&#34;1418&#34;
 	height=&#34;862&#34;
-	srcset=&#34;https://detail47.github.io/p/cb436af4435d/c7601e6923662938926bf2dd46c1035a23208a97_hu_c6a36a707d127f1f.png 480w, https://detail47.github.io/p/cb436af4435d/c7601e6923662938926bf2dd46c1035a23208a97_hu_6ce6cb07aa35ed43.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/cb436af4435d/c7601e6923662938926bf2dd46c1035a23208a97_hu_c6a36a707d127f1f.png 480w, https://blog.detail.eu.org/p/cb436af4435d/c7601e6923662938926bf2dd46c1035a23208a97_hu_6ce6cb07aa35ed43.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1139,10 +1139,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
         </item>
         <item>
         <title>STM32 DMA</title>
-        <link>https://detail47.github.io/p/1e2e0c41d7d6/</link>
+        <link>https://blog.detail.eu.org/p/1e2e0c41d7d6/</link>
         <pubDate>Sat, 17 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/1e2e0c41d7d6/</guid>
+        <guid>https://blog.detail.eu.org/p/1e2e0c41d7d6/</guid>
         <description>&lt;h2 id=&#34;dma简介&#34;&gt;DMA简介
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;DMA（Direct Memory Access）直接存储器存取&lt;/li&gt;
@@ -1151,10 +1151,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 &lt;li&gt;每个通道都支持软件触发和特定的硬件触发&lt;/li&gt;
 &lt;li&gt;STM32F103C8T6 DMA资源：DMA1（7个通道）&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/82fabfb12a0b7f8e7f6c5843a47c83bfeaa038bf.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/82fabfb12a0b7f8e7f6c5843a47c83bfeaa038bf.png&#34;
 	width=&#34;791&#34;
 	height=&#34;220&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/82fabfb12a0b7f8e7f6c5843a47c83bfeaa038bf_hu_5355a896ce2521de.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/82fabfb12a0b7f8e7f6c5843a47c83bfeaa038bf_hu_1a45eff3d372f01e.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/82fabfb12a0b7f8e7f6c5843a47c83bfeaa038bf_hu_5355a896ce2521de.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/82fabfb12a0b7f8e7f6c5843a47c83bfeaa038bf_hu_1a45eff3d372f01e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1163,10 +1163,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 		data-flex-basis=&#34;862px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/ad94fc59403b41b28c74d9c4fc11efc7e5fe9f12.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/ad94fc59403b41b28c74d9c4fc11efc7e5fe9f12.png&#34;
 	width=&#34;960&#34;
 	height=&#34;852&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/ad94fc59403b41b28c74d9c4fc11efc7e5fe9f12_hu_f5533fae54002609.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/ad94fc59403b41b28c74d9c4fc11efc7e5fe9f12_hu_5a1d7f4125bce694.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/ad94fc59403b41b28c74d9c4fc11efc7e5fe9f12_hu_f5533fae54002609.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/ad94fc59403b41b28c74d9c4fc11efc7e5fe9f12_hu_5a1d7f4125bce694.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1175,10 +1175,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 		data-flex-basis=&#34;270px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/b14e6dce674d4d91f4e523d65c59dc5f28c63974.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/b14e6dce674d4d91f4e523d65c59dc5f28c63974.png&#34;
 	width=&#34;1758&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/b14e6dce674d4d91f4e523d65c59dc5f28c63974_hu_2720f17582519510.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/b14e6dce674d4d91f4e523d65c59dc5f28c63974_hu_b368f6ec6254da36.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/b14e6dce674d4d91f4e523d65c59dc5f28c63974_hu_2720f17582519510.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/b14e6dce674d4d91f4e523d65c59dc5f28c63974_hu_b368f6ec6254da36.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1188,10 +1188,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;dma数据传输宽度与大小&#34;&gt;DMA数据传输宽度与大小
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/8edd17af94eff01a022f59afdc4a208c259a9827.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/8edd17af94eff01a022f59afdc4a208c259a9827.png&#34;
 	width=&#34;928&#34;
 	height=&#34;902&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/8edd17af94eff01a022f59afdc4a208c259a9827_hu_b47b4217bae46ef2.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/8edd17af94eff01a022f59afdc4a208c259a9827_hu_68a3cf9ba4c471f3.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/8edd17af94eff01a022f59afdc4a208c259a9827_hu_b47b4217bae46ef2.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/8edd17af94eff01a022f59afdc4a208c259a9827_hu_68a3cf9ba4c471f3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1389,10 +1389,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;dma--adc-协同工作&#34;&gt;DMA + ADC 协同工作
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/4f24b5ed9a2b717acc68c6fca36da94cd2f82be3.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/4f24b5ed9a2b717acc68c6fca36da94cd2f82be3.png&#34;
 	width=&#34;741&#34;
 	height=&#34;417&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/4f24b5ed9a2b717acc68c6fca36da94cd2f82be3_hu_3adea79a117b82ba.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/4f24b5ed9a2b717acc68c6fca36da94cd2f82be3_hu_ab5c08da1e634d78.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/4f24b5ed9a2b717acc68c6fca36da94cd2f82be3_hu_3adea79a117b82ba.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/4f24b5ed9a2b717acc68c6fca36da94cd2f82be3_hu_ab5c08da1e634d78.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1402,10 +1402,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;dma请求&#34;&gt;DMA请求
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/3d50eec6676f054fc82633360c117b6fb6c39f86.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/3d50eec6676f054fc82633360c117b6fb6c39f86.png&#34;
 	width=&#34;821&#34;
 	height=&#34;350&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/3d50eec6676f054fc82633360c117b6fb6c39f86_hu_9eca77cea07ec7bf.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/3d50eec6676f054fc82633360c117b6fb6c39f86_hu_6f6e8d188a7ca9fa.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/3d50eec6676f054fc82633360c117b6fb6c39f86_hu_9eca77cea07ec7bf.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/3d50eec6676f054fc82633360c117b6fb6c39f86_hu_6f6e8d188a7ca9fa.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1414,10 +1414,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 		data-flex-basis=&#34;562px&#34;
 	
 &gt;
-&lt;img src=&#34;https://detail47.github.io/p/1e2e0c41d7d6/c936da162a2c667582438d95c203532f03452262.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/c936da162a2c667582438d95c203532f03452262.png&#34;
 	width=&#34;734&#34;
 	height=&#34;386&#34;
-	srcset=&#34;https://detail47.github.io/p/1e2e0c41d7d6/c936da162a2c667582438d95c203532f03452262_hu_134115ab18f14993.png 480w, https://detail47.github.io/p/1e2e0c41d7d6/c936da162a2c667582438d95c203532f03452262_hu_5e89d9f01a9efd82.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/1e2e0c41d7d6/c936da162a2c667582438d95c203532f03452262_hu_134115ab18f14993.png 480w, https://blog.detail.eu.org/p/1e2e0c41d7d6/c936da162a2c667582438d95c203532f03452262_hu_5e89d9f01a9efd82.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1563,10 +1563,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
         </item>
         <item>
         <title>STM32 USART</title>
-        <link>https://detail47.github.io/p/a5b3a1005e62/</link>
+        <link>https://blog.detail.eu.org/p/a5b3a1005e62/</link>
         <pubDate>Sat, 17 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/a5b3a1005e62/</guid>
+        <guid>https://blog.detail.eu.org/p/a5b3a1005e62/</guid>
         <description>&lt;h2 id=&#34;通信接口&#34;&gt;通信接口
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;通信的目的：将一个设备的数据传送到另一个设备，扩展硬件系统&lt;/li&gt;
@@ -1638,10 +1638,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 &lt;li&gt;当只需单向的数据传输时，可以只接一根通信线&lt;/li&gt;
 &lt;li&gt;当电平标准不一致时，需要加电平转换芯片&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/a5b3a1005e62/e55d07007308688b75b5999664c2e05a099bffa1.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/e55d07007308688b75b5999664c2e05a099bffa1.png&#34;
 	width=&#34;1236&#34;
 	height=&#34;547&#34;
-	srcset=&#34;https://detail47.github.io/p/a5b3a1005e62/e55d07007308688b75b5999664c2e05a099bffa1_hu_a77fa68fcdfa641b.png 480w, https://detail47.github.io/p/a5b3a1005e62/e55d07007308688b75b5999664c2e05a099bffa1_hu_42e5216deb11f4e3.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/e55d07007308688b75b5999664c2e05a099bffa1_hu_a77fa68fcdfa641b.png 480w, https://blog.detail.eu.org/p/a5b3a1005e62/e55d07007308688b75b5999664c2e05a099bffa1_hu_42e5216deb11f4e3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1665,10 +1665,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 &lt;li&gt;校验位：用于数据验证，根据数据位计算得来&lt;/li&gt;
 &lt;li&gt;停止位：用于数据帧间隔，固定为高电平&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/a5b3a1005e62/bf620323662cc785f9fec3301b5afbdf0b4f8c7b.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/bf620323662cc785f9fec3301b5afbdf0b4f8c7b.png&#34;
 	width=&#34;545&#34;
 	height=&#34;161&#34;
-	srcset=&#34;https://detail47.github.io/p/a5b3a1005e62/bf620323662cc785f9fec3301b5afbdf0b4f8c7b_hu_25d5c77aae0e00ce.png 480w, https://detail47.github.io/p/a5b3a1005e62/bf620323662cc785f9fec3301b5afbdf0b4f8c7b_hu_58ed53a59fc0694c.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/bf620323662cc785f9fec3301b5afbdf0b4f8c7b_hu_25d5c77aae0e00ce.png 480w, https://blog.detail.eu.org/p/a5b3a1005e62/bf620323662cc785f9fec3301b5afbdf0b4f8c7b_hu_58ed53a59fc0694c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1688,10 +1688,10 @@ STM32F103C8T6 硬件I2C资源：I2C1、I2C2&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;实际外设:
 STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/a5b3a1005e62/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd.png&#34;
 	width=&#34;782&#34;
 	height=&#34;871&#34;
-	srcset=&#34;https://detail47.github.io/p/a5b3a1005e62/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd_hu_bf7bcff542374b6c.png 480w, https://detail47.github.io/p/a5b3a1005e62/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd_hu_8dfbb2b44b87dadd.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd_hu_bf7bcff542374b6c.png 480w, https://blog.detail.eu.org/p/a5b3a1005e62/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd_hu_8dfbb2b44b87dadd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1700,10 +1700,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 		data-flex-basis=&#34;215px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/a5b3a1005e62/2683c84c7193546e9a790209892e8852a4bb6f5d.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/2683c84c7193546e9a790209892e8852a4bb6f5d.png&#34;
 	width=&#34;1798&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/a5b3a1005e62/2683c84c7193546e9a790209892e8852a4bb6f5d_hu_6bad99fc5a48dad7.png 480w, https://detail47.github.io/p/a5b3a1005e62/2683c84c7193546e9a790209892e8852a4bb6f5d_hu_fdd539f64ace8bad.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/2683c84c7193546e9a790209892e8852a4bb6f5d_hu_6bad99fc5a48dad7.png 480w, https://blog.detail.eu.org/p/a5b3a1005e62/2683c84c7193546e9a790209892e8852a4bb6f5d_hu_fdd539f64ace8bad.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2095,10 +2095,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 &lt;/table&gt;
 &lt;h2 id=&#34;数据包设计&#34;&gt;数据包设计
 &lt;/h2&gt;&lt;h3 id=&#34;hex固定包长&#34;&gt;HEX固定包长
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/a5b3a1005e62/7bc9bd7822c9c4547de5528eab291d14604fd6ea.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/7bc9bd7822c9c4547de5528eab291d14604fd6ea.png&#34;
 	width=&#34;779&#34;
 	height=&#34;338&#34;
-	srcset=&#34;https://detail47.github.io/p/a5b3a1005e62/7bc9bd7822c9c4547de5528eab291d14604fd6ea_hu_1de7242bfec0d1c.png 480w, https://detail47.github.io/p/a5b3a1005e62/7bc9bd7822c9c4547de5528eab291d14604fd6ea_hu_1c3409cff72bdc2c.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/7bc9bd7822c9c4547de5528eab291d14604fd6ea_hu_1de7242bfec0d1c.png 480w, https://blog.detail.eu.org/p/a5b3a1005e62/7bc9bd7822c9c4547de5528eab291d14604fd6ea_hu_1c3409cff72bdc2c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2108,10 +2108,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;字符可变包长&#34;&gt;字符可变包长
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/a5b3a1005e62/e101b165f9a55f3ccd2cb53ba76ec2b953758264.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/e101b165f9a55f3ccd2cb53ba76ec2b953758264.png&#34;
 	width=&#34;737&#34;
 	height=&#34;329&#34;
-	srcset=&#34;https://detail47.github.io/p/a5b3a1005e62/e101b165f9a55f3ccd2cb53ba76ec2b953758264_hu_9508ba5acd53bf84.png 480w, https://detail47.github.io/p/a5b3a1005e62/e101b165f9a55f3ccd2cb53ba76ec2b953758264_hu_45d1fd5d6d3b5bc0.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/a5b3a1005e62/e101b165f9a55f3ccd2cb53ba76ec2b953758264_hu_9508ba5acd53bf84.png 480w, https://blog.detail.eu.org/p/a5b3a1005e62/e101b165f9a55f3ccd2cb53ba76ec2b953758264_hu_45d1fd5d6d3b5bc0.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2124,10 +2124,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
         </item>
         <item>
         <title>STM32 ADC</title>
-        <link>https://detail47.github.io/p/bf66ebad368c/</link>
+        <link>https://blog.detail.eu.org/p/bf66ebad368c/</link>
         <pubDate>Fri, 16 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/bf66ebad368c/</guid>
+        <guid>https://blog.detail.eu.org/p/bf66ebad368c/</guid>
         <description>&lt;h2 id=&#34;adc简介&#34;&gt;ADC简介
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;ADC（Analog-Digital Converter）模拟-数字转换器&lt;/li&gt;
@@ -2139,10 +2139,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 &lt;li&gt;模拟看门狗自动监测输入电压范围&lt;/li&gt;
 &lt;li&gt;STM32F103C8T6 ADC资源：ADC1、ADC2，10个外部输入通道&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/e82cf31ffc2ef90e0d89702eefd3ffd556286db2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/e82cf31ffc2ef90e0d89702eefd3ffd556286db2.png&#34;
 	width=&#34;1150&#34;
 	height=&#34;735&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_c791789cef5531ba.png 480w, https://detail47.github.io/p/bf66ebad368c/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_6b5450006e7a4549.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_c791789cef5531ba.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/e82cf31ffc2ef90e0d89702eefd3ffd556286db2_hu_6b5450006e7a4549.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2151,10 +2151,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 		data-flex-basis=&#34;375px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/365c828283f4fd4604a4e8a39b667f05c78b4307.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/365c828283f4fd4604a4e8a39b667f05c78b4307.png&#34;
 	width=&#34;700&#34;
 	height=&#34;911&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_ce1c38ea4af32a7e.png 480w, https://detail47.github.io/p/bf66ebad368c/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_809227f6153627ad.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_ce1c38ea4af32a7e.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/365c828283f4fd4604a4e8a39b667f05c78b4307_hu_809227f6153627ad.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2163,10 +2163,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 		data-flex-basis=&#34;184px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/2341cfd5bea1e953b19e3b77a65b94f007742594.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/2341cfd5bea1e953b19e3b77a65b94f007742594.png&#34;
 	width=&#34;1758&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_76dda07ac24b0cef.png 480w, https://detail47.github.io/p/bf66ebad368c/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_55b1ef43c2bc3ccf.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_76dda07ac24b0cef.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/2341cfd5bea1e953b19e3b77a65b94f007742594_hu_55b1ef43c2bc3ccf.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2297,10 +2297,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;转换模式&#34;&gt;转换模式
 &lt;/h3&gt;&lt;h4 id=&#34;单次转换非扫描模式&#34;&gt;单次转换，非扫描模式
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/45e73d87eb7c7e83c4069bac4b909d3aae222daa.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/45e73d87eb7c7e83c4069bac4b909d3aae222daa.png&#34;
 	width=&#34;1304&#34;
 	height=&#34;917&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_6fb45da61f862338.png 480w, https://detail47.github.io/p/bf66ebad368c/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_e682813773778d57.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_6fb45da61f862338.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/45e73d87eb7c7e83c4069bac4b909d3aae222daa_hu_e682813773778d57.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2310,10 +2310,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;单次转换非扫描模式-1&#34;&gt;单次转换，非扫描模式
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/2e639bd9a5578fb72ee3670d30053c6b508c8c34.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/2e639bd9a5578fb72ee3670d30053c6b508c8c34.png&#34;
 	width=&#34;1350&#34;
 	height=&#34;917&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_31c279dd85051fe4.png 480w, https://detail47.github.io/p/bf66ebad368c/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_81352a916c7579d2.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_31c279dd85051fe4.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/2e639bd9a5578fb72ee3670d30053c6b508c8c34_hu_81352a916c7579d2.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2323,10 +2323,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;连续转换非扫描模式&#34;&gt;连续转换，非扫描模式
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/15c73f79b1edca0808706db8a4116757314aa83c.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/15c73f79b1edca0808706db8a4116757314aa83c.png&#34;
 	width=&#34;1573&#34;
 	height=&#34;917&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/15c73f79b1edca0808706db8a4116757314aa83c_hu_3aea126517bba368.png 480w, https://detail47.github.io/p/bf66ebad368c/15c73f79b1edca0808706db8a4116757314aa83c_hu_d123206a2cf58e9a.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/15c73f79b1edca0808706db8a4116757314aa83c_hu_3aea126517bba368.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/15c73f79b1edca0808706db8a4116757314aa83c_hu_d123206a2cf58e9a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2336,10 +2336,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;连续转换非扫描模式-1&#34;&gt;连续转换，非扫描模式
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/75d066ad44867a865dec01a97ba2ef4bba92b08c.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/75d066ad44867a865dec01a97ba2ef4bba92b08c.png&#34;
 	width=&#34;1619&#34;
 	height=&#34;856&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_5bfae5e38e9de7a.png 480w, https://detail47.github.io/p/bf66ebad368c/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_fc358c85b8ed14f5.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_5bfae5e38e9de7a.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/75d066ad44867a865dec01a97ba2ef4bba92b08c_hu_fc358c85b8ed14f5.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2349,10 +2349,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;数据对齐&#34;&gt;数据对齐
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/d28764c479dbceefe685c086ad61ad80f300020e.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/d28764c479dbceefe685c086ad61ad80f300020e.png&#34;
 	width=&#34;675&#34;
 	height=&#34;267&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/d28764c479dbceefe685c086ad61ad80f300020e_hu_4158e6c3e86e4ca9.png 480w, https://detail47.github.io/p/bf66ebad368c/d28764c479dbceefe685c086ad61ad80f300020e_hu_49ebad87c3e1198e.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/d28764c479dbceefe685c086ad61ad80f300020e_hu_4158e6c3e86e4ca9.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/d28764c479dbceefe685c086ad61ad80f300020e_hu_49ebad87c3e1198e.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2362,10 +2362,10 @@ STM32F103C8T6 USART资源：USART1、USART2、USART3&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;触发控制&#34;&gt;触发控制
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/bf66ebad368c/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/bf66ebad368c/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7.png&#34;
 	width=&#34;1710&#34;
 	height=&#34;618&#34;
-	srcset=&#34;https://detail47.github.io/p/bf66ebad368c/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_d7c8b97eeb5f8209.png 480w, https://detail47.github.io/p/bf66ebad368c/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_77156b075702fa43.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/bf66ebad368c/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_d7c8b97eeb5f8209.png 480w, https://blog.detail.eu.org/p/bf66ebad368c/c96c50a8669ed4fdb6cf3ad3f6cfff78f10147b7_hu_77156b075702fa43.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2750,10 +2750,10 @@ $$
         </item>
         <item>
         <title>STM32 TIM</title>
-        <link>https://detail47.github.io/p/0fee6c3fdc64/</link>
+        <link>https://blog.detail.eu.org/p/0fee6c3fdc64/</link>
         <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/0fee6c3fdc64/</guid>
+        <guid>https://blog.detail.eu.org/p/0fee6c3fdc64/</guid>
         <description>&lt;h2 id=&#34;tim简介&#34;&gt;TIM简介
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;TIM（Timer）定时器&lt;/li&gt;
@@ -2803,10 +2803,10 @@ STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4&lt;/p&gt;
 &lt;li&gt;重复计数器 &lt;strong&gt;REP&lt;/strong&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;高级定时器&#34;&gt;高级定时器
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/81bcfb895d1681a357499aeaad415455e050e9b0.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/81bcfb895d1681a357499aeaad415455e050e9b0.png&#34;
 	width=&#34;1044&#34;
 	height=&#34;886&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/81bcfb895d1681a357499aeaad415455e050e9b0_hu_7080dab7a507f8ff.png 480w, https://detail47.github.io/p/0fee6c3fdc64/81bcfb895d1681a357499aeaad415455e050e9b0_hu_f1d1415e06a97dff.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/81bcfb895d1681a357499aeaad415455e050e9b0_hu_7080dab7a507f8ff.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/81bcfb895d1681a357499aeaad415455e050e9b0_hu_f1d1415e06a97dff.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2816,10 +2816,10 @@ STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;通用定时器&#34;&gt;通用定时器
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/aebea88cb097d74d423eeef8d6e0634de450c64f.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/aebea88cb097d74d423eeef8d6e0634de450c64f.png&#34;
 	width=&#34;1120&#34;
 	height=&#34;886&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/aebea88cb097d74d423eeef8d6e0634de450c64f_hu_63175916f393330e.png 480w, https://detail47.github.io/p/0fee6c3fdc64/aebea88cb097d74d423eeef8d6e0634de450c64f_hu_c4cf37bd8e076ea7.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/aebea88cb097d74d423eeef8d6e0634de450c64f_hu_63175916f393330e.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/aebea88cb097d74d423eeef8d6e0634de450c64f_hu_c4cf37bd8e076ea7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2829,10 +2829,10 @@ STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;基本定时器&#34;&gt;基本定时器
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/51fbd75a798fd113f3ad8b6337f87b25ffa5428f.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/51fbd75a798fd113f3ad8b6337f87b25ffa5428f.png&#34;
 	width=&#34;1120&#34;
 	height=&#34;533&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/51fbd75a798fd113f3ad8b6337f87b25ffa5428f_hu_60d313fb40864169.png 480w, https://detail47.github.io/p/0fee6c3fdc64/51fbd75a798fd113f3ad8b6337f87b25ffa5428f_hu_51c672ced85f1862.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/51fbd75a798fd113f3ad8b6337f87b25ffa5428f_hu_60d313fb40864169.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/51fbd75a798fd113f3ad8b6337f87b25ffa5428f_hu_51c672ced85f1862.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2842,10 +2842,10 @@ STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;定时器中断结构&#34;&gt;定时器中断结构
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/7faf9f6456519e6e0a5e2815bea16b32cee53926.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/7faf9f6456519e6e0a5e2815bea16b32cee53926.png&#34;
 	width=&#34;1901&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/7faf9f6456519e6e0a5e2815bea16b32cee53926_hu_942d2d7d4ed320c0.png 480w, https://detail47.github.io/p/0fee6c3fdc64/7faf9f6456519e6e0a5e2815bea16b32cee53926_hu_6b53c24037037e05.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/7faf9f6456519e6e0a5e2815bea16b32cee53926_hu_942d2d7d4ed320c0.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/7faf9f6456519e6e0a5e2815bea16b32cee53926_hu_6b53c24037037e05.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2863,10 +2863,10 @@ STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4&lt;/p&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;时基单元&#34;&gt;时基单元
 &lt;/h3&gt;&lt;h4 id=&#34;预分频器&#34;&gt;预分频器
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/ac86b8518c36bdfa1ce42b61c83207b1234f0a7d.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/ac86b8518c36bdfa1ce42b61c83207b1234f0a7d.png&#34;
 	width=&#34;1476&#34;
 	height=&#34;797&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/ac86b8518c36bdfa1ce42b61c83207b1234f0a7d_hu_ded58958cae90c69.png 480w, https://detail47.github.io/p/0fee6c3fdc64/ac86b8518c36bdfa1ce42b61c83207b1234f0a7d_hu_90de236b3a3ac139.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/ac86b8518c36bdfa1ce42b61c83207b1234f0a7d_hu_ded58958cae90c69.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/ac86b8518c36bdfa1ce42b61c83207b1234f0a7d_hu_90de236b3a3ac139.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -2879,10 +2879,10 @@ STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4&lt;/p&gt;
 $$
 CK_{CNT}=\frac{CK_{PSC}}{PSC+1}
 $$&lt;h4 id=&#34;计数器&#34;&gt;计数器
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/fb1b9e2d82abd40a3fc788d88ed2759e9560d9a0.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/fb1b9e2d82abd40a3fc788d88ed2759e9560d9a0.png&#34;
 	width=&#34;1476&#34;
 	height=&#34;639&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/fb1b9e2d82abd40a3fc788d88ed2759e9560d9a0_hu_9177da5d87d55ff2.png 480w, https://detail47.github.io/p/0fee6c3fdc64/fb1b9e2d82abd40a3fc788d88ed2759e9560d9a0_hu_4f062d0683ff2c0b.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/fb1b9e2d82abd40a3fc788d88ed2759e9560d9a0_hu_9177da5d87d55ff2.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/fb1b9e2d82abd40a3fc788d88ed2759e9560d9a0_hu_4f062d0683ff2c0b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3264,10 +3264,10 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效&lt;/p&gt;
 &lt;li&gt;每个高级定时器和通用定时器都拥有4个输出比较通道&lt;/li&gt;
 &lt;li&gt;高级定时器的前3个通道额外拥有死区生成和互补输出的功能&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/14cfd0ab2d4321b02959f87bc6dff808fc15c8f9.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/14cfd0ab2d4321b02959f87bc6dff808fc15c8f9.png&#34;
 	width=&#34;1476&#34;
 	height=&#34;796&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/14cfd0ab2d4321b02959f87bc6dff808fc15c8f9_hu_e143076c8ddb1a8b.png 480w, https://detail47.github.io/p/0fee6c3fdc64/14cfd0ab2d4321b02959f87bc6dff808fc15c8f9_hu_d01f80f62647663d.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/14cfd0ab2d4321b02959f87bc6dff808fc15c8f9_hu_e143076c8ddb1a8b.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/14cfd0ab2d4321b02959f87bc6dff808fc15c8f9_hu_d01f80f62647663d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3276,10 +3276,10 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效&lt;/p&gt;
 		data-flex-basis=&#34;445px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/2b40fad7137bb71140d6629e6bc33f719ffcfc58.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/2b40fad7137bb71140d6629e6bc33f719ffcfc58.png&#34;
 	width=&#34;1476&#34;
 	height=&#34;643&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/2b40fad7137bb71140d6629e6bc33f719ffcfc58_hu_4edb039c61f14e5e.png 480w, https://detail47.github.io/p/0fee6c3fdc64/2b40fad7137bb71140d6629e6bc33f719ffcfc58_hu_6a4b373aeda16257.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/2b40fad7137bb71140d6629e6bc33f719ffcfc58_hu_4edb039c61f14e5e.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/2b40fad7137bb71140d6629e6bc33f719ffcfc58_hu_6a4b373aeda16257.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3331,10 +3331,10 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效&lt;/p&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;以PWM模式1向上计数为例：
-&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/faea0dd9cb4c79da5e5c92243003dd60907b9113.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/faea0dd9cb4c79da5e5c92243003dd60907b9113.png&#34;
 	width=&#34;1847&#34;
 	height=&#34;984&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/faea0dd9cb4c79da5e5c92243003dd60907b9113_hu_c506aad1861e0f14.png 480w, https://detail47.github.io/p/0fee6c3fdc64/faea0dd9cb4c79da5e5c92243003dd60907b9113_hu_57203b625bbab68b.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/faea0dd9cb4c79da5e5c92243003dd60907b9113_hu_c506aad1861e0f14.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/faea0dd9cb4c79da5e5c92243003dd60907b9113_hu_57203b625bbab68b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3536,10 +3536,10 @@ $$&lt;h3 id=&#34;代码-1&#34;&gt;代码
 &lt;li&gt;可配置为PWMI模式，同时测量频率和占空比&lt;/li&gt;
 &lt;li&gt;可配合主从触发模式，实现硬件全自动测量&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/7bcd99418eed6182c80a1177116216ad365d18f5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/7bcd99418eed6182c80a1177116216ad365d18f5.png&#34;
 	width=&#34;1476&#34;
 	height=&#34;632&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/7bcd99418eed6182c80a1177116216ad365d18f5_hu_357ddb708ef4c455.png 480w, https://detail47.github.io/p/0fee6c3fdc64/7bcd99418eed6182c80a1177116216ad365d18f5_hu_9caaaf0f41647d62.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/7bcd99418eed6182c80a1177116216ad365d18f5_hu_357ddb708ef4c455.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/7bcd99418eed6182c80a1177116216ad365d18f5_hu_9caaaf0f41647d62.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3549,10 +3549,10 @@ $$&lt;h3 id=&#34;代码-1&#34;&gt;代码
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;频率测量&#34;&gt;频率测量
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/09b18b8344f1cd6012264e0e1fb6df05ed958e7f.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/09b18b8344f1cd6012264e0e1fb6df05ed958e7f.png&#34;
 	width=&#34;967&#34;
 	height=&#34;200&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/09b18b8344f1cd6012264e0e1fb6df05ed958e7f_hu_82731f26bd579ed8.png 480w, https://detail47.github.io/p/0fee6c3fdc64/09b18b8344f1cd6012264e0e1fb6df05ed958e7f_hu_65ffe0f495c0a54.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/09b18b8344f1cd6012264e0e1fb6df05ed958e7f_hu_82731f26bd579ed8.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/09b18b8344f1cd6012264e0e1fb6df05ed958e7f_hu_65ffe0f495c0a54.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3579,10 +3579,10 @@ $$
    $$&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&#34;pwmi测周法&#34;&gt;PWMI（测周法）
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/8a9d8a35972b1317b6f59a0d37fbd5d793b8d236.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/8a9d8a35972b1317b6f59a0d37fbd5d793b8d236.png&#34;
 	width=&#34;1861&#34;
 	height=&#34;861&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/8a9d8a35972b1317b6f59a0d37fbd5d793b8d236_hu_f53972987f21eddb.png 480w, https://detail47.github.io/p/0fee6c3fdc64/8a9d8a35972b1317b6f59a0d37fbd5d793b8d236_hu_adab19a4e70b48c8.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/8a9d8a35972b1317b6f59a0d37fbd5d793b8d236_hu_f53972987f21eddb.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/8a9d8a35972b1317b6f59a0d37fbd5d793b8d236_hu_adab19a4e70b48c8.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3716,10 +3716,10 @@ Freq=\frac{CK_{PSC}}{(PSC+1)*val_1}
 $$$$
 Duty=100\%*\frac{val_2}{val_1}
 $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/1fb10c3eff52250239db8cab31bad3e7934063c3.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/1fb10c3eff52250239db8cab31bad3e7934063c3.png&#34;
 	width=&#34;857&#34;
 	height=&#34;416&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/1fb10c3eff52250239db8cab31bad3e7934063c3_hu_8df82b150a9941bc.png 480w, https://detail47.github.io/p/0fee6c3fdc64/1fb10c3eff52250239db8cab31bad3e7934063c3_hu_88b6736d80758294.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/1fb10c3eff52250239db8cab31bad3e7934063c3_hu_8df82b150a9941bc.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/1fb10c3eff52250239db8cab31bad3e7934063c3_hu_88b6736d80758294.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3825,10 +3825,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/b42f474d39a1da3c78820f23bacbcade6d7820b4.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/b42f474d39a1da3c78820f23bacbcade6d7820b4.png&#34;
 	width=&#34;705&#34;
 	height=&#34;115&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/b42f474d39a1da3c78820f23bacbcade6d7820b4_hu_efbcf619fc721be4.png 480w, https://detail47.github.io/p/0fee6c3fdc64/b42f474d39a1da3c78820f23bacbcade6d7820b4_hu_f1b5b00f1c67f646.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/b42f474d39a1da3c78820f23bacbcade6d7820b4_hu_efbcf619fc721be4.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/b42f474d39a1da3c78820f23bacbcade6d7820b4_hu_f1b5b00f1c67f646.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3837,10 +3837,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;1471px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/f0036049170c928e43be80bf03aa6a370ac4aab6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/f0036049170c928e43be80bf03aa6a370ac4aab6.png&#34;
 	width=&#34;702&#34;
 	height=&#34;185&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/f0036049170c928e43be80bf03aa6a370ac4aab6_hu_f1416c7e167bc83d.png 480w, https://detail47.github.io/p/0fee6c3fdc64/f0036049170c928e43be80bf03aa6a370ac4aab6_hu_43a86b812e203efb.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/f0036049170c928e43be80bf03aa6a370ac4aab6_hu_f1416c7e167bc83d.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/f0036049170c928e43be80bf03aa6a370ac4aab6_hu_43a86b812e203efb.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3927,10 +3927,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;li&gt;每个高级定时器和通用定时器都拥有1个编码器接口&lt;/li&gt;
 &lt;li&gt;两个输入引脚借用了输入捕获的通道1和通道2&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/64a6b35bc47201b91c57231b50b115ff6533be90.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/64a6b35bc47201b91c57231b50b115ff6533be90.png&#34;
 	width=&#34;728&#34;
 	height=&#34;332&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/64a6b35bc47201b91c57231b50b115ff6533be90_hu_b9834cc416b5b143.png 480w, https://detail47.github.io/p/0fee6c3fdc64/64a6b35bc47201b91c57231b50b115ff6533be90_hu_66d8e40040675358.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/64a6b35bc47201b91c57231b50b115ff6533be90_hu_b9834cc416b5b143.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/64a6b35bc47201b91c57231b50b115ff6533be90_hu_66d8e40040675358.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3939,10 +3939,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;526px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/0f708f513cb4b5c772309d88407f500f3a12433e.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/0f708f513cb4b5c772309d88407f500f3a12433e.png&#34;
 	width=&#34;1830&#34;
 	height=&#34;819&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/0f708f513cb4b5c772309d88407f500f3a12433e_hu_5c26b28952975607.png 480w, https://detail47.github.io/p/0fee6c3fdc64/0f708f513cb4b5c772309d88407f500f3a12433e_hu_c66bbe1f311ecf2c.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/0f708f513cb4b5c772309d88407f500f3a12433e_hu_5c26b28952975607.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/0f708f513cb4b5c772309d88407f500f3a12433e_hu_c66bbe1f311ecf2c.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3951,10 +3951,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;536px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/6f45f3480d438eb66fff9c69f6d1429039b2bf90.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/6f45f3480d438eb66fff9c69f6d1429039b2bf90.png&#34;
 	width=&#34;1476&#34;
 	height=&#34;544&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/6f45f3480d438eb66fff9c69f6d1429039b2bf90_hu_b3e381a301ba4f25.png 480w, https://detail47.github.io/p/0fee6c3fdc64/6f45f3480d438eb66fff9c69f6d1429039b2bf90_hu_6486dc77fd39856b.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/6f45f3480d438eb66fff9c69f6d1429039b2bf90_hu_b3e381a301ba4f25.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/6f45f3480d438eb66fff9c69f6d1429039b2bf90_hu_6486dc77fd39856b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -3963,10 +3963,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;651px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/0fee6c3fdc64/9a615f0f618089c55b282151a620472cbe209297.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/9a615f0f618089c55b282151a620472cbe209297.png&#34;
 	width=&#34;1182&#34;
 	height=&#34;561&#34;
-	srcset=&#34;https://detail47.github.io/p/0fee6c3fdc64/9a615f0f618089c55b282151a620472cbe209297_hu_20c3de633f607d40.png 480w, https://detail47.github.io/p/0fee6c3fdc64/9a615f0f618089c55b282151a620472cbe209297_hu_c741a321ee1ce516.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/0fee6c3fdc64/9a615f0f618089c55b282151a620472cbe209297_hu_20c3de633f607d40.png 480w, https://blog.detail.eu.org/p/0fee6c3fdc64/9a615f0f618089c55b282151a620472cbe209297_hu_c741a321ee1ce516.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4101,20 +4101,20 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
         </item>
         <item>
         <title>STM32简介</title>
-        <link>https://detail47.github.io/p/5ea8762e0db1/</link>
+        <link>https://blog.detail.eu.org/p/5ea8762e0db1/</link>
         <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/5ea8762e0db1/</guid>
+        <guid>https://blog.detail.eu.org/p/5ea8762e0db1/</guid>
         <description>&lt;h2 id=&#34;stm32&#34;&gt;STM32
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;STM32是ST公司基于ARM Cortex-M内核开发的32位微控制器&lt;/li&gt;
 &lt;li&gt;STM32常应用在嵌入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制、娱乐电子产品等&lt;/li&gt;
 &lt;li&gt;STM32功能强大、性能优异、片上资源丰富、功耗低，是一款经典的嵌入式微控制器&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/dfb3f685c58d2103dcd0846709c9047452795487.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/dfb3f685c58d2103dcd0846709c9047452795487.png&#34;
 	width=&#34;964&#34;
 	height=&#34;1083&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/dfb3f685c58d2103dcd0846709c9047452795487_hu_25eb14301aec886.png 480w, https://detail47.github.io/p/5ea8762e0db1/dfb3f685c58d2103dcd0846709c9047452795487_hu_41d6175304a26de3.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/dfb3f685c58d2103dcd0846709c9047452795487_hu_25eb14301aec886.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/dfb3f685c58d2103dcd0846709c9047452795487_hu_41d6175304a26de3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4123,10 +4123,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;213px&#34;
 	
 &gt;
-&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/a00b89ecf89a7ab60cff4745eec4bf953c0343ea.png&#34;
+&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/a00b89ecf89a7ab60cff4745eec4bf953c0343ea.png&#34;
 	width=&#34;617&#34;
 	height=&#34;450&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_4c03ead3bb61495d.png 480w, https://detail47.github.io/p/5ea8762e0db1/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_2455fc8c73d31e59.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_4c03ead3bb61495d.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_2455fc8c73d31e59.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4141,10 +4141,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;li&gt;ARM公司是全球领先的半导体知识产权（IP）提供商，全世界超过95%的智能手机和平板电脑都采用ARM架构&lt;/li&gt;
 &lt;li&gt;ARM公司设计ARM内核，半导体厂商完善内核周边电路并生产芯片&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/97722a87f118684210dcf81445a6e24edd699f05.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/97722a87f118684210dcf81445a6e24edd699f05.png&#34;
 	width=&#34;971&#34;
 	height=&#34;570&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/97722a87f118684210dcf81445a6e24edd699f05_hu_b83a08f3230d48ef.png 480w, https://detail47.github.io/p/5ea8762e0db1/97722a87f118684210dcf81445a6e24edd699f05_hu_62c84e2b0e99030.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/97722a87f118684210dcf81445a6e24edd699f05_hu_b83a08f3230d48ef.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/97722a87f118684210dcf81445a6e24edd699f05_hu_62c84e2b0e99030.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4154,10 +4154,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;stm32f103c8t6&#34;&gt;STM32F103C8T6
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/d01202200da39115d723fad74ff2f28968952221.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/d01202200da39115d723fad74ff2f28968952221.png&#34;
 	width=&#34;583&#34;
 	height=&#34;470&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/d01202200da39115d723fad74ff2f28968952221_hu_60ec725ac2fa99b5.png 480w, https://detail47.github.io/p/5ea8762e0db1/d01202200da39115d723fad74ff2f28968952221_hu_4654de121e6ef83d.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/d01202200da39115d723fad74ff2f28968952221_hu_60ec725ac2fa99b5.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/d01202200da39115d723fad74ff2f28968952221_hu_4654de121e6ef83d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4283,10 +4283,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;命名规则&#34;&gt;命名规则
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/df69db3107c50007c9f6a885a9de52ba12e05af2.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/df69db3107c50007c9f6a885a9de52ba12e05af2.png&#34;
 	width=&#34;814&#34;
 	height=&#34;946&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_8022f4c3f04c0878.png 480w, https://detail47.github.io/p/5ea8762e0db1/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_722ea5839ec854ca.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_8022f4c3f04c0878.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_722ea5839ec854ca.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4296,10 +4296,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;引脚定义&#34;&gt;引脚定义
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8.png&#34;
 	width=&#34;682&#34;
 	height=&#34;929&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_d6d5825db938eb15.png 480w, https://detail47.github.io/p/5ea8762e0db1/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_f458986906816326.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_d6d5825db938eb15.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_f458986906816326.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4327,10 +4327,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;/ul&gt;
 &lt;p&gt;更多PinRemapConfig的相关内容：STM32F10xxx参考手册（中文）.pdf 页码116/手册8.3&lt;/p&gt;
 &lt;h3 id=&#34;启动配置&#34;&gt;启动配置
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9.png&#34;
 	width=&#34;1656&#34;
 	height=&#34;544&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_8f42a8264c164e0e.png 480w, https://detail47.github.io/p/5ea8762e0db1/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_b20b8b435d76bd2b.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_8f42a8264c164e0e.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_b20b8b435d76bd2b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4340,10 +4340,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;最小系统电路&#34;&gt;最小系统电路
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/9dceeb01e1317cf2daae7809d89fd8b4614a64ee.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/9dceeb01e1317cf2daae7809d89fd8b4614a64ee.png&#34;
 	width=&#34;1620&#34;
 	height=&#34;891&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_e49a7a92defcaf64.png 480w, https://detail47.github.io/p/5ea8762e0db1/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_64053577ea7bda22.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_e49a7a92defcaf64.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_64053577ea7bda22.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4353,10 +4353,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;rcc时钟树&#34;&gt;RCC时钟树
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/5ea8762e0db1/810bf82bf51d9f735645b0211f4bd4cbe1a79acf.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/810bf82bf51d9f735645b0211f4bd4cbe1a79acf.png&#34;
 	width=&#34;814&#34;
 	height=&#34;886&#34;
-	srcset=&#34;https://detail47.github.io/p/5ea8762e0db1/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_3902f15bfa10353b.png 480w, https://detail47.github.io/p/5ea8762e0db1/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_1fb2e07121569530.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5ea8762e0db1/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_3902f15bfa10353b.png 480w, https://blog.detail.eu.org/p/5ea8762e0db1/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_1fb2e07121569530.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4369,10 +4369,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
         </item>
         <item>
         <title>STM32 EXTI</title>
-        <link>https://detail47.github.io/p/77056cdb4341/</link>
+        <link>https://blog.detail.eu.org/p/77056cdb4341/</link>
         <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/77056cdb4341/</guid>
+        <guid>https://blog.detail.eu.org/p/77056cdb4341/</guid>
         <description>&lt;h2 id=&#34;中断&#34;&gt;中断
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;中断：在主程序运行过程中，出现了特定的中断触发条件（中断源），使得CPU暂停当前正在运行的程序，转而去处理中断程序，处理完成后又返回原来被暂停的位置继续运行&lt;/li&gt;
@@ -4384,10 +4384,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;li&gt;68个可屏蔽中断通道，包含EXTI、TIM、ADC、USART、SPI、I2C、RTC等多个外设&lt;/li&gt;
 &lt;li&gt;使用NVIC统一管理中断，每个中断通道都拥有16个可编程的优先等级，可对优先级进行分组，进一步设置抢占优先级和响应优先级&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/12b992e6974270b3bcf51db87a41099d1c50107e.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/12b992e6974270b3bcf51db87a41099d1c50107e.png&#34;
 	width=&#34;590&#34;
 	height=&#34;442&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/12b992e6974270b3bcf51db87a41099d1c50107e_hu_f91ae198c59cffb3.png 480w, https://detail47.github.io/p/77056cdb4341/12b992e6974270b3bcf51db87a41099d1c50107e_hu_f50fa3cf01131c21.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/12b992e6974270b3bcf51db87a41099d1c50107e_hu_f91ae198c59cffb3.png 480w, https://blog.detail.eu.org/p/77056cdb4341/12b992e6974270b3bcf51db87a41099d1c50107e_hu_f50fa3cf01131c21.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4396,10 +4396,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;320px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/db76a403f40da74f949aabb7dc0626ed6dd0c9a3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/db76a403f40da74f949aabb7dc0626ed6dd0c9a3.png&#34;
 	width=&#34;590&#34;
 	height=&#34;452&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/db76a403f40da74f949aabb7dc0626ed6dd0c9a3_hu_d1fa059c445bd5bf.png 480w, https://detail47.github.io/p/77056cdb4341/db76a403f40da74f949aabb7dc0626ed6dd0c9a3_hu_38b61f6470ce220f.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/db76a403f40da74f949aabb7dc0626ed6dd0c9a3_hu_d1fa059c445bd5bf.png 480w, https://blog.detail.eu.org/p/77056cdb4341/db76a403f40da74f949aabb7dc0626ed6dd0c9a3_hu_38b61f6470ce220f.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4408,10 +4408,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;313px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/239d153d18bbd827da7c2fed2a10ccc8f0a97f54.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/239d153d18bbd827da7c2fed2a10ccc8f0a97f54.png&#34;
 	width=&#34;591&#34;
 	height=&#34;418&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/239d153d18bbd827da7c2fed2a10ccc8f0a97f54_hu_84d5bcc0fe92f55e.png 480w, https://detail47.github.io/p/77056cdb4341/239d153d18bbd827da7c2fed2a10ccc8f0a97f54_hu_dca5e963aef0ecbd.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/239d153d18bbd827da7c2fed2a10ccc8f0a97f54_hu_84d5bcc0fe92f55e.png 480w, https://blog.detail.eu.org/p/77056cdb4341/239d153d18bbd827da7c2fed2a10ccc8f0a97f54_hu_dca5e963aef0ecbd.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4420,10 +4420,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 		data-flex-basis=&#34;339px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/4ad9b0db22e8b6df2e0158faaffff06010e76dfa.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/4ad9b0db22e8b6df2e0158faaffff06010e76dfa.png&#34;
 	width=&#34;591&#34;
 	height=&#34;223&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/4ad9b0db22e8b6df2e0158faaffff06010e76dfa_hu_7ac2f7dd370fc241.png 480w, https://detail47.github.io/p/77056cdb4341/4ad9b0db22e8b6df2e0158faaffff06010e76dfa_hu_c96dd9aed55a1515.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/4ad9b0db22e8b6df2e0158faaffff06010e76dfa_hu_7ac2f7dd370fc241.png 480w, https://blog.detail.eu.org/p/77056cdb4341/4ad9b0db22e8b6df2e0158faaffff06010e76dfa_hu_c96dd9aed55a1515.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4434,10 +4434,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;nvic&#34;&gt;NVIC
 &lt;/h2&gt;&lt;h3 id=&#34;基本结构&#34;&gt;基本结构
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/db36b7e903bb3bb1ace0adceb1ae2264ed34529c.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/db36b7e903bb3bb1ace0adceb1ae2264ed34529c.png&#34;
 	width=&#34;1346&#34;
 	height=&#34;876&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/db36b7e903bb3bb1ace0adceb1ae2264ed34529c_hu_27e75706fd2f9fd5.png 480w, https://detail47.github.io/p/77056cdb4341/db36b7e903bb3bb1ace0adceb1ae2264ed34529c_hu_c5f45bf1dd24a520.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/db36b7e903bb3bb1ace0adceb1ae2264ed34529c_hu_27e75706fd2f9fd5.png 480w, https://blog.detail.eu.org/p/77056cdb4341/db36b7e903bb3bb1ace0adceb1ae2264ed34529c_hu_c5f45bf1dd24a520.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4766,10 +4766,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;/table&gt;
 &lt;h2 id=&#34;exti&#34;&gt;EXTI
 &lt;/h2&gt;&lt;h3 id=&#34;基本结构-1&#34;&gt;基本结构
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/acd053d182aa5dfdf7d6b41e0f366351369772dd.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/acd053d182aa5dfdf7d6b41e0f366351369772dd.png&#34;
 	width=&#34;1604&#34;
 	height=&#34;876&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/acd053d182aa5dfdf7d6b41e0f366351369772dd_hu_a71bce1ec40dd78.png 480w, https://detail47.github.io/p/77056cdb4341/acd053d182aa5dfdf7d6b41e0f366351369772dd_hu_592844ad0b18d0c3.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/acd053d182aa5dfdf7d6b41e0f366351369772dd_hu_a71bce1ec40dd78.png 480w, https://blog.detail.eu.org/p/77056cdb4341/acd053d182aa5dfdf7d6b41e0f366351369772dd_hu_592844ad0b18d0c3.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4924,10 +4924,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;/table&gt;
 &lt;h2 id=&#34;afio&#34;&gt;AFIO
 &lt;/h2&gt;&lt;h3 id=&#34;基本结构-2&#34;&gt;基本结构
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/77056cdb4341/65b9f6d44f29c597b86b2658134048a61ae7d8cf.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/77056cdb4341/65b9f6d44f29c597b86b2658134048a61ae7d8cf.png&#34;
 	width=&#34;857&#34;
 	height=&#34;922&#34;
-	srcset=&#34;https://detail47.github.io/p/77056cdb4341/65b9f6d44f29c597b86b2658134048a61ae7d8cf_hu_7a29d3ff55c315a3.png 480w, https://detail47.github.io/p/77056cdb4341/65b9f6d44f29c597b86b2658134048a61ae7d8cf_hu_521db81e123c1758.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/77056cdb4341/65b9f6d44f29c597b86b2658134048a61ae7d8cf_hu_7a29d3ff55c315a3.png 480w, https://blog.detail.eu.org/p/77056cdb4341/65b9f6d44f29c597b86b2658134048a61ae7d8cf_hu_521db81e123c1758.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -4981,10 +4981,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
         </item>
         <item>
         <title>STM32 GPIO</title>
-        <link>https://detail47.github.io/p/6ab7012942e1/</link>
+        <link>https://blog.detail.eu.org/p/6ab7012942e1/</link>
         <pubDate>Wed, 31 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/6ab7012942e1/</guid>
+        <guid>https://blog.detail.eu.org/p/6ab7012942e1/</guid>
         <description>&lt;h2 id=&#34;gpio概述&#34;&gt;GPIO概述
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;GPIO(General Purpose Input Output)通用输入输出口&lt;/li&gt;
@@ -4996,10 +4996,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 &lt;h2 id=&#34;gpio详细介绍&#34;&gt;GPIO详细介绍
 &lt;/h2&gt;&lt;h3 id=&#34;gpio基本结构&#34;&gt;GPIO基本结构
 &lt;/h3&gt;&lt;p&gt;所有GPIO都处于APB2总线上，因此使用GPIO时务必开启APB2总线的时钟。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/6ab7012942e1/664bb146282a38243244e80705cb71454fb29a64.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/6ab7012942e1/664bb146282a38243244e80705cb71454fb29a64.png&#34;
 	width=&#34;1204&#34;
 	height=&#34;876&#34;
-	srcset=&#34;https://detail47.github.io/p/6ab7012942e1/664bb146282a38243244e80705cb71454fb29a64_hu_9a4cca110c8b21b5.png 480w, https://detail47.github.io/p/6ab7012942e1/664bb146282a38243244e80705cb71454fb29a64_hu_4d27de1405a4574d.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/6ab7012942e1/664bb146282a38243244e80705cb71454fb29a64_hu_9a4cca110c8b21b5.png 480w, https://blog.detail.eu.org/p/6ab7012942e1/664bb146282a38243244e80705cb71454fb29a64_hu_4d27de1405a4574d.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -5009,10 +5009,10 @@ $$&lt;h3 id=&#34;主从触发&#34;&gt;主从触发
 	
 &gt;&lt;/p&gt;
 &lt;h3 id=&#34;io口结构&#34;&gt;IO口结构
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://detail47.github.io/p/6ab7012942e1/f9c72c130f1f9a6574f19e3618733606c338a231.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/6ab7012942e1/f9c72c130f1f9a6574f19e3618733606c338a231.png&#34;
 	width=&#34;1439&#34;
 	height=&#34;886&#34;
-	srcset=&#34;https://detail47.github.io/p/6ab7012942e1/f9c72c130f1f9a6574f19e3618733606c338a231_hu_8cdbfeee1c453418.png 480w, https://detail47.github.io/p/6ab7012942e1/f9c72c130f1f9a6574f19e3618733606c338a231_hu_4994501ee2ce3342.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/6ab7012942e1/f9c72c130f1f9a6574f19e3618733606c338a231_hu_8cdbfeee1c453418.png 480w, https://blog.detail.eu.org/p/6ab7012942e1/f9c72c130f1f9a6574f19e3618733606c338a231_hu_4994501ee2ce3342.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	

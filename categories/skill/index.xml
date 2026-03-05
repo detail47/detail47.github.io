@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>技巧 on Detail&#39;s Blog</title>
-        <link>https://detail47.github.io/categories/skill/</link>
+        <link>https://blog.detail.eu.org/categories/skill/</link>
         <description>Recent content in 技巧 on Detail&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>zh-cn</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Sun, 31 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/skill/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 31 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/categories/skill/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>联通校园网自动登陆</title>
-        <link>https://detail47.github.io/p/8000aa12faf3/</link>
+        <link>https://blog.detail.eu.org/p/8000aa12faf3/</link>
         <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/8000aa12faf3/</guid>
+        <guid>https://blog.detail.eu.org/p/8000aa12faf3/</guid>
         <description>&lt;h1 id=&#34;联通校园网自动登陆的方法&#34;&gt;联通校园网自动登陆的方法
 &lt;/h1&gt;&lt;h2 id=&#34;获取自动登陆脚本&#34;&gt;获取自动登陆脚本
 &lt;/h2&gt;&lt;ol&gt;
@@ -570,10 +570,10 @@
         </item>
         <item>
         <title>Markdown示例</title>
-        <link>https://detail47.github.io/p/a69ce5079ecd/</link>
+        <link>https://blog.detail.eu.org/p/a69ce5079ecd/</link>
         <pubDate>Thu, 22 Feb 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/a69ce5079ecd/</guid>
+        <guid>https://blog.detail.eu.org/p/a69ce5079ecd/</guid>
         <description>&lt;h1 id=&#34;markdown示例&#34;&gt;Markdown示例
 &lt;/h1&gt;&lt;h2 id=&#34;标题&#34;&gt;标题
 &lt;/h2&gt;&lt;h3 id=&#34;三级标题&#34;&gt;三级标题

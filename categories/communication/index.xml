@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>通信 on Detail&#39;s Blog</title>
-        <link>https://detail47.github.io/categories/communication/</link>
+        <link>https://blog.detail.eu.org/categories/communication/</link>
         <description>Recent content in 通信 on Detail&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>en-us</language>
+        <language>zh-cn</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Sat, 17 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://detail47.github.io/categories/communication/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 17 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/categories/communication/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>极化码</title>
-        <link>https://detail47.github.io/p/201401c60122/</link>
+        <link>https://blog.detail.eu.org/p/201401c60122/</link>
         <pubDate>Sat, 17 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://detail47.github.io/p/201401c60122/</guid>
+        <guid>https://blog.detail.eu.org/p/201401c60122/</guid>
         <description>&lt;h2 id=&#34;背景&#34;&gt;背景
 &lt;/h2&gt;&lt;p&gt;1948年，Claude Shannon在《通信的数学理论》中提出了香农定理，指出了在一个有噪信道中，只要信息的传输速率低于信道容量，总可以找到一种编码方式使得当编码序列足够长时信息实现无差错传输。&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; 香农定理宣告了在噪声环境下可靠通信的可能性，但是也留下了巨大的挑战，因为他并没有给出这种编码的具体实现方式。为此，在今后的长达半世纪的时间里，无数科学家前仆后继，对此开展大量研究，形成了从汉明码到极化码的突破。信道编码的目的是提高信号传输的可靠性。信道编码的基本原理是在信号码元序列中增加监督码元，并利用监督码元去发现或纠正传输中发生的错误。&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; 在香农定理理论框架的推动下，信道编码的技术经历了多次重要的突破。
 早期的信道编码采用代数的编码方式，如汉明码等，引入奇偶校验的概念，通过构造多项式来实现差错控制。后来引入了概率论工具，Wozencraft、Viterbi提出了最大似然译码，使卷积码在通信系统中得到广泛应用。&lt;sup id=&#34;fnref1:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;但由于译码复杂度呈指数级增长，在实际应用中，这一译码方式受限于设备性能。

@@ -344,17 +344,17 @@ $$
 信道的状态转移矩阵为：
 </p>
 $$
-		\begin{align}
+		\begin{align*}
 		W_2(y_1,y_2|u_1,u_2)&=W(y_1|x_1)W(y_2|x_2)\\
 		&=W(y_1|u_1\oplus u_2)W(y_2|u_2)\\
 		&=W^2(y^2_1|u^2_1G_2)
-		\end{align}
+		\end{align*}
 	$$<p>
 当$n=2$时，$W_4:X^4\to Y^4$ ，两个$W_2$信道合并成为$W_4$。
 同理可以得出
 </p>
 $$
-	\begin{align}
+	\begin{align*}
 	G_4 &=
 		\left[
 		\begin{matrix}
@@ -379,7 +379,7 @@ $$
 		1&1&1&1
 		\end{matrix}
 		\right]
-	\end{align}
+	\end{align*}
 $$<p>
 综上，可以得到组合信道$W_N:X_N\to Y_N$转移概率：
 </p>
@@ -396,21 +396,21 @@ $$<p>
 </h4><p>当$W$ 为删除概率为$\alpha$ 的二进制对称删除信道(BEC)时，其信道容量为：
 </p>
 $$
-	\begin{align}
+	\begin{align*}
 	C &= \operatorname{max}_{p(x_i)}\{I(X;Y)\}\\
 	&= \operatorname{max}_{p(x_i)}\{H(Y)-H(Y|X)\}\\
 	&=H(\alpha,\frac{1-\alpha}{2},\frac{1-\alpha}{2})-H(\alpha,1-\alpha)\\
 	&=1-\alpha
-	\end{align}
+	\end{align*}
 $$<p>
 以$W_2$为例。信道$W_2$分裂为信道$W^1_2:u_1\to y_1,y_2$ 和$W^2_2:u_2\to y_1,y_2,\hat u_1$ 。已知$x_1=u_1\oplus u_2$，$x_2=u_2$，可得$u_1=x_1\oplus x_2$，$u_2=x_2$
 对于信道$W^1_2$，当$x_1$或$x_2$被删除时，$u_1$无法被译码。这时：
 </p>
 $$
-	\begin{align}
+	\begin{align*}
 	P_e(u_1)&=\alpha(1-\alpha)+(1-\alpha)\alpha+\alpha^2\\
 	&=2\alpha-\alpha^2
-	\end{align}
+	\end{align*}
 $$<p>
 对于信道$W^2_2$，情况有所不同，$u_2=u_1\oplus x_1$ 或$u_2=x_2$，其中$u_1$是已知的。只有当$x_1$和$x_2$被删除时，$u_2$无法被译码<sup id="fnref:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>，这时：
 </p>
@@ -426,7 +426,7 @@ $$<p>
 $$
 	G_N=B_NF^{\otimes n}\qquad 
 	\left\{ 
-		\begin{align}
+		\begin{align*}
 		B_2&=I_2\\
 		B_N&=R_N(I_2\otimes B_{\frac{N}{2}})\\
 		F&=
@@ -436,7 +436,7 @@ $$
 		1&1
 		\end{matrix}
 		\right]
-		\end{align}
+		\end{align*}
 	\right.
 $$<h4 id="极化码译码">极化码译码
 </h4><p>极化码译码最基础的方法是串行消除译码，串行消除译码利用似然比，由$\hat u_1$开始，逐个译码。<sup id="fnref4:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup><sup id="fnref2:9"><a href="#fn:9" class="footnote-ref" role="doc-noteref">9</a></sup>
@@ -448,12 +448,12 @@ $$<p>
 这时可以得出$\hat u_1$和$\hat u_2$的似然比：
 </p>
 $$
-	\begin{align}
+	\begin{align*}
 	LR(\hat u_1)&=\frac{P(\hat u_1=0)}{P(\hat u_1=1)}\\
 	&=\frac{P(\hat x_1=0)P(\hat x_2=0)+P(\hat x_1=1)P(\hat x_2=1)}
 		{P(\hat x_1=0)P(\hat x_2=1)+P(\hat x_1=1)P(\hat x_2=0)}\\
 	&=\frac{1+LR(\hat x_1)LR(\hat x_2)}{LR(\hat x_1)+LR(\hat x_2)}\\
-	\end{align}
+	\end{align*}
 $$<p>
 由于译码$\hat u_2$时$\hat u_1$已知，因此需要分类讨论：
 </p>
@@ -470,10 +470,10 @@ $$<p>
 </p>
 $$
 	\left\{
-	\begin{align}
+	\begin{align*}
 	LR(\hat u_1)&=\frac{1+LR(\hat x_1)LR(\hat x_2)}{LR(\hat x_1)+LR(\hat x_2)}\\
 	LR(\hat u_2)&=[LR(\hat x_1)]^{1-2\hat u_1}LR(\hat x_2)
-	\end{align}
+	\end{align*}
 	\right.
 $$<p>
 由于串行消除译码有前面比特判决出错影响后续判决的缺点，Tal等人提出了SCL译码算法。SCL译码在SC译码算法基础上做出改进，采用多条译码路径，克服了SC译码算法的缺点。其他译码算法还有PC-SCL、Fast-PC-SCL等<sup id="fnref:10"><a href="#fn:10" class="footnote-ref" role="doc-noteref">10</a></sup></p>

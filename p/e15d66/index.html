@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="STM32标准库学习笔记-STM32 USART">
+<title>STM32 USART</title>
+
+<link rel='canonical' href='https://blog.detail.eu.org/p/e15d66/'>
+
+<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32 USART">
+<meta property='og:description' content="STM32标准库学习笔记-STM32 USART">
+<meta property='og:url' content='https://blog.detail.eu.org/p/e15d66/'>
+<meta property='og:site_name' content='Detail&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='STM32' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2024-02-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-02-17T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="STM32 USART">
+<meta name="twitter:description" content="STM32标准库学习笔记-STM32 USART">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_c89fa279e410603e.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😉</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Detail&#39;s Blog</a></h1>
+            <h2 class="site-description">本站点作为个人学习笔记</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='mailto:linxiangxi@outlook.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://t.me/detail47'
+                        target="_blank"
+                        title="Telegram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/detail47'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-rss"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#通信接口">通信接口</a></li>
+    <li><a href="#串口">串口</a>
+      <ol>
+        <li><a href="#硬件电路">硬件电路</a></li>
+        <li><a href="#电平标准">电平标准</a></li>
+        <li><a href="#串口参数及时序">串口参数及时序</a></li>
+      </ol>
+    </li>
+    <li><a href="#usart简介">USART简介</a></li>
+    <li><a href="#代码">代码</a></li>
+    <li><a href="#数据包设计">数据包设计</a>
+      <ol>
+        <li><a href="#hex固定包长">HEX固定包长</a></li>
+        <li><a href="#字符可变包长">字符可变包长</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/coding/" style="background-color: hsl(268, 60%, 84%); color: hsl(268, 60%, 15%);">
+                编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/e15d66/">STM32 USART</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            STM32标准库学习笔记-STM32 USART
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2024-02-17T00:00:00Z'>2024-02-17</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="通信接口">通信接口
+</h2><ul>
+<li>通信的目的：将一个设备的数据传送到另一个设备，扩展硬件系统</li>
+<li>通信协议：制定通信的规则，通信双方按照协议规则进行数据收发</li>
+</ul>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>名称</th>
+          <th>引脚</th>
+          <th>双工</th>
+          <th>时钟</th>
+          <th>电平</th>
+          <th>设备</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART</td>
+          <td>TX、RX</td>
+          <td>全双工</td>
+          <td>异步</td>
+          <td>单端</td>
+          <td>点对点</td>
+      </tr>
+      <tr>
+          <td>I2C</td>
+          <td>SCL、SDA</td>
+          <td>半双工</td>
+          <td>同步</td>
+          <td>单端</td>
+          <td>多设备</td>
+      </tr>
+      <tr>
+          <td>SPI</td>
+          <td>SCLK、MOSI、MISO、CS</td>
+          <td>全双工</td>
+          <td>同步</td>
+          <td>单端</td>
+          <td>多设备</td>
+      </tr>
+      <tr>
+          <td>CAN</td>
+          <td>CAN_H、CAN_L</td>
+          <td>半双工</td>
+          <td>异步</td>
+          <td>差分</td>
+          <td>多设备</td>
+      </tr>
+      <tr>
+          <td>USB</td>
+          <td>DP、DM</td>
+          <td>半双工</td>
+          <td>异步</td>
+          <td>差分</td>
+          <td>点对点</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="串口">串口
+</h2><ul>
+<li>串口是一种应用十分广泛的通讯接口，串口成本低、容易使用、通信线路简单，可实现两个设备的互相通信</li>
+<li>单片机的串口可以使单片机与单片机、单片机与电脑、单片机与各式各样的模块互相通信，极大地扩展了单片机的应用范围，增强了单片机系统的硬件实力</li>
+</ul>
+<h3 id="硬件电路">硬件电路
+</h3><ul>
+<li>简单双向串口通信有两根通信线（发送端TX和接收端RX）</li>
+<li>TX与RX要交叉连接</li>
+<li>当只需单向的数据传输时，可以只接一根通信线</li>
+<li>当电平标准不一致时，需要加电平转换芯片</li>
+</ul>
+<p><img src="/p/e15d66/e55d07007308688b75b5999664c2e05a099bffa1.png"
+	width="1236"
+	height="547"
+	srcset="/p/e15d66/e55d07007308688b75b5999664c2e05a099bffa1_hu_a77fa68fcdfa641b.png 480w, /p/e15d66/e55d07007308688b75b5999664c2e05a099bffa1_hu_42e5216deb11f4e3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="225"
+		data-flex-basis="542px"
+	
+></p>
+<h3 id="电平标准">电平标准
+</h3><p>电平标准是数据1和数据0的表达方式，是传输线缆中人为规定的电压与数据的对应关系，串口常用的电平标准有如下三种：</p>
+<ul>
+<li>TTL电平：+3.3V或+5V表示1，0V表示0</li>
+<li>RS232电平：-3~-15V表示1，+3~+15V表示0</li>
+<li>RS485电平：两线压差+2~+6V表示1，-2~-6V表示0（差分信号）</li>
+</ul>
+<h3 id="串口参数及时序">串口参数及时序
+</h3><ul>
+<li>波特率：串口通信的速率</li>
+<li>起始位：标志一个数据帧的开始，固定为低电平</li>
+<li>数据位：数据帧的有效载荷，1为高电平，0为低电平，低位先行</li>
+<li>校验位：用于数据验证，根据数据位计算得来</li>
+<li>停止位：用于数据帧间隔，固定为高电平</li>
+</ul>
+<p><img src="/p/e15d66/bf620323662cc785f9fec3301b5afbdf0b4f8c7b.png"
+	width="545"
+	height="161"
+	srcset="/p/e15d66/bf620323662cc785f9fec3301b5afbdf0b4f8c7b_hu_25d5c77aae0e00ce.png 480w, /p/e15d66/bf620323662cc785f9fec3301b5afbdf0b4f8c7b_hu_58ed53a59fc0694c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="338"
+		data-flex-basis="812px"
+	
+></p>
+<h2 id="usart简介">USART简介
+</h2><ul>
+<li>USART（Universal Synchronous/Asynchronous Receiver/Transmitter）通用同步/异步收发器</li>
+<li>USART是STM32内部集成的硬件外设，可根据数据寄存器的一个字节数据自动生成数据帧时序，从TX引脚发送出去，也可自动接收RX引脚的数据帧时序，拼接为一个字节数据，存放在数据寄存器里</li>
+<li>自带波特率发生器，最高达4.5Mbits/s</li>
+<li>可配置数据位长度（8/9）、停止位长度（0.5/1/1.5/2）</li>
+<li>可选校验位（无校验/奇校验/偶校验）</li>
+<li>支持同步模式、硬件流控制、DMA、智能卡、IrDA、LIN</li>
+</ul>
+<p>实际外设:
+STM32F103C8T6 USART资源：USART1、USART2、USART3</p>
+<p><img src="/p/e15d66/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd.png"
+	width="782"
+	height="871"
+	srcset="/p/e15d66/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd_hu_bf7bcff542374b6c.png 480w, /p/e15d66/d53d3122101ddbb62ba31e649cbb2fac6ac5d1cd_hu_8dfbb2b44b87dadd.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="89"
+		data-flex-basis="215px"
+	
+></p>
+<p><img src="/p/e15d66/2683c84c7193546e9a790209892e8852a4bb6f5d.png"
+	width="1798"
+	height="819"
+	srcset="/p/e15d66/2683c84c7193546e9a790209892e8852a4bb6f5d_hu_6bad99fc5a48dad7.png 480w, /p/e15d66/2683c84c7193546e9a790209892e8852a4bb6f5d_hu_fdd539f64ace8bad.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="219"
+		data-flex-basis="526px"
+	
+></p>
+<p>更多USART的相关内容：STM32F10xxx参考手册（中文）.pdf 页码516/手册25</p>
+<h2 id="代码">代码
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//数据接收全局变量
+</span></span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span> <span class="n">Serial_RxData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span> <span class="n">Serial_RxFlag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//时钟配置
+</span></span></span><span class="line"><span class="cl"><span class="nf">RCC_APB2PeriphClockCmd</span><span class="p">(</span><span class="n">RCC_APB2Periph_USART1</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">RCC_APB2PeriphClockCmd</span><span class="p">(</span><span class="n">RCC_APB2Periph_GPIOA</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//GPIO配置
+</span></span></span><span class="line"><span class="cl"><span class="n">GPIO_InitTypeDef</span> <span class="n">GPIO_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Mode</span> <span class="o">=</span> <span class="n">GPIO_Mode_AF_PP</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Pin</span> <span class="o">=</span> <span class="n">GPIO_Pin_9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Speed</span> <span class="o">=</span> <span class="n">GPIO_Speed_50MHz</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">GPIO_Init</span><span class="p">(</span><span class="n">GPIOA</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">GPIO_InitStructure</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//TX
+</span></span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Mode</span> <span class="o">=</span> <span class="n">GPIO_Mode_IPU</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Pin</span> <span class="o">=</span> <span class="n">GPIO_Pin_10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">GPIO_InitStructure</span><span class="p">.</span><span class="n">GPIO_Speed</span> <span class="o">=</span> <span class="n">GPIO_Speed_50MHz</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">GPIO_Init</span><span class="p">(</span><span class="n">GPIOA</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">GPIO_InitStructure</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//RX
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//USART配置
+</span></span></span><span class="line"><span class="cl"><span class="n">USART_InitTypeDef</span> <span class="n">USART_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USART_InitStructure</span><span class="p">.</span><span class="n">USART_BaudRate</span> <span class="o">=</span> <span class="mi">9600</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USART_InitStructure</span><span class="p">.</span><span class="n">USART_HardwareFlowControl</span> <span class="o">=</span> <span class="n">USART_HardwareFlowControl_None</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USART_InitStructure</span><span class="p">.</span><span class="n">USART_Mode</span> <span class="o">=</span> <span class="n">USART_Mode_Tx</span> <span class="o">|</span> <span class="n">USART_Mode_Rx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USART_InitStructure</span><span class="p">.</span><span class="n">USART_Parity</span> <span class="o">=</span> <span class="n">USART_Parity_No</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USART_InitStructure</span><span class="p">.</span><span class="n">USART_StopBits</span> <span class="o">=</span> <span class="n">USART_StopBits_1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">USART_InitStructure</span><span class="p">.</span><span class="n">USART_WordLength</span> <span class="o">=</span> <span class="n">USART_WordLength_8b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">USART_Init</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">USART_InitStructure</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//中断配置
+</span></span></span><span class="line"><span class="cl"><span class="nf">USART_ITConfig</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="n">USART_IT_RXNE</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">NVIC_PriorityGroupConfig</span><span class="p">(</span><span class="n">NVIC_PriorityGroup_2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitTypeDef</span> <span class="n">NVIC_InitStructure</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannel</span> <span class="o">=</span> <span class="n">USART1_IRQn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannelCmd</span> <span class="o">=</span> <span class="n">ENABLE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannelPreemptionPriority</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NVIC_InitStructure</span><span class="p">.</span><span class="n">NVIC_IRQChannelSubPriority</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">NVIC_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">NVIC_InitStructure</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//USART使能
+</span></span></span><span class="line"><span class="cl"><span class="nf">USART_Cmd</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//发送字节
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">Serial_SendByte</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">Byte</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">USART_SendData</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="n">Byte</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="nf">USART_GetFlagStatus</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="n">USART_FLAG_TXE</span><span class="p">)</span> <span class="o">==</span> <span class="n">RESET</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//返回接收数据
+</span></span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span> <span class="nf">Serial_GetRxData</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Serial_RxData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">USART1_IRQHandler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nf">USART_GetITStatus</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="n">USART_IT_RXNE</span><span class="p">)</span> <span class="o">==</span> <span class="n">SET</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Serial_RxData</span> <span class="o">=</span> <span class="nf">USART_ReceiveData</span><span class="p">(</span><span class="n">USART1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Serial_RxFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">USART_ClearITPendingBit</span><span class="p">(</span><span class="n">USART1</span><span class="p">,</span> <span class="n">USART_IT_RXNE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>USART_InitTypeDef</code>为USART配置结构体
+<ul>
+<li><code>USART_BaudRate</code>为波特率：常用9600、115200等</li>
+<li><del><code>USART_HardwareFlowControl</code>为硬件流控制（一般不用）</del></li>
+<li><code>USART_Mode</code>为模式</li>
+<li><code>USART_Parity</code>为奇偶校验</li>
+<li><code>USART_StopBits</code>为停止位</li>
+<li><code>USART_WordLength</code>为字长</li>
+</ul>
+</li>
+<li><code>USART_ITConfig</code>函数用于配置USART中断</li>
+<li><code>USART_SendData</code>函数用于发送数据</li>
+<li><code>USART_ReceiveData</code>函数用于读取接收到的数据</li>
+<li>获取USART标志位
+<ul>
+<li><code>USART_GetFlagStatus</code>标志位</li>
+<li><code>USART_GetITStatus</code>中断标志位</li>
+</ul>
+</li>
+</ul>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>USART_HardwareFlowControl</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART_HardwareFlowControl_None</td>
+          <td>((uint16_t)0x0000)</td>
+          <td>关闭</td>
+      </tr>
+      <tr>
+          <td>USART_HardwareFlowControl_RTS</td>
+          <td>((uint16_t)0x0100)</td>
+          <td>发送可接收信号</td>
+      </tr>
+      <tr>
+          <td>USART_HardwareFlowControl_CTS</td>
+          <td>((uint16_t)0x0200)</td>
+          <td>接收可发送信号</td>
+      </tr>
+      <tr>
+          <td>USART_HardwareFlowControl_RTS_CTS</td>
+          <td>((uint16_t)0x0300)</td>
+          <td>开启全部</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>USART_Mode</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART_Mode_Rx</td>
+          <td>((uint16_t)0x0004)</td>
+          <td>发送</td>
+      </tr>
+      <tr>
+          <td>USART_Mode_Tx</td>
+          <td>((uint16_t)0x0008)</td>
+          <td>接收</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>USART_Parity</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART_Parity_No</td>
+          <td>((uint16_t)0x0000)</td>
+          <td>不校验</td>
+      </tr>
+      <tr>
+          <td>USART_Parity_Even</td>
+          <td>((uint16_t)0x0400)</td>
+          <td>偶校验</td>
+      </tr>
+      <tr>
+          <td>USART_Parity_Odd</td>
+          <td>((uint16_t)0x0600)</td>
+          <td>奇校验</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>USART_StopBits</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART_StopBits_1</td>
+          <td>((uint16_t)0x0000)</td>
+          <td>1位停止位</td>
+      </tr>
+      <tr>
+          <td>USART_StopBits_0_5</td>
+          <td>((uint16_t)0x1000)</td>
+          <td>0.5位停止位</td>
+      </tr>
+      <tr>
+          <td>USART_StopBits_2</td>
+          <td>((uint16_t)0x2000)</td>
+          <td>2位停止位</td>
+      </tr>
+      <tr>
+          <td>USART_StopBits_1_5</td>
+          <td>((uint16_t)0x3000)</td>
+          <td>1.5位停止位</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>USART_WordLength</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART_WordLength_8b</td>
+          <td>((uint16_t)0x0000)</td>
+          <td>8位数据</td>
+      </tr>
+      <tr>
+          <td>USART_WordLength_9b</td>
+          <td>((uint16_t)0x1000)</td>
+          <td>9位数据</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>USART_ITs</th>
+          <th>值</th>
+          <th>USART_Flags</th>
+          <th>值</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>USART_IT_PE</td>
+          <td>((uint16_t)0x0028)</td>
+          <td>USART_FLAG_PE</td>
+          <td>((uint16_t)0x0001)</td>
+          <td>奇偶检验错</td>
+      </tr>
+      <tr>
+          <td>USART_IT_TXE</td>
+          <td>((uint16_t)0x0727)</td>
+          <td>USART_FLAG_TXE</td>
+          <td>((uint16_t)0x0080)</td>
+          <td>发送数据寄存器空</td>
+      </tr>
+      <tr>
+          <td>USART_IT_TC</td>
+          <td>((uint16_t)0x0626)</td>
+          <td>USART_FLAG_TC</td>
+          <td>((uint16_t)0x0040)</td>
+          <td>发送完成</td>
+      </tr>
+      <tr>
+          <td>USART_IT_RXNE</td>
+          <td>((uint16_t)0x0525)</td>
+          <td>USART_FLAG_RXNE</td>
+          <td>((uint16_t)0x0020)</td>
+          <td>接收数据就绪可读</td>
+      </tr>
+      <tr>
+          <td>USART_IT_IDLE</td>
+          <td>((uint16_t)0x0424)</td>
+          <td>USART_FLAG_IDLE</td>
+          <td>((uint16_t)0x0010)</td>
+          <td>检测到空闲线路</td>
+      </tr>
+      <tr>
+          <td>USART_IT_LBD</td>
+          <td>((uint16_t)0x0846)</td>
+          <td>USART_FLAG_LBD</td>
+          <td>((uint16_t)0x0100)</td>
+          <td>断开标志</td>
+      </tr>
+      <tr>
+          <td>USART_IT_CTS</td>
+          <td>((uint16_t)0x096A)</td>
+          <td>USART_FLAG_CTS</td>
+          <td>((uint16_t)0x0200)</td>
+          <td>CTS标志</td>
+      </tr>
+      <tr>
+          <td>USART_IT_ERR</td>
+          <td>((uint16_t)0x0060)</td>
+          <td></td>
+          <td></td>
+          <td>未开启USART_IT_ERR时，只能由<em>USART_GetFlagStatus(USARTx,USART_Flag_ORE)</em> 检测到USART_IT_ORE；在开启USART_IT_ERR后，才能被 <em>USART_GetITStatus(USARTx,USART_IT_ORE)</em> 检测到USART_IT_ORE；</td>
+      </tr>
+      <tr>
+          <td>USART_IT_ORE</td>
+          <td>((uint16_t)0x0360)</td>
+          <td>USART_FLAG_ORE</td>
+          <td>((uint16_t)0x0008)</td>
+          <td>检测到数据溢出</td>
+      </tr>
+      <tr>
+          <td>USART_IT_NE</td>
+          <td>((uint16_t)0x0260)</td>
+          <td>USART_FLAG_NE</td>
+          <td>((uint16_t)0x0004)</td>
+          <td>噪声标志</td>
+      </tr>
+      <tr>
+          <td>USART_IT_FE</td>
+          <td>((uint16_t)0x0160)</td>
+          <td>USART_FLAG_FE</td>
+          <td>((uint16_t)0x0002)</td>
+          <td>帧错误</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="数据包设计">数据包设计
+</h2><h3 id="hex固定包长">HEX固定包长
+</h3><p><img src="/p/e15d66/7bc9bd7822c9c4547de5528eab291d14604fd6ea.png"
+	width="779"
+	height="338"
+	srcset="/p/e15d66/7bc9bd7822c9c4547de5528eab291d14604fd6ea_hu_1de7242bfec0d1c.png 480w, /p/e15d66/7bc9bd7822c9c4547de5528eab291d14604fd6ea_hu_1c3409cff72bdc2c.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="230"
+		data-flex-basis="553px"
+	
+></p>
+<h3 id="字符可变包长">字符可变包长
+</h3><p><img src="/p/e15d66/e101b165f9a55f3ccd2cb53ba76ec2b953758264.png"
+	width="737"
+	height="329"
+	srcset="/p/e15d66/e101b165f9a55f3ccd2cb53ba76ec2b953758264_hu_9508ba5acd53bf84.png 480w, /p/e15d66/e101b165f9a55f3ccd2cb53ba76ec2b953758264_hu_45d1fd5d6d3b5bc0.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="224"
+		data-flex-basis="537px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/stm32/">STM32</a>
+        
+            <a href="/tags/c/">C</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/fd124b/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 SPI</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/094b50/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 I2C</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/173c10/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 DMA</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/b36238/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 ADC</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/88b59a/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 TIM</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Detail
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="STM32标准库学习笔记-STM32简介">
+<title>STM32简介</title>
+
+<link rel='canonical' href='https://blog.detail.eu.org/p/20f563/'>
+
+<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32简介">
+<meta property='og:description' content="STM32标准库学习笔记-STM32简介">
+<meta property='og:url' content='https://blog.detail.eu.org/p/20f563/'>
+<meta property='og:site_name' content='Detail&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='STM32' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2024-02-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-02-05T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="STM32简介">
+<meta name="twitter:description" content="STM32标准库学习笔记-STM32简介">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_c89fa279e410603e.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😉</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Detail&#39;s Blog</a></h1>
+            <h2 class="site-description">本站点作为个人学习笔记</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='mailto:linxiangxi@outlook.com'
+                        target="_blank"
+                        title="Email"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-mail"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /><path d="M3 7l9 6l9 -6" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://t.me/detail47'
+                        target="_blank"
+                        title="Telegram"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-telegram"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/detail47'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='/index.xml'
+                        target="_blank"
+                        title="RSS"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-rss"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#stm32">STM32</a></li>
+    <li><a href="#arm">ARM</a></li>
+    <li><a href="#stm32f103c8t6">STM32F103C8T6</a>
+      <ol>
+        <li><a href="#片上资源外设">片上资源/外设</a></li>
+        <li><a href="#命名规则">命名规则</a></li>
+        <li><a href="#引脚定义">引脚定义</a></li>
+        <li><a href="#引脚重映射">引脚重映射</a></li>
+        <li><a href="#启动配置">启动配置</a></li>
+        <li><a href="#最小系统电路">最小系统电路</a></li>
+        <li><a href="#rcc时钟树">RCC时钟树</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/coding/" style="background-color: hsl(268, 60%, 84%); color: hsl(268, 60%, 15%);">
+                编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/20f563/">STM32简介</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            STM32标准库学习笔记-STM32简介
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2024-02-05T00:00:00Z'>2024-02-05</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="stm32">STM32
+</h2><ul>
+<li>STM32是ST公司基于ARM Cortex-M内核开发的32位微控制器</li>
+<li>STM32常应用在嵌入式领域，如智能车、无人机、机器人、无线通信、物联网、工业控制、娱乐电子产品等</li>
+<li>STM32功能强大、性能优异、片上资源丰富、功耗低，是一款经典的嵌入式微控制器</li>
+</ul>
+<p><img src="/p/20f563/dfb3f685c58d2103dcd0846709c9047452795487.png"
+	width="964"
+	height="1083"
+	srcset="/p/20f563/dfb3f685c58d2103dcd0846709c9047452795487_hu_25eb14301aec886.png 480w, /p/20f563/dfb3f685c58d2103dcd0846709c9047452795487_hu_41d6175304a26de3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="89"
+		data-flex-basis="213px"
+	
+>
+<img src="/p/20f563/a00b89ecf89a7ab60cff4745eec4bf953c0343ea.png"
+	width="617"
+	height="450"
+	srcset="/p/20f563/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_4c03ead3bb61495d.png 480w, /p/20f563/a00b89ecf89a7ab60cff4745eec4bf953c0343ea_hu_2455fc8c73d31e59.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="329px"
+	
+></p>
+<h2 id="arm">ARM
+</h2><ul>
+<li>ARM既指ARM公司，也指ARM处理器内核</li>
+<li>ARM公司是全球领先的半导体知识产权（IP）提供商，全世界超过95%的智能手机和平板电脑都采用ARM架构</li>
+<li>ARM公司设计ARM内核，半导体厂商完善内核周边电路并生产芯片</li>
+</ul>
+<p><img src="/p/20f563/97722a87f118684210dcf81445a6e24edd699f05.png"
+	width="971"
+	height="570"
+	srcset="/p/20f563/97722a87f118684210dcf81445a6e24edd699f05_hu_b83a08f3230d48ef.png 480w, /p/20f563/97722a87f118684210dcf81445a6e24edd699f05_hu_62c84e2b0e99030.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="408px"
+	
+></p>
+<h2 id="stm32f103c8t6">STM32F103C8T6
+</h2><p><img src="/p/20f563/d01202200da39115d723fad74ff2f28968952221.png"
+	width="583"
+	height="470"
+	srcset="/p/20f563/d01202200da39115d723fad74ff2f28968952221_hu_60ec725ac2fa99b5.png 480w, /p/20f563/d01202200da39115d723fad74ff2f28968952221_hu_4654de121e6ef83d.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="124"
+		data-flex-basis="297px"
+	
+></p>
+<ul>
+<li>系列：主流系列STM32F1</li>
+<li>内核：ARM Cortex-M3</li>
+<li>主频：72MHz</li>
+<li>RAM：20K（SRAM）</li>
+<li>ROM：64K（Flash）</li>
+<li>供电：2.0~3.6V（标准3.3V）</li>
+<li>封装：LQFP48</li>
+</ul>
+<h3 id="片上资源外设">片上资源/外设
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>英文缩写</th>
+          <th>名称</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>NVIC</td>
+          <td>嵌套向量中断控制器</td>
+      </tr>
+      <tr>
+          <td>SysTick</td>
+          <td>系统滴答定时器</td>
+      </tr>
+      <tr>
+          <td>RCC</td>
+          <td>复位和时钟控制</td>
+      </tr>
+      <tr>
+          <td>GPIO</td>
+          <td>通用IO口</td>
+      </tr>
+      <tr>
+          <td>AFIO</td>
+          <td>复用IO口</td>
+      </tr>
+      <tr>
+          <td>EXTI</td>
+          <td>外部中断</td>
+      </tr>
+      <tr>
+          <td>TIM</td>
+          <td>定时器</td>
+      </tr>
+      <tr>
+          <td>ADC</td>
+          <td>模数转换器</td>
+      </tr>
+      <tr>
+          <td>DMA</td>
+          <td>直接内存访问</td>
+      </tr>
+      <tr>
+          <td>USART</td>
+          <td>同步/异步串口通信</td>
+      </tr>
+      <tr>
+          <td>I2C</td>
+          <td>I2C通信</td>
+      </tr>
+      <tr>
+          <td>SPI</td>
+          <td>SPI通信</td>
+      </tr>
+      <tr>
+          <td>CAN</td>
+          <td>CAN通信</td>
+      </tr>
+      <tr>
+          <td>USB</td>
+          <td>USB通信</td>
+      </tr>
+      <tr>
+          <td>RTC</td>
+          <td>实时时钟</td>
+      </tr>
+      <tr>
+          <td>CRC</td>
+          <td>CRC校验</td>
+      </tr>
+      <tr>
+          <td>PWR</td>
+          <td>电源控制</td>
+      </tr>
+      <tr>
+          <td>BKP</td>
+          <td>备份寄存器</td>
+      </tr>
+      <tr>
+          <td>IWDG</td>
+          <td>独立看门狗</td>
+      </tr>
+      <tr>
+          <td>WWDG</td>
+          <td>窗口看门狗</td>
+      </tr>
+      <tr>
+          <td>DAC</td>
+          <td>数模转换器</td>
+      </tr>
+      <tr>
+          <td>SDIO</td>
+          <td>SD卡接口</td>
+      </tr>
+      <tr>
+          <td>FSMC</td>
+          <td>可变静态存储控制器</td>
+      </tr>
+      <tr>
+          <td>USB OTG</td>
+          <td>USB主机接口</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="命名规则">命名规则
+</h3><p><img src="/p/20f563/df69db3107c50007c9f6a885a9de52ba12e05af2.png"
+	width="814"
+	height="946"
+	srcset="/p/20f563/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_8022f4c3f04c0878.png 480w, /p/20f563/df69db3107c50007c9f6a885a9de52ba12e05af2_hu_722ea5839ec854ca.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="86"
+		data-flex-basis="206px"
+	
+></p>
+<h3 id="引脚定义">引脚定义
+</h3><p><img src="/p/20f563/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8.png"
+	width="682"
+	height="929"
+	srcset="/p/20f563/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_d6d5825db938eb15.png 480w, /p/20f563/363d427de9c2ebcec9dfdb5bd6372eb17663d3b8_hu_f458986906816326.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="73"
+		data-flex-basis="176px"
+	
+></p>
+<h3 id="引脚重映射">引脚重映射
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="nf">RCC_APB2PeriphClockCmd</span><span class="p">(</span><span class="n">RCC_APB2Periph_AFIO</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">GPIO_PinRemapConfig</span><span class="p">(</span><span class="n">GPIO_PartialRemap1_TIM2</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">GPIO_PinRemapConfig</span><span class="p">(</span><span class="n">GPIO_Remap_SWJ_JTAGDisable</span><span class="p">,</span> <span class="n">ENABLE</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用引脚重映射时，需要开启AFIO时钟</li>
+<li>该代码禁用PA15和PB3的JTAG调试，重映射为TIM2</li>
+</ul>
+<p>更多PinRemapConfig的相关内容：STM32F10xxx参考手册（中文）.pdf 页码116/手册8.3</p>
+<h3 id="启动配置">启动配置
+</h3><p><img src="/p/20f563/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9.png"
+	width="1656"
+	height="544"
+	srcset="/p/20f563/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_8f42a8264c164e0e.png 480w, /p/20f563/65eef09706eeb2b46a3ce8ae1ec67a43539a5ad9_hu_b20b8b435d76bd2b.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="304"
+		data-flex-basis="730px"
+	
+></p>
+<h3 id="最小系统电路">最小系统电路
+</h3><p><img src="/p/20f563/9dceeb01e1317cf2daae7809d89fd8b4614a64ee.png"
+	width="1620"
+	height="891"
+	srcset="/p/20f563/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_e49a7a92defcaf64.png 480w, /p/20f563/9dceeb01e1317cf2daae7809d89fd8b4614a64ee_hu_64053577ea7bda22.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="436px"
+	
+></p>
+<h3 id="rcc时钟树">RCC时钟树
+</h3><p><img src="/p/20f563/810bf82bf51d9f735645b0211f4bd4cbe1a79acf.png"
+	width="814"
+	height="886"
+	srcset="/p/20f563/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_3902f15bfa10353b.png 480w, /p/20f563/810bf82bf51d9f735645b0211f4bd4cbe1a79acf_hu_1fb2e07121569530.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="91"
+		data-flex-basis="220px"
+	
+></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/stm32/">STM32</a>
+        
+            <a href="/tags/c/">C</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        const elementsToRender = [".main-article", ".widget--toc"];
+
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/fd124b/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 SPI</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/094b50/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 I2C</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/173c10/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 DMA</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/e15d66/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 USART</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/b36238/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">STM32 ADC</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2026 Detail
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -9,11 +9,11 @@
         <copyright>Detail</copyright>
         <lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/categories/algorithm/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Nesterov 牛顿动量</title>
-        <link>https://blog.detail.eu.org/p/d9121b/</link>
+        <link>https://blog.detail.eu.org/p/00a438/</link>
         <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.detail.eu.org/p/d9121b/</guid>
-        <description>&lt;img src="https://blog.detail.eu.org/p/d9121b/surf.png" alt="Featured image of post Nesterov 牛顿动量" /&gt;&lt;h2 id=&#34;基本理论&#34;&gt;基本理论
+        <guid>https://blog.detail.eu.org/p/00a438/</guid>
+        <description>&lt;img src="https://blog.detail.eu.org/p/00a438/surf.png" alt="Featured image of post Nesterov 牛顿动量" /&gt;&lt;h2 id=&#34;基本理论&#34;&gt;基本理论
 &lt;/h2&gt;&lt;h3 id=&#34;动量法momentum&#34;&gt;动量法（Momentum）
 &lt;/h3&gt;&lt;p&gt;普通梯度下降法$\theta\leftarrow\theta-\eta\nabla_\theta J(\theta)$在接近最优值时收敛速度会变慢，有事甚至陷入局部最优。这时如果考虑历史梯度，将会引导参数向最优值更快收敛，这就是动量算法基本思想。&lt;/p&gt;
 $$
@@ -46,10 +46,10 @@ $$&lt;h2 id=&#34;仿真&#34;&gt;仿真
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id=&#34;优化路径&#34;&gt;优化路径
 &lt;/h4&gt;&lt;h5 id=&#34;梯度下降&#34;&gt;梯度下降
-&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/d9121b/d66b235138ef91b426e796c6b97de176.png&#34;
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/00a438/d66b235138ef91b426e796c6b97de176.png&#34;
 	width=&#34;2178&#34;
 	height=&#34;1242&#34;
-	srcset=&#34;https://blog.detail.eu.org/p/d9121b/d66b235138ef91b426e796c6b97de176_hu_81e0dd1f75408e44.png 480w, https://blog.detail.eu.org/p/d9121b/d66b235138ef91b426e796c6b97de176_hu_a2ecfd79792abcf6.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/00a438/d66b235138ef91b426e796c6b97de176_hu_81e0dd1f75408e44.png 480w, https://blog.detail.eu.org/p/00a438/d66b235138ef91b426e796c6b97de176_hu_a2ecfd79792abcf6.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -59,10 +59,10 @@ $$&lt;h2 id=&#34;仿真&#34;&gt;仿真
 	
 &gt;&lt;/p&gt;
 &lt;h5 id=&#34;动量法&#34;&gt;动量法
-&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/d9121b/fe390165cb38393bcd109d941035d09a.png&#34;
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/00a438/fe390165cb38393bcd109d941035d09a.png&#34;
 	width=&#34;2178&#34;
 	height=&#34;1242&#34;
-	srcset=&#34;https://blog.detail.eu.org/p/d9121b/fe390165cb38393bcd109d941035d09a_hu_38af82cdb3d87237.png 480w, https://blog.detail.eu.org/p/d9121b/fe390165cb38393bcd109d941035d09a_hu_b2f336f79fa245f7.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/00a438/fe390165cb38393bcd109d941035d09a_hu_38af82cdb3d87237.png 480w, https://blog.detail.eu.org/p/00a438/fe390165cb38393bcd109d941035d09a_hu_b2f336f79fa245f7.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -72,10 +72,10 @@ $$&lt;h2 id=&#34;仿真&#34;&gt;仿真
 	
 &gt;&lt;/p&gt;
 &lt;h5 id=&#34;牛顿动量&#34;&gt;牛顿动量
-&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/d9121b/f74e57e77a2f28659c552db7529dbd3a.png&#34;
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/00a438/f74e57e77a2f28659c552db7529dbd3a.png&#34;
 	width=&#34;2178&#34;
 	height=&#34;1242&#34;
-	srcset=&#34;https://blog.detail.eu.org/p/d9121b/f74e57e77a2f28659c552db7529dbd3a_hu_bc42e30529bc62ef.png 480w, https://blog.detail.eu.org/p/d9121b/f74e57e77a2f28659c552db7529dbd3a_hu_e293a60379145801.png 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/00a438/f74e57e77a2f28659c552db7529dbd3a_hu_bc42e30529bc62ef.png 480w, https://blog.detail.eu.org/p/00a438/f74e57e77a2f28659c552db7529dbd3a_hu_e293a60379145801.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -221,9 +221,11 @@ $$&lt;h2 id=&#34;仿真&#34;&gt;仿真
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;132
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;133
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;134
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;135
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-MATLAB&#34; data-lang=&#34;MATLAB&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;global&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;   &lt;span class=&#34;c&#34;&gt;%#ok&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c&#34;&gt;% 此处仅作演示，实际编程过程中应避免使用全局变量。&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;A&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;c&#34;&gt;...&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;...&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;c&#34;&gt;...&lt;/span&gt;

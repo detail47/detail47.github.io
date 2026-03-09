@@ -1143,16 +1143,16 @@ $$&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/c62fc1/c25a9808e929acc5
         </item>
         <item>
         <title>压缩感知</title>
-        <link>https://blog.detail.eu.org/p/ffb87a/</link>
+        <link>https://blog.detail.eu.org/p/5191bf/</link>
         <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
         
-        <guid>https://blog.detail.eu.org/p/ffb87a/</guid>
-        <description>&lt;img src="https://blog.detail.eu.org/p/ffb87a/eLnOuUWj6iMTxmh.webp" alt="Featured image of post 压缩感知" /&gt;&lt;p&gt;利用信号的稀疏性作为先验知识，完成对信号的压缩。&lt;/p&gt;
+        <guid>https://blog.detail.eu.org/p/5191bf/</guid>
+        <description>&lt;img src="https://blog.detail.eu.org/p/5191bf/ae2557342ff4f654eac932f3bda28363.png" alt="Featured image of post 压缩感知" /&gt;&lt;p&gt;利用信号的稀疏性作为先验知识，完成对信号的压缩。&lt;/p&gt;
 &lt;h2 id=&#34;基本公式&#34;&gt;基本公式
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/ffb87a/eLnOuUWj6iMTxmh.webp&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/5191bf/ae2557342ff4f654eac932f3bda28363.png&#34;
 	width=&#34;575&#34;
 	height=&#34;274&#34;
-	srcset=&#34;https://blog.detail.eu.org/p/ffb87a/eLnOuUWj6iMTxmh_hu_cbb7965de283d9a2.webp 480w, https://blog.detail.eu.org/p/ffb87a/eLnOuUWj6iMTxmh_hu_6a4e69a244d356bd.webp 1024w&#34;
+	srcset=&#34;https://blog.detail.eu.org/p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_5e236fa26c8bac09.png 480w, https://blog.detail.eu.org/p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_384cb01dc66be45b.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 	
@@ -1168,36 +1168,64 @@ $$&lt;p&gt;&lt;img src=&#34;https://blog.detail.eu.org/p/c62fc1/c25a9808e929acc5
 &lt;li&gt;$\Phi$ 为观测矩阵&lt;/li&gt;
 &lt;li&gt;$\Psi$ 为稀疏矩阵&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;l_0最小范数理论解&#34;&gt;$L_0$最小范数(理论解)
+&lt;h2 id=&#34;如何重建&#34;&gt;如何重建
+&lt;/h2&gt;&lt;h3 id=&#34;l_0最小范数理论解&#34;&gt;$L_0$最小范数(理论解)
 &lt;/h3&gt;$$
-\min_s \Vert s\Vert_0\quad s.t. \quad y=Rs
+	\min_s \Vert s\Vert_0\quad s.t. \quad y=Rs
 $$&lt;h3 id=&#34;l_1最小范数&#34;&gt;$L_1$最小范数
-&lt;/h3&gt;&lt;p&gt;求解$L_0$最小范数是NP-hard问题，但如果信号足够稀疏（$N \gg O(Klog(L/K))$），可以使用$L_1$最小范数得到相同结果。&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;求解$L_0$最小范数是NP-hard问题，但如果信号足够稀疏（$N \gg O(Klog(L/K))$），可以使用$L_1$最小范数得到相同结果。
+&lt;/p&gt;
 $$
-\min_s \Vert s\Vert_1\quad s.t. \quad y=Rs
+	\min_s \Vert s\Vert_1\quad s.t. \quad y=Rs
 $$&lt;h3 id=&#34;存在噪声的情况下&#34;&gt;存在噪声的情况下
 &lt;/h3&gt;&lt;h4 id=&#34;没有k的先验知识&#34;&gt;没有K的先验知识
 &lt;/h4&gt;$$
-\hat s = \arg\min_s{\{\Vert y-Rs\Vert_2^2+\lambda_K\Vert s\Vert_1\}}
+	\hat s = \arg\min_s{\{\Vert y-Rs\Vert_2^2+\lambda_K\Vert s\Vert_1\}}
 $$&lt;p&gt;$\lambda_K$为拉格朗日乘子，取决于采样点数$N$和噪声水平$\sigma_\varepsilon$&lt;/p&gt;
 &lt;h4 id=&#34;有k的先验知识&#34;&gt;有K的先验知识
 &lt;/h4&gt;$$
-\hat s= \min_s \Vert s\Vert_1\quad s.t. \quad \Vert y-Rs\Vert_2 \lt \sigma_\varepsilon
-$$&lt;h3 id=&#34;非相关性&#34;&gt;非相关性
-&lt;/h3&gt;&lt;p&gt;通过&lt;strong&gt;最大化每次测量的信息效率&lt;/strong&gt;，&lt;strong&gt;分散信号特征&lt;/strong&gt;到所有采样点中。&lt;/p&gt;
-$$
-\mu(\mathrm{\bf{R}})=\mu(\bf{\Phi},\bf{\Psi})=\sqrt{N}\operatorname*{max}_{1\leq k,j\leq N}\frac{\vert\langle\varphi_{k},\psi_{j}\rangle\vert}{\Vert\varphi_{k}\Vert_2\Vert\psi_{j}\Vert_2}
-$$&lt;p&gt;典型测量基$\Phi$ 和稀疏基$\Psi$组合&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;傅里叶矩阵+单位矩阵：当信号自身具有稀疏性时&lt;/li&gt;
-&lt;li&gt;噪声基+小波基&lt;/li&gt;
-&lt;li&gt;随机矩阵+任意固定基&lt;/li&gt;
-&lt;/ol&gt;
+	\hat s= \min_s \Vert s\Vert_1\quad s.t. \quad \Vert y-Rs\Vert_2 \lt \sigma_\varepsilon
+$$&lt;h2 id=&#34;性质&#34;&gt;性质
+&lt;/h2&gt;&lt;h3 id=&#34;非相关性&#34;&gt;非相关性
+&lt;/h3&gt;&lt;p&gt;通过&lt;strong&gt;最大化每次测量的信息效率&lt;/strong&gt;，&lt;strong&gt;分散信号特征&lt;/strong&gt;到所有采样点中。
+&lt;/p&gt;
+$$\mu(\mathrm{\bf{R}})=\mu(\bf{\Phi},\bf{\Psi})=\sqrt{N}\operatorname*{max}_{1\leq k,j\leq N}\frac{\vert\langle\varphi_{k},\psi_{j}\rangle\vert}{\Vert\varphi_{k}\Vert_2\Vert\psi_{j}\Vert_2}$$&lt;p&gt;
+典型测量基$\Phi$ 和稀疏基$\Psi$组合
+1. 傅里叶矩阵+单位矩阵：当信号自身具有稀疏性时
+2. 噪声基+小波基
+3. 随机矩阵+任意固定基&lt;/p&gt;
 &lt;h3 id=&#34;限制等距条件rip&#34;&gt;限制等距条件(RIP)
-&lt;/h3&gt;&lt;p&gt;保证&lt;strong&gt;测量矩阵对稀疏信号的几何结构保持稳定&lt;/strong&gt;&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;保证&lt;strong&gt;测量矩阵对稀疏信号的几何结构保持稳定&lt;/strong&gt;
+&lt;/p&gt;
 $$
-\left(1-\delta_{s}\right)\Vert \nu\Vert_{2}^{2}\ \leq\ \Vert\mathbf{R}\,\nu\Vert_{2}^{2}\ \leq\ \left(1+\delta_{s}\right)\Vert\nu\Vert_{2}^{2}
-$$</description>
+	\left(1-\delta_{s}\right)\Vert \nu\Vert_{2}^{2}\ \leq\ \Vert\mathbf{R}\,\nu\Vert_{2}^{2}\ \leq\ \left(1+\delta_{s}\right)\Vert\nu\Vert_{2}^{2}
+$$&lt;h2 id=&#34;典型重建方法&#34;&gt;典型重建方法
+&lt;/h2&gt;&lt;h3 id=&#34;基于松弛理论&#34;&gt;基于松弛理论
+&lt;/h3&gt;&lt;h4 id=&#34;凸优化&#34;&gt;凸优化
+&lt;/h4&gt;&lt;p&gt;凸优化算法利用$L_1$范数最小化来求解$L_0$问题等效的凸优化问题问题，问题如下
+&lt;/p&gt;
+$$
+	\hat s = \arg\min_s{\lVert s\rVert_1} \qquad \text{s.t.} \quad \lVert Rs-y\rVert_2\le\varepsilon.
+$$&lt;p&gt;
+该类算法可以分为内点法（Interior Point Method, IPM）和一阶算法。
+内点法的典型算法有基追踪（BP）、$L_1$正则化最小二乘（$L_1$-LS）、$L_1$-magic等。它们属于重构精度较高的高阶算法，但是它们对高阶问题的求解效率很低。
+一阶算法的代表有梯度投影（GPSR）、软阈值迭代（IST, TwIST, FIST）、Bregman、不动点延拓（FPC, FPC-AC）、基于Nesterov理论的算法（NESTA）、一阶锥求解器（TFOCS）、交替方向法（ADM/ADMM）等。这类方法对高维问题的求解非常有效。
+$L_1$范数最小化算法可以用来重构&lt;u&gt;稀疏性较差的信号&lt;/u&gt;，对加性噪声具有良好的鲁棒性。&lt;/p&gt;
+&lt;h4 id=&#34;非凸优化&#34;&gt;非凸优化
+&lt;/h4&gt;&lt;p&gt;非凸优化与之类似，主要的研究方向是基于迭代重加权原理和基于$L_q(0&amp;lt;q&amp;lt;1)$正则化理论。
+基于迭代重加权原理的算法由优化最小法（Majorization Minimization）框架推导而来。基本思想是利用与未知信号相关的加权矩阵求解一个优化问题序列。典型的算法有迭代重加权最小二乘（IRLS）和FOCUSS等。
+基于$L_q(0&amp;lt;q&amp;lt;1)$正则化理论的算法所要求解的问题如下
+&lt;/p&gt;
+$$
+	\hat s = \arg\min_s \{{\lVert Rs-y\rVert_2}+\lambda\lVert s\rVert^q_q\}.
+$$&lt;p&gt;
+典型的算法有$L_{1/2}$阈值迭代算法和$L_{2/3}$阈值迭代算法。
+相比于凸优化算法，非凸优化算法通常对稀疏信号的&lt;u&gt;重构精度更高&lt;/u&gt;，然而若参数选择不合适&lt;u&gt;极易收敛到局部极小值&lt;/u&gt;，导致信号重构结果出现偏差。&lt;/p&gt;
+&lt;h3 id=&#34;基于贪婪追踪&#34;&gt;基于贪婪追踪
+&lt;/h3&gt;&lt;p&gt;贪婪追踪算法是一类搜索算法，此类算法主要包含两个步骤，即支集选择和系数更新。现有各种贪婪追踪算法主要由匹配追踪（MP）和正交匹配追踪（OMP）发展而来。典型的算法有OMP、IHT等，此类算法优势是&lt;u&gt;在稀疏性较强时，能迅速重建所需信号。当信号稀疏性较弱或测量存在噪声时，运算效率低、重建结果与真实值之间会存在很大偏差&lt;/u&gt;&lt;/p&gt;
+&lt;h3 id=&#34;基于贝叶斯&#34;&gt;基于贝叶斯
+&lt;/h3&gt;&lt;p&gt;贝叶斯重构算法是通过将信号稀疏性与先验信息关联，从概率论角度求解稀疏信号的一类算法。典型的有基于稀疏性贝叶斯学习和基于图模型的信息传递算法。&lt;/p&gt;
+</description>
         </item>
         
     </channel>

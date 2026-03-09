@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="压缩感知基础知识">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="压缩感知是基于信号稀疏性先验，通过压缩测量和优化重建实现信号处理的技术。">
 <title>压缩感知</title>
 
-<link rel='canonical' href='https://blog.detail.eu.org/p/ffb87a/'>
+<link rel='canonical' href='https://blog.detail.eu.org/p/5191bf/'>
 
 <link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="压缩感知">
-<meta property='og:description' content="压缩感知基础知识">
-<meta property='og:url' content='https://blog.detail.eu.org/p/ffb87a/'>
+<meta property='og:description' content="压缩感知是基于信号稀疏性先验，通过压缩测量和优化重建实现信号处理的技术。">
+<meta property='og:url' content='https://blog.detail.eu.org/p/5191bf/'>
 <meta property='og:site_name' content='Detail&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='TomoSAR' /><meta property='article:tag' content='CS' /><meta property='article:published_time' content='2025-11-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-19T00:00:00&#43;00:00'/><meta property='og:image' content='https://blog.detail.eu.org/p/ffb87a/eLnOuUWj6iMTxmh.webp' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='TomoSAR' /><meta property='article:tag' content='CS' /><meta property='article:published_time' content='2025-11-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-11-19T00:00:00&#43;00:00'/><meta property='og:image' content='https://blog.detail.eu.org/p/5191bf/ae2557342ff4f654eac932f3bda28363.png' />
 <meta name="twitter:title" content="压缩感知">
-<meta name="twitter:description" content="压缩感知基础知识"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://blog.detail.eu.org/p/ffb87a/eLnOuUWj6iMTxmh.webp' />
+<meta name="twitter:description" content="压缩感知是基于信号稀疏性先验，通过压缩测量和优化重建实现信号处理的技术。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://blog.detail.eu.org/p/5191bf/ae2557342ff4f654eac932f3bda28363.png' />
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -252,7 +252,8 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#基本公式">基本公式</a>
+    <li><a href="#基本公式">基本公式</a></li>
+    <li><a href="#如何重建">如何重建</a>
       <ol>
         <li><a href="#l_0最小范数理论解">$L_0$最小范数(理论解)</a></li>
         <li><a href="#l_1最小范数">$L_1$最小范数</a></li>
@@ -262,8 +263,24 @@
             <li><a href="#有k的先验知识">有K的先验知识</a></li>
           </ol>
         </li>
+      </ol>
+    </li>
+    <li><a href="#性质">性质</a>
+      <ol>
         <li><a href="#非相关性">非相关性</a></li>
         <li><a href="#限制等距条件rip">限制等距条件(RIP)</a></li>
+      </ol>
+    </li>
+    <li><a href="#典型重建方法">典型重建方法</a>
+      <ol>
+        <li><a href="#基于松弛理论">基于松弛理论</a>
+          <ol>
+            <li><a href="#凸优化">凸优化</a></li>
+            <li><a href="#非凸优化">非凸优化</a></li>
+          </ol>
+        </li>
+        <li><a href="#基于贪婪追踪">基于贪婪追踪</a></li>
+        <li><a href="#基于贝叶斯">基于贝叶斯</a></li>
       </ol>
     </li>
   </ol>
@@ -280,9 +297,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/ffb87a/">
-                <img src="/p/ffb87a/eLnOuUWj6iMTxmh_hu_5ca4c2f99d1568de.webp"
-                        srcset="/p/ffb87a/eLnOuUWj6iMTxmh_hu_5ca4c2f99d1568de.webp 800w, /p/ffb87a/eLnOuUWj6iMTxmh_hu_5160a28369c36907.webp 1600w"
+            <a href="/p/5191bf/">
+                <img src="/p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_9591a356b4c941ac.png"
+                        srcset="/p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_9591a356b4c941ac.png 800w, /p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_36e82b6948239e9a.png 1600w"
                         width="800" 
                         height="381" 
                         loading="lazy"
@@ -308,12 +325,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/ffb87a/">压缩感知</a>
+            <a href="/p/5191bf/">压缩感知</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            压缩感知基础知识
+            压缩感知是基于信号稀疏性先验，通过压缩测量和优化重建实现信号处理的技术。
         </h3>
         
     </div>
@@ -352,10 +369,10 @@
     
     <p>利用信号的稀疏性作为先验知识，完成对信号的压缩。</p>
 <h2 id="基本公式">基本公式
-</h2><p><img src="/p/ffb87a/eLnOuUWj6iMTxmh.webp"
+</h2><p><img src="/p/5191bf/ae2557342ff4f654eac932f3bda28363.png"
 	width="575"
 	height="274"
-	srcset="/p/ffb87a/eLnOuUWj6iMTxmh_hu_cbb7965de283d9a2.webp 480w, /p/ffb87a/eLnOuUWj6iMTxmh_hu_6a4e69a244d356bd.webp 1024w"
+	srcset="/p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_5e236fa26c8bac09.png 480w, /p/5191bf/ae2557342ff4f654eac932f3bda28363_hu_384cb01dc66be45b.png 1024w"
 	loading="lazy"
 	
 	
@@ -371,36 +388,64 @@
 <li>$\Phi$ 为观测矩阵</li>
 <li>$\Psi$ 为稀疏矩阵</li>
 </ul>
-<h3 id="l_0最小范数理论解">$L_0$最小范数(理论解)
+<h2 id="如何重建">如何重建
+</h2><h3 id="l_0最小范数理论解">$L_0$最小范数(理论解)
 </h3>$$
-\min_s \Vert s\Vert_0\quad s.t. \quad y=Rs
+	\min_s \Vert s\Vert_0\quad s.t. \quad y=Rs
 $$<h3 id="l_1最小范数">$L_1$最小范数
-</h3><p>求解$L_0$最小范数是NP-hard问题，但如果信号足够稀疏（$N \gg O(Klog(L/K))$），可以使用$L_1$最小范数得到相同结果。</p>
+</h3><p>求解$L_0$最小范数是NP-hard问题，但如果信号足够稀疏（$N \gg O(Klog(L/K))$），可以使用$L_1$最小范数得到相同结果。
+</p>
 $$
-\min_s \Vert s\Vert_1\quad s.t. \quad y=Rs
+	\min_s \Vert s\Vert_1\quad s.t. \quad y=Rs
 $$<h3 id="存在噪声的情况下">存在噪声的情况下
 </h3><h4 id="没有k的先验知识">没有K的先验知识
 </h4>$$
-\hat s = \arg\min_s{\{\Vert y-Rs\Vert_2^2+\lambda_K\Vert s\Vert_1\}}
+	\hat s = \arg\min_s{\{\Vert y-Rs\Vert_2^2+\lambda_K\Vert s\Vert_1\}}
 $$<p>$\lambda_K$为拉格朗日乘子，取决于采样点数$N$和噪声水平$\sigma_\varepsilon$</p>
 <h4 id="有k的先验知识">有K的先验知识
 </h4>$$
-\hat s= \min_s \Vert s\Vert_1\quad s.t. \quad \Vert y-Rs\Vert_2 \lt \sigma_\varepsilon
-$$<h3 id="非相关性">非相关性
-</h3><p>通过<strong>最大化每次测量的信息效率</strong>，<strong>分散信号特征</strong>到所有采样点中。</p>
-$$
-\mu(\mathrm{\bf{R}})=\mu(\bf{\Phi},\bf{\Psi})=\sqrt{N}\operatorname*{max}_{1\leq k,j\leq N}\frac{\vert\langle\varphi_{k},\psi_{j}\rangle\vert}{\Vert\varphi_{k}\Vert_2\Vert\psi_{j}\Vert_2}
-$$<p>典型测量基$\Phi$ 和稀疏基$\Psi$组合</p>
-<ol>
-<li>傅里叶矩阵+单位矩阵：当信号自身具有稀疏性时</li>
-<li>噪声基+小波基</li>
-<li>随机矩阵+任意固定基</li>
-</ol>
+	\hat s= \min_s \Vert s\Vert_1\quad s.t. \quad \Vert y-Rs\Vert_2 \lt \sigma_\varepsilon
+$$<h2 id="性质">性质
+</h2><h3 id="非相关性">非相关性
+</h3><p>通过<strong>最大化每次测量的信息效率</strong>，<strong>分散信号特征</strong>到所有采样点中。
+</p>
+$$\mu(\mathrm{\bf{R}})=\mu(\bf{\Phi},\bf{\Psi})=\sqrt{N}\operatorname*{max}_{1\leq k,j\leq N}\frac{\vert\langle\varphi_{k},\psi_{j}\rangle\vert}{\Vert\varphi_{k}\Vert_2\Vert\psi_{j}\Vert_2}$$<p>
+典型测量基$\Phi$ 和稀疏基$\Psi$组合
+1. 傅里叶矩阵+单位矩阵：当信号自身具有稀疏性时
+2. 噪声基+小波基
+3. 随机矩阵+任意固定基</p>
 <h3 id="限制等距条件rip">限制等距条件(RIP)
-</h3><p>保证<strong>测量矩阵对稀疏信号的几何结构保持稳定</strong></p>
+</h3><p>保证<strong>测量矩阵对稀疏信号的几何结构保持稳定</strong>
+</p>
 $$
-\left(1-\delta_{s}\right)\Vert \nu\Vert_{2}^{2}\ \leq\ \Vert\mathbf{R}\,\nu\Vert_{2}^{2}\ \leq\ \left(1+\delta_{s}\right)\Vert\nu\Vert_{2}^{2}
+	\left(1-\delta_{s}\right)\Vert \nu\Vert_{2}^{2}\ \leq\ \Vert\mathbf{R}\,\nu\Vert_{2}^{2}\ \leq\ \left(1+\delta_{s}\right)\Vert\nu\Vert_{2}^{2}
+$$<h2 id="典型重建方法">典型重建方法
+</h2><h3 id="基于松弛理论">基于松弛理论
+</h3><h4 id="凸优化">凸优化
+</h4><p>凸优化算法利用$L_1$范数最小化来求解$L_0$问题等效的凸优化问题问题，问题如下
+</p>
 $$
+	\hat s = \arg\min_s{\lVert s\rVert_1} \qquad \text{s.t.} \quad \lVert Rs-y\rVert_2\le\varepsilon.
+$$<p>
+该类算法可以分为内点法（Interior Point Method, IPM）和一阶算法。
+内点法的典型算法有基追踪（BP）、$L_1$正则化最小二乘（$L_1$-LS）、$L_1$-magic等。它们属于重构精度较高的高阶算法，但是它们对高阶问题的求解效率很低。
+一阶算法的代表有梯度投影（GPSR）、软阈值迭代（IST, TwIST, FIST）、Bregman、不动点延拓（FPC, FPC-AC）、基于Nesterov理论的算法（NESTA）、一阶锥求解器（TFOCS）、交替方向法（ADM/ADMM）等。这类方法对高维问题的求解非常有效。
+$L_1$范数最小化算法可以用来重构<u>稀疏性较差的信号</u>，对加性噪声具有良好的鲁棒性。</p>
+<h4 id="非凸优化">非凸优化
+</h4><p>非凸优化与之类似，主要的研究方向是基于迭代重加权原理和基于$L_q(0&lt;q&lt;1)$正则化理论。
+基于迭代重加权原理的算法由优化最小法（Majorization Minimization）框架推导而来。基本思想是利用与未知信号相关的加权矩阵求解一个优化问题序列。典型的算法有迭代重加权最小二乘（IRLS）和FOCUSS等。
+基于$L_q(0&lt;q&lt;1)$正则化理论的算法所要求解的问题如下
+</p>
+$$
+	\hat s = \arg\min_s \{{\lVert Rs-y\rVert_2}+\lambda\lVert s\rVert^q_q\}.
+$$<p>
+典型的算法有$L_{1/2}$阈值迭代算法和$L_{2/3}$阈值迭代算法。
+相比于凸优化算法，非凸优化算法通常对稀疏信号的<u>重构精度更高</u>，然而若参数选择不合适<u>极易收敛到局部极小值</u>，导致信号重构结果出现偏差。</p>
+<h3 id="基于贪婪追踪">基于贪婪追踪
+</h3><p>贪婪追踪算法是一类搜索算法，此类算法主要包含两个步骤，即支集选择和系数更新。现有各种贪婪追踪算法主要由匹配追踪（MP）和正交匹配追踪（OMP）发展而来。典型的算法有OMP、IHT等，此类算法优势是<u>在稀疏性较强时，能迅速重建所需信号。当信号稀疏性较弱或测量存在噪声时，运算效率低、重建结果与真实值之间会存在很大偏差</u></p>
+<h3 id="基于贝叶斯">基于贝叶斯
+</h3><p>贝叶斯重构算法是通过将信号稀疏性与先验信息关联，从概率论角度求解稀疏信号的一类算法。典型的有基于稀疏性贝叶斯学习和基于图模型的信息传递算法。</p>
+
 </section>
 
 

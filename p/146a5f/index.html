@@ -4,11 +4,11 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="迭代硬阈值算法（IHT）是一种用于解决M稀疏近似问题的迭代方法，通过梯度更新和硬阈值操作强制解具有指定稀疏度，并附有MATLAB实现代码。">
 <title>IHT</title>
 
-<link rel='canonical' href='https://blog.detail.eu.org/p/de00d6/'>
+<link rel='canonical' href='https://blog.detail.eu.org/p/146a5f/'>
 
 <link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="IHT">
 <meta property='og:description' content="迭代硬阈值算法（IHT）是一种用于解决M稀疏近似问题的迭代方法，通过梯度更新和硬阈值操作强制解具有指定稀疏度，并附有MATLAB实现代码。">
-<meta property='og:url' content='https://blog.detail.eu.org/p/de00d6/'>
+<meta property='og:url' content='https://blog.detail.eu.org/p/146a5f/'>
 <meta property='og:site_name' content='Detail&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='TomoSAR' /><meta property='article:tag' content='CS' /><meta property='article:tag' content='MATLAB' /><meta property='article:published_time' content='2026-02-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-02-10T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="IHT">
@@ -260,7 +260,12 @@
         <li><a href="#迭代公式获取">迭代公式获取</a></li>
       </ol>
     </li>
-    <li><a href="#代码">代码</a></li>
+    <li><a href="#代码">代码</a>
+      <ol>
+        <li><a href="#简单">简单</a></li>
+        <li><a href="#原文">原文</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -291,7 +296,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/de00d6/">IHT</a>
+            <a href="/p/146a5f/">IHT</a>
         </h2>
     
         
@@ -334,40 +339,195 @@
     
     
     <h2 id="基本原理">基本原理
-</h2><p>迭代硬阈值算法（Iterative Hard Thresholding, IHT），在提出时称M-Sparse Algorithm。$M$稀疏问题可以表示为</p>
+</h2><p>迭代硬阈值算法（Iterative Hard Thresholding, IHT），在提出时称M-Sparse Algorithm。$M$稀疏问题可以表示为
+</p>
 $$
-\min_\mathbf y\lVert \mathbf x - \Phi\mathbf y \rVert^2_2\quad \text{s.t.}\quad \lVert\mathbf y\rVert_0\le M,
-$$<p>可以得到其迭代算法</p>
+	\min_\mathbf y\lVert \mathbf x - \Phi\mathbf y \rVert^2_2\quad \text{s.t.}\quad \lVert\mathbf y\rVert_0\le M,
+$$<p>
+可以得到其迭代算法
+</p>
 $$
-\mathbf y^{n+1}=H_M(\mathbf y^n+\Phi^\text H(\mathbf x-\Phi\mathbf y^n)),
-$$<p>其中，$H_M$为非线性算子，其返回$M$维最大幅值</p>
+	\mathbf y^{n+1}=H_M(\mathbf y^n+\Phi^\rm H(\mathbf x-\Phi\mathbf y^n)),
+$$<p>
+其中，$H_M$为非线性算子，其返回$M$维最大幅值
+</p>
 $$
-H_M(y_i)=
-    \left\{ 
-        \begin{align*}
-            0\quad \lvert y_i\rvert\lt\lambda^{0.5}_M(\mathbf y)\\
-            y_i\quad \lvert y_i\rvert\ge\lambda^{0.5}_M(\mathbf y)
-        \end{align*}
-    \right..
+	H_M(y_i)=
+	\left\{ 
+		\begin{align}
+			0\quad \lvert y_i\rvert\lt\lambda^{0.5}_M(\mathbf y)\\
+			y_i\quad \lvert y_i\rvert\ge\lambda^{0.5}_M(\mathbf y)
+		\end{align}
+	\right..
 $$<h2 id="推导过程">推导过程
 </h2><h3 id="替代目标函数surrogate-objective-function">替代目标函数（Surrogate Objective Function）
 </h3>$$
-C_M^S(\mathbf{y,z})=\lVert \mathbf{x-\Phi y} \rVert_2^2 - \lVert \mathbf{\Phi y-\Phi z} \rVert_2^2 + \lVert \mathbf{y-z} \rVert_2^2 \qquad \lVert\mathbf\Phi\rVert_2\lt1,
-$$<p>当$\mathbf{y=z}$时，该函数即为原目标函数，其余情况下均大于目标函数。$\lVert\mathbf\Phi\rVert_2\lt1$由$0\lt eig(\mathbf I-\mathbf \Phi^\text{H} \mathbf\Phi)\lt 1$推导出。</p>
+	C_M^S(\mathbf{y,z})=\lVert \mathbf{x-\Phi y} \rVert_2^2 - \lVert \mathbf{\Phi y-\Phi z} \rVert_2^2 + \lVert \mathbf{y-z} \rVert_2^2 \qquad \lVert\mathbf\Phi\rVert_2\lt1,
+$$<p>
+当$\mathbf{y=z}$时，该函数即为原目标函数，其余情况下均大于目标函数。$\lVert\mathbf\Phi\rVert_2\lt1$由$0\lt eig(\mathbf I-\mathbf \Phi^\rm{H} \mathbf\Phi)\lt 1$推导出。</p>
 <h3 id="替代目标函数变形">替代目标函数变形
 </h3>$$
-C_M^S(\mathbf{y,z})=\sum_i[y_i^2-2y_i(z_i+\phi_i^\text{T}\mathbf x-\phi_i^\text{T}\mathbf{\Phi z})]+\lVert\mathbf x\rVert_2^2+\lVert\mathbf z\rVert_2^2+\lVert\mathbf{\Phi z}\rVert_2^2,
-$$<p>由于优化目标为$\mathbf y$，而后面三项与其无关。因此，对其优化时忽略这三项不影响结果。</p>
+	C_M^S(\mathbf{y,z})=\sum_i[y_i^2-2y_i(z_i+\phi_i^\rm{T}\mathbf x-\phi_i^\rm{T}\mathbf{\Phi z})]+\lVert\mathbf x\rVert_2^2+\lVert\mathbf z\rVert_2^2+\lVert\mathbf{\Phi z}\rVert_2^2,
+$$<p>
+由于优化目标为$\mathbf y$，而后面三项与其无关。因此，对其优化时忽略这三项不影响结果。
+</p>
 $$
-C_M^S(\mathbf{y,z})\propto\sum_i[y_i^2-2y_i(z_i+\phi_i^\text{T}\mathbf x-\phi_i^\text{T}\mathbf{\Phi z})].
+	C_M^S(\mathbf{y,z})\propto\sum_i[y_i^2-2y_i(z_i+\phi_i^\rm{T}\mathbf x-\phi_i^\rm{T}\mathbf{\Phi z})].
 $$<h3 id="极值点获取">极值点获取
 </h3>$$
-y_i^*=z_i+\phi_i^\text H\mathbf x-\phi_i^\text H\mathbf{\Phi z},
-$$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\sum_i{-(y_i^*)^2}$。</p>
+	y_i^*=z_i+\phi_i^\rm H\mathbf x-\phi_i^\rm H\mathbf{\Phi z},
+$$<p>
+极值点通过简单的配方法即可获得。这时，取得最小值$\sum_i{-(y_i^*)^2}$。</p>
 <h3 id="迭代公式获取">迭代公式获取
 </h3><p>考虑到$\lVert\mathbf y\rVert_0\le M$的约束，需要保留$\lVert\mathbf y^*\rVert$的最大$M$项，即使用硬阈值函数。</p>
 <h2 id="代码">代码
-</h2><div class="highlight"><div class="chroma">
+</h2><h3 id="简单">简单
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-matlab" data-lang="matlab"><span class="line"><span class="cl"><span class="k">function</span><span class="w"> </span>[s_est, info] <span class="p">=</span><span class="w"> </span><span class="nf">iht</span><span class="p">(</span>g, Phi, max_iter, K<span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">[</span><span class="o">~</span><span class="p">,</span> <span class="n">N</span><span class="p">]</span> <span class="p">=</span> <span class="nb">size</span><span class="p">(</span><span class="n">Phi</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s_est</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="p">=</span> <span class="n">g</span><span class="p">(:);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">g_norm</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span> <span class="p">=</span> <span class="n">compute_lipschitz_constant</span><span class="p">(</span><span class="n">Phi</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="p">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">L</span><span class="p">;</span>  <span class="c">% 计算步长</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">residual_tol</span> <span class="p">=</span> <span class="mf">1e-2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plateau_tol</span> <span class="p">=</span> <span class="mf">1e-6</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plateau_patience</span> <span class="p">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plateau_count</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">residual</span> <span class="p">=</span> <span class="n">Phi</span> <span class="o">*</span> <span class="n">s_est</span> <span class="o">-</span> <span class="n">g</span><span class="p">;</span>  <span class="c">% 初始残差</span>
+</span></span><span class="line"><span class="cl">    <span class="n">residual_norm</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stop_reason</span> <span class="p">=</span> &#34;<span class="n">max_iter</span>&#34;<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iter_done</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">iter</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="n">max_iter</span>
+</span></span><span class="line"><span class="cl">        <span class="n">z</span> <span class="p">=</span> <span class="n">s_est</span> <span class="o">-</span> <span class="n">Phi</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">residual</span> <span class="o">*</span> <span class="n">t</span><span class="p">;</span>    <span class="c">% 计算梯度步长更新</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s_est</span> <span class="p">=</span> <span class="n">hard_thresholding</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">K</span><span class="p">);</span> <span class="c">% 应用硬阈值处理</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">prev_residual_norm</span> <span class="p">=</span> <span class="n">residual_norm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">residual</span> <span class="p">=</span> <span class="n">Phi</span> <span class="o">*</span> <span class="n">s_est</span> <span class="o">-</span> <span class="n">g</span><span class="p">;</span>  <span class="c">% 更新残差</span>
+</span></span><span class="line"><span class="cl">        <span class="n">residual_norm</span> <span class="p">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">residual</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">iter_done</span> <span class="p">=</span> <span class="n">iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">residual_norm</span> <span class="o">&lt;</span> <span class="n">residual_tol</span> <span class="o">*</span> <span class="n">g_norm</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stop_reason</span> <span class="p">=</span> &#34;<span class="n">residual_tol</span>&#34;<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">improvement</span> <span class="p">=</span> <span class="p">(</span><span class="n">prev_residual_norm</span> <span class="o">-</span> <span class="n">residual_norm</span><span class="p">)</span> <span class="o">/</span> <span class="n">max</span><span class="p">(</span><span class="n">prev_residual_norm</span><span class="p">,</span> <span class="nb">eps</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">improvement</span> <span class="o">&lt;</span> <span class="n">plateau_tol</span>
+</span></span><span class="line"><span class="cl">            <span class="n">plateau_count</span> <span class="p">=</span> <span class="n">plateau_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">plateau_count</span> <span class="p">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">plateau_count</span> <span class="o">&gt;</span><span class="p">=</span> <span class="n">plateau_patience</span>
+</span></span><span class="line"><span class="cl">            <span class="n">stop_reason</span> <span class="p">=</span> &#34;<span class="n">plateau</span>&#34;<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">nargout</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span> <span class="p">=</span> <span class="n">struct</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">iter</span> <span class="p">=</span> <span class="n">iter_done</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">residual_norm</span> <span class="p">=</span> <span class="n">residual_norm</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">relative_residual</span> <span class="p">=</span> <span class="n">residual_norm</span> <span class="o">/</span> <span class="n">max</span><span class="p">(</span><span class="n">g_norm</span><span class="p">,</span> <span class="nb">eps</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">stop_reason</span> <span class="p">=</span> <span class="n">stop_reason</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">step_size</span> <span class="p">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">L</span> <span class="p">=</span> <span class="n">L</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">info</span><span class="p">.</span><span class="n">plateau_count</span> <span class="p">=</span> <span class="n">plateau_count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span><span class="w"> </span>r <span class="p">=</span><span class="w"> </span><span class="nf">hard_thresholding</span><span class="p">(</span>x, K<span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">% 对向量x进行硬阈值处理，保留最大的K个元素</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="o">~</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span> <span class="p">=</span> <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s">&#39;descend&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">K</span><span class="p">))</span> <span class="p">=</span> <span class="n">x</span><span class="p">(</span><span class="n">idx</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">K</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span><span class="w"> </span>L <span class="p">=</span><span class="w"> </span><span class="nf">compute_lipschitz_constant</span><span class="p">(</span>Phi<span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ATA</span> <span class="p">=</span> <span class="n">Phi</span><span class="o">&#39;</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span> <span class="p">=</span> <span class="n">max</span><span class="p">(</span><span class="n">eig</span><span class="p">(</span><span class="n">ATA</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="原文">原文
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -899,7 +1059,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl"><span class="k">else</span>
 </span></span><span class="line"><span class="cl">   <span class="n">error</span><span class="p">(</span><span class="s">&#39;x must be a vector.&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
-</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl"><span class="n">sigsize</span>     <span class="p">=</span> <span class="n">x</span><span class="o">&#39;*</span><span class="n">x</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">oldERR</span>      <span class="p">=</span> <span class="n">sigsize</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">err_mse</span>     <span class="p">=</span> <span class="p">[];</span>
@@ -930,7 +1090,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">        <span class="n">comp_err</span><span class="p">=</span><span class="n">false</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">comp_time</span><span class="p">=</span><span class="n">false</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="p">(</span><span class="s">&#39;Please assign output variable.&#39;</span><span class="p">)</span>      
+</span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="p">(</span><span class="s">&#39;Please assign output variable.&#39;</span><span class="p">)</span>        
 </span></span><span class="line"><span class="cl">    <span class="k">otherwise</span>
 </span></span><span class="line"><span class="cl">        <span class="n">error</span><span class="p">(</span><span class="s">&#39;Too many output arguments specified&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
@@ -969,7 +1129,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;function_handle&#39;</span><span class="p">);</span> <span class="n">Pt</span> <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>   
 </span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;P_trans must be function _handle. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
 </span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;maxIter&#39;</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;numeric&#39;</span><span class="p">);</span> <span class="n">MAXITER</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>           
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;numeric&#39;</span><span class="p">);</span> <span class="n">MAXITER</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>             
 </span></span><span class="line"><span class="cl">            <span class="k">else</span> <span class="n">error</span><span class="p">(</span><span class="s">&#39;maxIter must be a number. Exiting.&#39;</span><span class="p">);</span> <span class="k">end</span>
 </span></span><span class="line"><span class="cl">        <span class="k">case</span> <span class="p">{</span><span class="s">&#39;verbose&#39;</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">isa</span><span class="p">(</span><span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">},</span><span class="s">&#39;logical&#39;</span><span class="p">);</span> <span class="n">verbose</span>     <span class="p">=</span> <span class="n">Options</span><span class="p">{</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">};</span>   
@@ -1016,10 +1176,10 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">initial_given</span> <span class="o">==</span><span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">length</span><span class="p">(</span><span class="nb">find</span><span class="p">(</span><span class="n">s_initial</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">M</span>
 </span></span><span class="line"><span class="cl">        <span class="n">display</span><span class="p">(</span><span class="s">&#39;Initial vector has more than M non-zero elements. Keeping only M largest.&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
 </span></span><span class="line"><span class="cl">    <span class="n">s</span>                   <span class="p">=</span>   <span class="n">s_initial</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
@@ -1040,7 +1200,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl"><span class="c">%                 Random Check to see if dictionary norm is below 1 </span>
 </span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl">        <span class="n">x_test</span><span class="p">=</span><span class="nb">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">x_test</span><span class="p">=</span><span class="n">x_test</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">x_test</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">nP</span><span class="p">=</span><span class="n">norm</span><span class="p">(</span><span class="n">P</span><span class="p">(</span><span class="n">x_test</span><span class="p">));</span>
@@ -1062,7 +1222,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl"><span class="n">iter</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">~</span><span class="n">done</span>
-</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">    
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">MU</span> <span class="o">==</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c">%Calculate optimal step size and do line search</span>
@@ -1073,7 +1233,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">        <span class="c">% If the current vector is zero, we take the largest elements in d</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sum</span><span class="p">(</span><span class="n">IND</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span>
 </span></span><span class="line"><span class="cl">            <span class="p">[</span><span class="n">dsort</span> <span class="n">sortdind</span><span class="p">]</span>    <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="n">IND</span><span class="p">(</span><span class="n">sortdind</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">))</span>  <span class="p">=</span>   <span class="mi">1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">IND</span><span class="p">(</span><span class="n">sortdind</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">))</span>  <span class="p">=</span>   <span class="mi">1</span><span class="p">;</span>    
 </span></span><span class="line"><span class="cl">         <span class="k">end</span>  
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="n">id</span>                  <span class="p">=</span>   <span class="p">(</span><span class="n">IND</span><span class="o">.*</span><span class="n">d</span><span class="p">);</span>
@@ -1083,14 +1243,14 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">(</span><span class="n">sortind</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">))</span> <span class="p">=</span>   <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Ps</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl">        <span class="c">% Calculate step-size requirement </span>
 </span></span><span class="line"><span class="cl">        <span class="n">omega</span>               <span class="p">=</span>   <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">olds</span><span class="p">)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">Ps</span><span class="o">-</span><span class="n">oldPs</span><span class="p">))</span>^<span class="mi">2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c">% As long as the support changes and mu &gt; omega, we decrease mu</span>
 </span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">mu</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">0.99</span><span class="p">)</span><span class="o">*</span><span class="n">omega</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span><span class="p">(</span><span class="n">xor</span><span class="p">(</span><span class="n">IND</span><span class="p">,</span><span class="n">s</span><span class="o">~=</span><span class="mi">0</span><span class="p">))</span><span class="o">~=</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">sum</span><span class="p">(</span><span class="n">IND</span><span class="p">)</span><span class="o">~=</span><span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="c">%             display([&#39;decreasing mu&#39;])</span>
-</span></span><span class="line"><span class="cl">                  
+</span></span><span class="line"><span class="cl">                    
 </span></span><span class="line"><span class="cl">                    <span class="c">% We use a simple line search, halving mu in each step</span>
 </span></span><span class="line"><span class="cl">                    <span class="n">mu</span>                  <span class="p">=</span>   <span class="n">mu</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">                    <span class="n">s</span>                   <span class="p">=</span>   <span class="n">olds</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">d</span><span class="p">;</span>
@@ -1100,23 +1260,23 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">                    <span class="c">% Calculate step-size requirement </span>
 </span></span><span class="line"><span class="cl">                    <span class="n">omega</span>               <span class="p">=</span>   <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="o">-</span><span class="n">olds</span><span class="p">)</span><span class="o">/</span><span class="n">norm</span><span class="p">(</span><span class="n">Ps</span><span class="o">-</span><span class="n">oldPs</span><span class="p">))</span>^<span class="mi">2</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">end</span>
-</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl">    <span class="k">else</span>
 </span></span><span class="line"><span class="cl">        <span class="c">% Use fixed step size</span>
 </span></span><span class="line"><span class="cl">        <span class="n">s</span>                   <span class="p">=</span>   <span class="n">s</span> <span class="o">+</span> <span class="n">MU</span> <span class="o">*</span> <span class="n">Pt</span><span class="p">(</span><span class="n">Residual</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="n">ssort</span> <span class="n">sortind</span><span class="p">]</span>     <span class="p">=</span>   <span class="n">sort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">s</span><span class="p">),</span><span class="s">&#39;descend&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">s</span><span class="p">(</span><span class="n">sortind</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">))</span> <span class="p">=</span>   <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Ps</span>                  <span class="p">=</span>   <span class="n">P</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl">    <span class="k">end</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Residual</span>            <span class="p">=</span>   <span class="n">x</span><span class="o">-</span><span class="n">Ps</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">        
 </span></span><span class="line"><span class="cl">     <span class="n">ERR</span><span class="p">=</span><span class="n">Residual</span><span class="o">&#39;*</span><span class="n">Residual</span><span class="o">/</span><span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">comp_err</span>
 </span></span><span class="line"><span class="cl">         <span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">)=</span><span class="n">ERR</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="k">end</span>
-</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">     
 </span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">comp_time</span>
 </span></span><span class="line"><span class="cl">         <span class="n">iter_time</span><span class="p">(</span><span class="n">iter</span><span class="p">)=</span><span class="n">toc</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">     <span class="k">end</span>
@@ -1124,7 +1284,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
 </span></span><span class="line"><span class="cl"><span class="c">%                        Are we done yet?</span>
 </span></span><span class="line"><span class="cl"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
-</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">     
 </span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="n">comp_err</span> <span class="o">&amp;&amp;</span> <span class="n">iter</span> <span class="o">&gt;</span><span class="p">=</span><span class="mi">2</span>
 </span></span><span class="line"><span class="cl">             <span class="k">if</span> <span class="p">((</span><span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">))</span><span class="o">/</span><span class="n">sigsize</span><span class="o">&lt;</span><span class="n">STOPTOL</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">                 <span class="k">if</span> <span class="n">verbose</span>
@@ -1146,7 +1306,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">                <span class="n">t</span><span class="p">=</span><span class="n">toc</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">             <span class="k">end</span>
 </span></span><span class="line"><span class="cl">         <span class="k">end</span>
-</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">         
 </span></span><span class="line"><span class="cl">    <span class="c">% Also stop if residual gets too small or maxIter reached</span>
 </span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="n">comp_err</span>
 </span></span><span class="line"><span class="cl">         <span class="k">if</span> <span class="n">err_mse</span><span class="p">(</span><span class="n">iter</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-16</span>
@@ -1171,7 +1331,7 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
 </span></span><span class="line"><span class="cl">   
 </span></span><span class="line"><span class="cl">     <span class="k">if</span> <span class="o">~</span><span class="n">done</span>
 </span></span><span class="line"><span class="cl">        <span class="n">iter</span><span class="p">=</span><span class="n">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">oldERR</span><span class="p">=</span><span class="n">ERR</span><span class="p">;</span>      
+</span></span><span class="line"><span class="cl">        <span class="n">oldERR</span><span class="p">=</span><span class="n">ERR</span><span class="p">;</span>        
 </span></span><span class="line"><span class="cl">     <span class="k">end</span>
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
 </span></span><span class="line"><span class="cl">
@@ -1319,16 +1479,16 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
             
                 
 <article class="has-image">
-    <a href="/p/5191bf/">
+    <a href="/p/007a07/">
         
         
             <div class="article-image">
-                <img src="/p/5191bf/ae2557342ff4f654eac932f3bda28363.e9a8e729fa21d4dfc9f0e186445c3dc2_hu_1b36efb68d7e3922.png" 
+                <img src="/p/007a07/ae2557342ff4f654eac932f3bda28363.e9a8e729fa21d4dfc9f0e186445c3dc2_hu_1b36efb68d7e3922.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
                         alt="Featured image of post 压缩感知"
-                        data-key="5191bf" 
+                        data-key="007a07" 
                         data-hash="md5-6ajnKfoh1N/J8OGGRFw9wg==">
                 
             </div>
@@ -1343,23 +1503,23 @@ $$<p>极值点通过简单的配方法即可获得。这时，取得最小值$\s
             
                 
 <article class="has-image">
-    <a href="/p/00a438/">
+    <a href="/p/8d8887/">
         
         
             <div class="article-image">
-                <img src="/p/00a438/surf.4be11db538a672820e362ae30c8771ee_hu_26f0f1a9d3da61a8.png" 
+                <img src="/p/8d8887/1fede6e5060f2bc3212a795f0c52b1cb.b487d283a0520d7fce4aff48e865ec88_hu_98af2a4f6e8728dd.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
-                        alt="Featured image of post Nesterov 牛顿动量"
-                        data-key="00a438" 
-                        data-hash="md5-S&#43;EdtTimcoIONirjDIdx7g==">
+                        alt="Featured image of post 拉格朗日乘子法"
+                        data-key="8d8887" 
+                        data-hash="md5-tIfSg6BSDX/OSv9I6GXsiA==">
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">Nesterov 牛顿动量</h2>
+            <h2 class="article-title">拉格朗日乘子法</h2>
         </div>
     </a>
 </article>

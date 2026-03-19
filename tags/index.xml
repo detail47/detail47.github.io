@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>Detail</copyright>
-        <lastBuildDate>Fri, 06 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 18 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.detail.eu.org/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>最优化</title>
+        <link>https://blog.detail.eu.org/tags/%E6%9C%80%E4%BC%98%E5%8C%96/</link>
+        <pubDate>Wed, 18 Mar 2026 00:00:00 +0000</pubDate>
+        
+        <guid>https://blog.detail.eu.org/tags/%E6%9C%80%E4%BC%98%E5%8C%96/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>凸优化</title>
         <link>https://blog.detail.eu.org/tags/%E5%87%B8%E4%BC%98%E5%8C%96/</link>
         <pubDate>Fri, 06 Mar 2026 00:00:00 +0000</pubDate>

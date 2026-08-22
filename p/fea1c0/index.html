@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://blog.detail.eu.org/p/fea1c0/'>
 
-<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32 EXTI">
+<link rel="stylesheet" href="/scss/style.min.7003b7ac1a9c42e0b19aae00dfd2f4ca1ca01ad9fe44120e4e9e79d16f0188d6.css"><meta property='og:title' content="STM32 EXTI">
 <meta property='og:description' content="STM32标准库学习笔记-STM32 EXTI">
 <meta property='og:url' content='https://blog.detail.eu.org/p/fea1c0/'>
 <meta property='og:site_name' content='Detail&#39;s Blog'>
@@ -434,52 +434,52 @@
 <li>抢占优先级高的可以中断嵌套，响应优先级高的可以优先排队，抢占优先级和响应优先级均相同的按中断号排队</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>分组方式</th>
-          <th>抢占优先级</th>
-          <th>响应优先级</th>
-          <th>宏</th>
-          <th>值</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>分组0</td>
-          <td>0位，取值为0</td>
-          <td>4位，取值为0~15</td>
-          <td>NVIC_PriorityGroup_0</td>
-          <td>((uint32_t)0x700)</td>
-      </tr>
-      <tr>
-          <td>分组1</td>
-          <td>1位，取值为0~1</td>
-          <td>3位，取值为0~7</td>
-          <td>NVIC_PriorityGroup_1</td>
-          <td>((uint32_t)0x600)</td>
-      </tr>
-      <tr>
-          <td>分组2</td>
-          <td>2位，取值为0~3</td>
-          <td>2位，取值为0~3</td>
-          <td>NVIC_PriorityGroup_2</td>
-          <td>((uint32_t)0x500)</td>
-      </tr>
-      <tr>
-          <td>分组3</td>
-          <td>3位，取值为0~7</td>
-          <td>1位，取值为0~1</td>
-          <td>NVIC_PriorityGroup_3</td>
-          <td>((uint32_t)0x400)</td>
-      </tr>
-      <tr>
-          <td>分组4</td>
-          <td>4位，取值为0~15</td>
-          <td>0位，取值为0</td>
-          <td>NVIC_PriorityGroup_4</td>
-          <td>((uint32_t)0x300)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>分组方式</th>
+					<th>抢占优先级</th>
+					<th>响应优先级</th>
+					<th>宏</th>
+					<th>值</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>分组0</td>
+					<td>0位，取值为0</td>
+					<td>4位，取值为0~15</td>
+					<td>NVIC_PriorityGroup_0</td>
+					<td>((uint32_t)0x700)</td>
+			</tr>
+			<tr>
+					<td>分组1</td>
+					<td>1位，取值为0~1</td>
+					<td>3位，取值为0~7</td>
+					<td>NVIC_PriorityGroup_1</td>
+					<td>((uint32_t)0x600)</td>
+			</tr>
+			<tr>
+					<td>分组2</td>
+					<td>2位，取值为0~3</td>
+					<td>2位，取值为0~3</td>
+					<td>NVIC_PriorityGroup_2</td>
+					<td>((uint32_t)0x500)</td>
+			</tr>
+			<tr>
+					<td>分组3</td>
+					<td>3位，取值为0~7</td>
+					<td>1位，取值为0~1</td>
+					<td>NVIC_PriorityGroup_3</td>
+					<td>((uint32_t)0x400)</td>
+			</tr>
+			<tr>
+					<td>分组4</td>
+					<td>4位，取值为0~15</td>
+					<td>0位，取值为0</td>
+					<td>NVIC_PriorityGroup_4</td>
+					<td>((uint32_t)0x300)</td>
+			</tr>
+	</tbody>
 </table></div>
 <h3 id="代码">代码
 </h3><div class="highlight"><div class="chroma">
@@ -521,230 +521,230 @@
 <h4 id="中断通道以stm32f10x_为准">中断通道（以<a class="link" href="https://blog.csdn.net/weiaipan1314/article/details/112596356"  target="_blank" rel="noopener"
     >STM32F10X_MD</a>为准）
 </h4><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>NVIC_IRQChannel</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>WWDG_IRQn</td>
-          <td>0</td>
-          <td>Window WatchDog Interrupt</td>
-      </tr>
-      <tr>
-          <td>PVD_IRQn</td>
-          <td>1</td>
-          <td>PVD through EXTI Line detection Interrupt</td>
-      </tr>
-      <tr>
-          <td>TAMPER_IRQn</td>
-          <td>2</td>
-          <td>Tamper Interrupt</td>
-      </tr>
-      <tr>
-          <td>RTC_IRQn</td>
-          <td>3</td>
-          <td>RTC global Interrupt</td>
-      </tr>
-      <tr>
-          <td>FLASH_IRQn</td>
-          <td>4</td>
-          <td>FLASH global Interrupt</td>
-      </tr>
-      <tr>
-          <td>RCC_IRQn</td>
-          <td>5</td>
-          <td>RCC global Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI0_IRQn</td>
-          <td>6</td>
-          <td>EXTI Line0 Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI1_IRQn</td>
-          <td>7</td>
-          <td>EXTI Line1 Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI2_IRQn</td>
-          <td>8</td>
-          <td>EXTI Line2 Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI3_IRQn</td>
-          <td>9</td>
-          <td>EXTI Line3 Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI4_IRQn</td>
-          <td>10</td>
-          <td>EXTI Line4 Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel1_IRQn</td>
-          <td>11</td>
-          <td>DMA1 Channel 1 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel2_IRQn</td>
-          <td>12</td>
-          <td>DMA1 Channel 2 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel3_IRQn</td>
-          <td>13</td>
-          <td>DMA1 Channel 3 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel4_IRQn</td>
-          <td>14</td>
-          <td>DMA1 Channel 4 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel5_IRQn</td>
-          <td>15</td>
-          <td>DMA1 Channel 5 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel6_IRQn</td>
-          <td>16</td>
-          <td>DMA1 Channel 6 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>DMA1_Channel7_IRQn</td>
-          <td>17</td>
-          <td>DMA1 Channel 7 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>ADC1_2_IRQn</td>
-          <td>18</td>
-          <td>ADC1 and ADC2 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>USB_HP_CAN1_TX_IRQn</td>
-          <td>19</td>
-          <td>USB Device High Priority or CAN1 TX Interrupts</td>
-      </tr>
-      <tr>
-          <td>USB_LP_CAN1_RX0_IRQn</td>
-          <td>20</td>
-          <td>USB Device Low Priority or CAN1 RX0 Interrupts</td>
-      </tr>
-      <tr>
-          <td>CAN1_RX1_IRQn</td>
-          <td>21</td>
-          <td>CAN1 RX1 Interrupt</td>
-      </tr>
-      <tr>
-          <td>CAN1_SCE_IRQn</td>
-          <td>22</td>
-          <td>CAN1 SCE Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI9_5_IRQn</td>
-          <td>23</td>
-          <td>External Line[9:5] Interrupts</td>
-      </tr>
-      <tr>
-          <td>TIM1_BRK_IRQn</td>
-          <td>24</td>
-          <td>TIM1 Break Interrupt</td>
-      </tr>
-      <tr>
-          <td>TIM1_UP_IRQn</td>
-          <td>25</td>
-          <td>TIM1 Update Interrupt</td>
-      </tr>
-      <tr>
-          <td>TIM1_TRG_COM_IRQn</td>
-          <td>26</td>
-          <td>TIM1 Trigger and Commutation Interrupt</td>
-      </tr>
-      <tr>
-          <td>TIM1_CC_IRQn</td>
-          <td>27</td>
-          <td>TIM1 Capture Compare Interrupt</td>
-      </tr>
-      <tr>
-          <td>TIM2_IRQn</td>
-          <td>28</td>
-          <td>TIM2 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>TIM3_IRQn</td>
-          <td>29</td>
-          <td>TIM3 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>TIM4_IRQn</td>
-          <td>30</td>
-          <td>TIM4 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>I2C1_EV_IRQn</td>
-          <td>31</td>
-          <td>I2C1 Event Interrupt</td>
-      </tr>
-      <tr>
-          <td>I2C1_ER_IRQn</td>
-          <td>32</td>
-          <td>I2C1 Error Interrupt</td>
-      </tr>
-      <tr>
-          <td>I2C2_EV_IRQn</td>
-          <td>33</td>
-          <td>I2C2 Event Interrupt</td>
-      </tr>
-      <tr>
-          <td>I2C2_ER_IRQn</td>
-          <td>34</td>
-          <td>I2C2 Error Interrupt</td>
-      </tr>
-      <tr>
-          <td>SPI1_IRQn</td>
-          <td>35</td>
-          <td>SPI1 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>SPI2_IRQn</td>
-          <td>36</td>
-          <td>SPI2 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>USART1_IRQn</td>
-          <td>37</td>
-          <td>USART1 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>USART2_IRQn</td>
-          <td>38</td>
-          <td>USART2 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>USART3_IRQn</td>
-          <td>39</td>
-          <td>USART3 global Interrupt</td>
-      </tr>
-      <tr>
-          <td>EXTI15_10_IRQn</td>
-          <td>40</td>
-          <td>External Line[15:10] Interrupts</td>
-      </tr>
-      <tr>
-          <td>RTCAlarm_IRQn</td>
-          <td>41</td>
-          <td>RTC Alarm through EXTI Line Interrupt</td>
-      </tr>
-      <tr>
-          <td>USBWakeUp_IRQn</td>
-          <td>42</td>
-          <td>USB Device WakeUp from suspend through EXTI Line Interrupt</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>NVIC_IRQChannel</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>WWDG_IRQn</td>
+					<td>0</td>
+					<td>Window WatchDog Interrupt</td>
+			</tr>
+			<tr>
+					<td>PVD_IRQn</td>
+					<td>1</td>
+					<td>PVD through EXTI Line detection Interrupt</td>
+			</tr>
+			<tr>
+					<td>TAMPER_IRQn</td>
+					<td>2</td>
+					<td>Tamper Interrupt</td>
+			</tr>
+			<tr>
+					<td>RTC_IRQn</td>
+					<td>3</td>
+					<td>RTC global Interrupt</td>
+			</tr>
+			<tr>
+					<td>FLASH_IRQn</td>
+					<td>4</td>
+					<td>FLASH global Interrupt</td>
+			</tr>
+			<tr>
+					<td>RCC_IRQn</td>
+					<td>5</td>
+					<td>RCC global Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI0_IRQn</td>
+					<td>6</td>
+					<td>EXTI Line0 Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI1_IRQn</td>
+					<td>7</td>
+					<td>EXTI Line1 Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI2_IRQn</td>
+					<td>8</td>
+					<td>EXTI Line2 Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI3_IRQn</td>
+					<td>9</td>
+					<td>EXTI Line3 Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI4_IRQn</td>
+					<td>10</td>
+					<td>EXTI Line4 Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel1_IRQn</td>
+					<td>11</td>
+					<td>DMA1 Channel 1 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel2_IRQn</td>
+					<td>12</td>
+					<td>DMA1 Channel 2 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel3_IRQn</td>
+					<td>13</td>
+					<td>DMA1 Channel 3 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel4_IRQn</td>
+					<td>14</td>
+					<td>DMA1 Channel 4 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel5_IRQn</td>
+					<td>15</td>
+					<td>DMA1 Channel 5 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel6_IRQn</td>
+					<td>16</td>
+					<td>DMA1 Channel 6 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>DMA1_Channel7_IRQn</td>
+					<td>17</td>
+					<td>DMA1 Channel 7 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>ADC1_2_IRQn</td>
+					<td>18</td>
+					<td>ADC1 and ADC2 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>USB_HP_CAN1_TX_IRQn</td>
+					<td>19</td>
+					<td>USB Device High Priority or CAN1 TX Interrupts</td>
+			</tr>
+			<tr>
+					<td>USB_LP_CAN1_RX0_IRQn</td>
+					<td>20</td>
+					<td>USB Device Low Priority or CAN1 RX0 Interrupts</td>
+			</tr>
+			<tr>
+					<td>CAN1_RX1_IRQn</td>
+					<td>21</td>
+					<td>CAN1 RX1 Interrupt</td>
+			</tr>
+			<tr>
+					<td>CAN1_SCE_IRQn</td>
+					<td>22</td>
+					<td>CAN1 SCE Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI9_5_IRQn</td>
+					<td>23</td>
+					<td>External Line[9:5] Interrupts</td>
+			</tr>
+			<tr>
+					<td>TIM1_BRK_IRQn</td>
+					<td>24</td>
+					<td>TIM1 Break Interrupt</td>
+			</tr>
+			<tr>
+					<td>TIM1_UP_IRQn</td>
+					<td>25</td>
+					<td>TIM1 Update Interrupt</td>
+			</tr>
+			<tr>
+					<td>TIM1_TRG_COM_IRQn</td>
+					<td>26</td>
+					<td>TIM1 Trigger and Commutation Interrupt</td>
+			</tr>
+			<tr>
+					<td>TIM1_CC_IRQn</td>
+					<td>27</td>
+					<td>TIM1 Capture Compare Interrupt</td>
+			</tr>
+			<tr>
+					<td>TIM2_IRQn</td>
+					<td>28</td>
+					<td>TIM2 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>TIM3_IRQn</td>
+					<td>29</td>
+					<td>TIM3 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>TIM4_IRQn</td>
+					<td>30</td>
+					<td>TIM4 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>I2C1_EV_IRQn</td>
+					<td>31</td>
+					<td>I2C1 Event Interrupt</td>
+			</tr>
+			<tr>
+					<td>I2C1_ER_IRQn</td>
+					<td>32</td>
+					<td>I2C1 Error Interrupt</td>
+			</tr>
+			<tr>
+					<td>I2C2_EV_IRQn</td>
+					<td>33</td>
+					<td>I2C2 Event Interrupt</td>
+			</tr>
+			<tr>
+					<td>I2C2_ER_IRQn</td>
+					<td>34</td>
+					<td>I2C2 Error Interrupt</td>
+			</tr>
+			<tr>
+					<td>SPI1_IRQn</td>
+					<td>35</td>
+					<td>SPI1 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>SPI2_IRQn</td>
+					<td>36</td>
+					<td>SPI2 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>USART1_IRQn</td>
+					<td>37</td>
+					<td>USART1 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>USART2_IRQn</td>
+					<td>38</td>
+					<td>USART2 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>USART3_IRQn</td>
+					<td>39</td>
+					<td>USART3 global Interrupt</td>
+			</tr>
+			<tr>
+					<td>EXTI15_10_IRQn</td>
+					<td>40</td>
+					<td>External Line[15:10] Interrupts</td>
+			</tr>
+			<tr>
+					<td>RTCAlarm_IRQn</td>
+					<td>41</td>
+					<td>RTC Alarm through EXTI Line Interrupt</td>
+			</tr>
+			<tr>
+					<td>USBWakeUp_IRQn</td>
+					<td>42</td>
+					<td>USB Device WakeUp from suspend through EXTI Line Interrupt</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="exti">EXTI
 </h2><h3 id="基本结构-1">基本结构
@@ -794,115 +794,115 @@
 <li><code>EXTI_Trigger</code>为触发边缘</li>
 </ol>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>EXTI_Line</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>EXTI_Line0</td>
-          <td>((uint32_t)0x00001)</td>
-          <td>External interrupt line 0</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line1</td>
-          <td>((uint32_t)0x00002)</td>
-          <td>External interrupt line 1</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line2</td>
-          <td>((uint32_t)0x00004)</td>
-          <td>External interrupt line 2</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line3</td>
-          <td>((uint32_t)0x00008)</td>
-          <td>External interrupt line 3</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line4</td>
-          <td>((uint32_t)0x00010)</td>
-          <td>External interrupt line 4</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line5</td>
-          <td>((uint32_t)0x00020)</td>
-          <td>External interrupt line 5</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line6</td>
-          <td>((uint32_t)0x00040)</td>
-          <td>External interrupt line 6</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line7</td>
-          <td>((uint32_t)0x00080)</td>
-          <td>External interrupt line 7</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line8</td>
-          <td>((uint32_t)0x00100)</td>
-          <td>External interrupt line 8</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line9</td>
-          <td>((uint32_t)0x00200)</td>
-          <td>External interrupt line 9</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line10</td>
-          <td>((uint32_t)0x00400)</td>
-          <td>External interrupt line 10</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line11</td>
-          <td>((uint32_t)0x00800)</td>
-          <td>External interrupt line 11</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line12</td>
-          <td>((uint32_t)0x01000)</td>
-          <td>External interrupt line 12</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line13</td>
-          <td>((uint32_t)0x02000)</td>
-          <td>External interrupt line 13</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line14</td>
-          <td>((uint32_t)0x04000)</td>
-          <td>External interrupt line 14</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line15</td>
-          <td>((uint32_t)0x08000)</td>
-          <td>External interrupt line 15</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line16</td>
-          <td>((uint32_t)0x10000)</td>
-          <td>External interrupt line 16 Connected to the PVD Output</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line17</td>
-          <td>((uint32_t)0x20000)</td>
-          <td>External interrupt line 17 Connected to the RTC Alarm event</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line18</td>
-          <td>((uint32_t)0x40000)</td>
-          <td>External interrupt line 18 Connected to the USB Device/USB OTG FS Wakeup from suspend event</td>
-      </tr>
-      <tr>
-          <td>EXTI_Line19</td>
-          <td>((uint32_t)0x80000)</td>
-          <td>External interrupt line 19 Connected to the Ethernet Wakeup event</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>EXTI_Line</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>EXTI_Line0</td>
+					<td>((uint32_t)0x00001)</td>
+					<td>External interrupt line 0</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line1</td>
+					<td>((uint32_t)0x00002)</td>
+					<td>External interrupt line 1</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line2</td>
+					<td>((uint32_t)0x00004)</td>
+					<td>External interrupt line 2</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line3</td>
+					<td>((uint32_t)0x00008)</td>
+					<td>External interrupt line 3</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line4</td>
+					<td>((uint32_t)0x00010)</td>
+					<td>External interrupt line 4</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line5</td>
+					<td>((uint32_t)0x00020)</td>
+					<td>External interrupt line 5</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line6</td>
+					<td>((uint32_t)0x00040)</td>
+					<td>External interrupt line 6</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line7</td>
+					<td>((uint32_t)0x00080)</td>
+					<td>External interrupt line 7</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line8</td>
+					<td>((uint32_t)0x00100)</td>
+					<td>External interrupt line 8</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line9</td>
+					<td>((uint32_t)0x00200)</td>
+					<td>External interrupt line 9</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line10</td>
+					<td>((uint32_t)0x00400)</td>
+					<td>External interrupt line 10</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line11</td>
+					<td>((uint32_t)0x00800)</td>
+					<td>External interrupt line 11</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line12</td>
+					<td>((uint32_t)0x01000)</td>
+					<td>External interrupt line 12</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line13</td>
+					<td>((uint32_t)0x02000)</td>
+					<td>External interrupt line 13</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line14</td>
+					<td>((uint32_t)0x04000)</td>
+					<td>External interrupt line 14</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line15</td>
+					<td>((uint32_t)0x08000)</td>
+					<td>External interrupt line 15</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line16</td>
+					<td>((uint32_t)0x10000)</td>
+					<td>External interrupt line 16 Connected to the PVD Output</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line17</td>
+					<td>((uint32_t)0x20000)</td>
+					<td>External interrupt line 17 Connected to the RTC Alarm event</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line18</td>
+					<td>((uint32_t)0x40000)</td>
+					<td>External interrupt line 18 Connected to the USB Device/USB OTG FS Wakeup from suspend event</td>
+			</tr>
+			<tr>
+					<td>EXTI_Line19</td>
+					<td>((uint32_t)0x80000)</td>
+					<td>External interrupt line 19 Connected to the Ethernet Wakeup event</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="afio">AFIO
 </h2><h3 id="基本结构-2">基本结构

@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://blog.detail.eu.org/p/88b59a/'>
 
-<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="STM32 TIM">
+<link rel="stylesheet" href="/scss/style.min.7003b7ac1a9c42e0b19aae00dfd2f4ca1ca01ad9fe44120e4e9e79d16f0188d6.css"><meta property='og:title' content="STM32 TIM">
 <meta property='og:description' content="STM32标准库学习笔记-STM32 TIM">
 <meta property='og:url' content='https://blog.detail.eu.org/p/88b59a/'>
 <meta property='og:site_name' content='Detail&#39;s Blog'>
@@ -384,34 +384,34 @@
 <p>实际外设:
 STM32F103C8T6定时器资源：TIM1、TIM2、TIM3、TIM4</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>类型</th>
-          <th>编号</th>
-          <th>总线</th>
-          <th>功能</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>高级定时器</td>
-          <td>TIM1、TIM8</td>
-          <td>APB2</td>
-          <td>拥有通用定时器全部功能，并额外具有重复计数器、死区生成、互补输出、刹车输入等功能</td>
-      </tr>
-      <tr>
-          <td>通用定时器</td>
-          <td>TIM2、TIM3、TIM4、TIM5</td>
-          <td>APB1</td>
-          <td>拥有基本定时器全部功能，并额外具有内外时钟源选择、输入捕获、输出比较、编码器接口、主从触发模式等功能</td>
-      </tr>
-      <tr>
-          <td>基本定时器</td>
-          <td>TIM6、TIM7</td>
-          <td>APB1</td>
-          <td>拥有定时中断、主模式触发DAC的功能</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>类型</th>
+					<th>编号</th>
+					<th>总线</th>
+					<th>功能</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>高级定时器</td>
+					<td>TIM1、TIM8</td>
+					<td>APB2</td>
+					<td>拥有通用定时器全部功能，并额外具有重复计数器、死区生成、互补输出、刹车输入等功能</td>
+			</tr>
+			<tr>
+					<td>通用定时器</td>
+					<td>TIM2、TIM3、TIM4、TIM5</td>
+					<td>APB1</td>
+					<td>拥有基本定时器全部功能，并额外具有内外时钟源选择、输入捕获、输出比较、编码器接口、主从触发模式等功能</td>
+			</tr>
+			<tr>
+					<td>基本定时器</td>
+					<td>TIM6、TIM7</td>
+					<td>APB1</td>
+					<td>拥有定时中断、主模式触发DAC的功能</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="tim结构">TIM结构
 </h2><h3 id="主要结构">主要结构
@@ -626,139 +626,139 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效</p>
 <li><code>ExtTRGFilter</code>为外部时钟滤波器：0x0-0xF</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_InputTriggerSource</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_TS_ITR0</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>TIM内部触发0</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ITR1</td>
-          <td>((uint16_t)0x0010)</td>
-          <td>TIM内部触发1</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ITR2</td>
-          <td>((uint16_t)0x0020)</td>
-          <td>TIM内部触发2</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ITR3</td>
-          <td>((uint16_t)0x0030)</td>
-          <td>TIM内部触发3</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_InputTriggerSource</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_TS_ITR0</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>TIM内部触发0</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ITR1</td>
+					<td>((uint16_t)0x0010)</td>
+					<td>TIM内部触发1</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ITR2</td>
+					<td>((uint16_t)0x0020)</td>
+					<td>TIM内部触发2</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ITR3</td>
+					<td>((uint16_t)0x0030)</td>
+					<td>TIM内部触发3</td>
+			</tr>
+	</tbody>
 </table></div>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_TIxExternalCLKSource</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_TS_TI1FP1</td>
-          <td>((uint16_t)0x0050)</td>
-          <td>TIMIC1连接TI1（即使用TIMx_CH1）</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_TI2FP2</td>
-          <td>((uint16_t)0x0060)</td>
-          <td>TIMIC2连接TI2（即使用TIMx_CH2）</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_TI1F_ED</td>
-          <td>((uint16_t)0x0040)</td>
-          <td>TIMIC1连接TI1，使用边缘检测</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_TIxExternalCLKSource</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_TS_TI1FP1</td>
+					<td>((uint16_t)0x0050)</td>
+					<td>TIMIC1连接TI1（即使用TIMx_CH1）</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_TI2FP2</td>
+					<td>((uint16_t)0x0060)</td>
+					<td>TIMIC2连接TI2（即使用TIMx_CH2）</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_TI1F_ED</td>
+					<td>((uint16_t)0x0040)</td>
+					<td>TIMIC1连接TI1，使用边缘检测</td>
+			</tr>
+	</tbody>
 </table></div>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_ExtTRGPrescaler</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_ExtTRGPSC_OFF</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>TIM ETRP 不分频</td>
-      </tr>
-      <tr>
-          <td>TIM_ExtTRGPSC_DIV2</td>
-          <td>((uint16_t)0x1000)</td>
-          <td>TIM ETRP 二分频</td>
-      </tr>
-      <tr>
-          <td>TIM_ExtTRGPSC_DIV4</td>
-          <td>((uint16_t)0x2000)</td>
-          <td>TIM ETRP 四分频</td>
-      </tr>
-      <tr>
-          <td>TIM_ExtTRGPSC_DIV8</td>
-          <td>((uint16_t)0x3000)</td>
-          <td>TIM ETRP 八分频</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_ExtTRGPrescaler</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_ExtTRGPSC_OFF</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>TIM ETRP 不分频</td>
+			</tr>
+			<tr>
+					<td>TIM_ExtTRGPSC_DIV2</td>
+					<td>((uint16_t)0x1000)</td>
+					<td>TIM ETRP 二分频</td>
+			</tr>
+			<tr>
+					<td>TIM_ExtTRGPSC_DIV4</td>
+					<td>((uint16_t)0x2000)</td>
+					<td>TIM ETRP 四分频</td>
+			</tr>
+			<tr>
+					<td>TIM_ExtTRGPSC_DIV8</td>
+					<td>((uint16_t)0x3000)</td>
+					<td>TIM ETRP 八分频</td>
+			</tr>
+	</tbody>
 </table></div>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_ICPolarity</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_ICPolarity_Rising</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>上升沿有效</td>
-      </tr>
-      <tr>
-          <td>TIM_ICPolarity_Falling</td>
-          <td>((uint16_t)0x0002)</td>
-          <td>下降沿有效</td>
-      </tr>
-      <tr>
-          <td>TIM_ICPolarity_BothEdge</td>
-          <td>((uint16_t)0x000A)</td>
-          <td>双边缘有效</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_ICPolarity</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_ICPolarity_Rising</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>上升沿有效</td>
+			</tr>
+			<tr>
+					<td>TIM_ICPolarity_Falling</td>
+					<td>((uint16_t)0x0002)</td>
+					<td>下降沿有效</td>
+			</tr>
+			<tr>
+					<td>TIM_ICPolarity_BothEdge</td>
+					<td>((uint16_t)0x000A)</td>
+					<td>双边缘有效</td>
+			</tr>
+	</tbody>
 </table></div>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_ICPolarity</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_ExtTRGPolarity_Inverted</td>
-          <td>((uint16_t)0x8000)</td>
-          <td>极性翻转，低电平或下降沿有效</td>
-      </tr>
-      <tr>
-          <td>TIM_ExtTRGPolarity_NonInverted</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>极性不翻转，高电平或上升沿有效</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_ICPolarity</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_ExtTRGPolarity_Inverted</td>
+					<td>((uint16_t)0x8000)</td>
+					<td>极性翻转，低电平或下降沿有效</td>
+			</tr>
+			<tr>
+					<td>TIM_ExtTRGPolarity_NonInverted</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>极性不翻转，高电平或上升沿有效</td>
+			</tr>
+	</tbody>
 </table></div>
 <h4 id="配置时基单元">配置时基单元
 </h4><ol>
@@ -769,66 +769,66 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效</p>
 <li><del><code>TIM_RepetitionCounter</code>为重复计数值( <strong>REP</strong> ，仅高级定时器有效)</del></li>
 </ol>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_ClockDivision</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_CKD_DIV1</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>不分频</td>
-      </tr>
-      <tr>
-          <td>TIM_CKD_DIV2</td>
-          <td>((uint16_t)0x0100)</td>
-          <td>二分频</td>
-      </tr>
-      <tr>
-          <td>TIM_CKD_DIV4</td>
-          <td>((uint16_t)0x0200)</td>
-          <td>四分频</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_ClockDivision</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_CKD_DIV1</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>不分频</td>
+			</tr>
+			<tr>
+					<td>TIM_CKD_DIV2</td>
+					<td>((uint16_t)0x0100)</td>
+					<td>二分频</td>
+			</tr>
+			<tr>
+					<td>TIM_CKD_DIV4</td>
+					<td>((uint16_t)0x0200)</td>
+					<td>四分频</td>
+			</tr>
+	</tbody>
 </table></div>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_CounterMode</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_CounterMode_Up</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>向上计数模式</td>
-      </tr>
-      <tr>
-          <td>TIM_CounterMode_Down</td>
-          <td>((uint16_t)0x0010)</td>
-          <td>向下计数模式</td>
-      </tr>
-      <tr>
-          <td>TIM_CounterMode_CenterAligned1</td>
-          <td>((uint16_t)0x0020)</td>
-          <td>中心对齐计数模式，向下计数时匹配</td>
-      </tr>
-      <tr>
-          <td>TIM_CounterMode_CenterAligned2</td>
-          <td>((uint16_t)0x0040)</td>
-          <td>中心对齐计数模式，向上计数时匹配</td>
-      </tr>
-      <tr>
-          <td>TIM_CounterMode_CenterAligned3</td>
-          <td>((uint16_t)0x0060)</td>
-          <td>中心对齐计数模式，匹配所有</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_CounterMode</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_CounterMode_Up</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>向上计数模式</td>
+			</tr>
+			<tr>
+					<td>TIM_CounterMode_Down</td>
+					<td>((uint16_t)0x0010)</td>
+					<td>向下计数模式</td>
+			</tr>
+			<tr>
+					<td>TIM_CounterMode_CenterAligned1</td>
+					<td>((uint16_t)0x0020)</td>
+					<td>中心对齐计数模式，向下计数时匹配</td>
+			</tr>
+			<tr>
+					<td>TIM_CounterMode_CenterAligned2</td>
+					<td>((uint16_t)0x0040)</td>
+					<td>中心对齐计数模式，向上计数时匹配</td>
+			</tr>
+			<tr>
+					<td>TIM_CounterMode_CenterAligned3</td>
+					<td>((uint16_t)0x0060)</td>
+					<td>中心对齐计数模式，匹配所有</td>
+			</tr>
+	</tbody>
 </table></div>
 <h4 id="配置中断">配置中断
 </h4><ul>
@@ -836,45 +836,45 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效</p>
 <li>定时器能产生多种中断，需要用 <code>TIM_ITConfig</code>配置</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_IT</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_IT_Update</td>
-          <td>((uint16_t)0x0001)</td>
-          <td>更新中断，计数器向上溢出/向下溢出，计数器初始化</td>
-      </tr>
-      <tr>
-          <td>TIM_IT_CC1</td>
-          <td>((uint16_t)0x0002)</td>
-          <td>捕获/比较中断，CH1</td>
-      </tr>
-      <tr>
-          <td>TIM_IT_CC2</td>
-          <td>((uint16_t)0x0004)</td>
-          <td>捕获/比较中断，CH2</td>
-      </tr>
-      <tr>
-          <td>TIM_IT_CC3</td>
-          <td>((uint16_t)0x0008)</td>
-          <td>捕获/比较中断，CH3</td>
-      </tr>
-      <tr>
-          <td>TIM_IT_CC4</td>
-          <td>((uint16_t)0x0010)</td>
-          <td>捕获/比较中断，CH4</td>
-      </tr>
-      <tr>
-          <td>TIM_IT_Trigger</td>
-          <td>((uint16_t)0x0040)</td>
-          <td>触发事件(计数器启动、停止、初始化或者由内部/外部触发计数)</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_IT</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_IT_Update</td>
+					<td>((uint16_t)0x0001)</td>
+					<td>更新中断，计数器向上溢出/向下溢出，计数器初始化</td>
+			</tr>
+			<tr>
+					<td>TIM_IT_CC1</td>
+					<td>((uint16_t)0x0002)</td>
+					<td>捕获/比较中断，CH1</td>
+			</tr>
+			<tr>
+					<td>TIM_IT_CC2</td>
+					<td>((uint16_t)0x0004)</td>
+					<td>捕获/比较中断，CH2</td>
+			</tr>
+			<tr>
+					<td>TIM_IT_CC3</td>
+					<td>((uint16_t)0x0008)</td>
+					<td>捕获/比较中断，CH3</td>
+			</tr>
+			<tr>
+					<td>TIM_IT_CC4</td>
+					<td>((uint16_t)0x0010)</td>
+					<td>捕获/比较中断，CH4</td>
+			</tr>
+			<tr>
+					<td>TIM_IT_Trigger</td>
+					<td>((uint16_t)0x0040)</td>
+					<td>触发事件(计数器启动、停止、初始化或者由内部/外部触发计数)</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="输出比较">输出比较
 </h2><ul>
@@ -908,46 +908,46 @@ ARPE=1时，TIMx_ARR有预装入。ARR值在下次重装时生效</p>
 	
 ></p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>模式</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>冻结</td>
-          <td>CNT=CCR时，REF保持为原状态</td>
-      </tr>
-      <tr>
-          <td>匹配时置有效电平</td>
-          <td>CNT=CCR时，REF置有效电平</td>
-      </tr>
-      <tr>
-          <td>匹配时置无效电平</td>
-          <td>CNT=CCR时，REF置无效电平</td>
-      </tr>
-      <tr>
-          <td>匹配时电平翻转</td>
-          <td>CNT=CCR时，REF电平翻转</td>
-      </tr>
-      <tr>
-          <td>强制为无效电平</td>
-          <td>CNT与CCR无效，REF强制为无效电平</td>
-      </tr>
-      <tr>
-          <td>强制为有效电平</td>
-          <td>CNT与CCR无效，REF强制为有效电平</td>
-      </tr>
-      <tr>
-          <td>PWM模式1</td>
-          <td>向上计数：CNT&lt;CCR时，REF置有效电平，CNT≥CCR时，REF置无效电平<code>&lt;br&gt;</code>向下计数：CNT&gt;CCR时，REF置无效电平，CNT≤CCR时，REF置有效电平</td>
-      </tr>
-      <tr>
-          <td>PWM模式2</td>
-          <td>向上计数：CNT&lt;CCR时，REF置无效电平，CNT≥CCR时，REF置有效电平<code>&lt;br&gt;</code>向下计数：CNT&gt;CCR时，REF置有效电平，CNT≤CCR时，REF置无效电平</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>模式</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>冻结</td>
+					<td>CNT=CCR时，REF保持为原状态</td>
+			</tr>
+			<tr>
+					<td>匹配时置有效电平</td>
+					<td>CNT=CCR时，REF置有效电平</td>
+			</tr>
+			<tr>
+					<td>匹配时置无效电平</td>
+					<td>CNT=CCR时，REF置无效电平</td>
+			</tr>
+			<tr>
+					<td>匹配时电平翻转</td>
+					<td>CNT=CCR时，REF电平翻转</td>
+			</tr>
+			<tr>
+					<td>强制为无效电平</td>
+					<td>CNT与CCR无效，REF强制为无效电平</td>
+			</tr>
+			<tr>
+					<td>强制为有效电平</td>
+					<td>CNT与CCR无效，REF强制为有效电平</td>
+			</tr>
+			<tr>
+					<td>PWM模式1</td>
+					<td>向上计数：CNT&lt;CCR时，REF置有效电平，CNT≥CCR时，REF置无效电平<code>&lt;br&gt;</code>向下计数：CNT&gt;CCR时，REF置无效电平，CNT≤CCR时，REF置有效电平</td>
+			</tr>
+			<tr>
+					<td>PWM模式2</td>
+					<td>向上计数：CNT&lt;CCR时，REF置无效电平，CNT≥CCR时，REF置有效电平<code>&lt;br&gt;</code>向下计数：CNT&gt;CCR时，REF置有效电平，CNT≤CCR时，REF置无效电平</td>
+			</tr>
+	</tbody>
 </table></div>
 <p>以PWM模式1向上计数为例：
 <img src="/p/88b59a/faea0dd9cb4c79da5e5c92243003dd60907b9113.png"
@@ -1107,45 +1107,45 @@ $$<h3 id="代码-1">代码
 <li><code>TIM_Pulse</code>为CCR初始值</li>
 </ol>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_OCMode</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_OCMode_Timing</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>冻结</td>
-      </tr>
-      <tr>
-          <td>TIM_OCMode_Active</td>
-          <td>((uint16_t)0x0010)</td>
-          <td>匹配时置有效电平</td>
-      </tr>
-      <tr>
-          <td>TIM_OCMode_Inactive</td>
-          <td>((uint16_t)0x0020)</td>
-          <td>匹配时置无效电平</td>
-      </tr>
-      <tr>
-          <td>TIM_OCMode_Toggle</td>
-          <td>((uint16_t)0x0030)</td>
-          <td>匹配时电平翻转</td>
-      </tr>
-      <tr>
-          <td>TIM_OCMode_PWM1</td>
-          <td>((uint16_t)0x0060)</td>
-          <td>PWM模式1</td>
-      </tr>
-      <tr>
-          <td>TIM_OCMode_PWM2</td>
-          <td>((uint16_t)0x0070)</td>
-          <td>PWM模式2</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_OCMode</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_OCMode_Timing</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>冻结</td>
+			</tr>
+			<tr>
+					<td>TIM_OCMode_Active</td>
+					<td>((uint16_t)0x0010)</td>
+					<td>匹配时置有效电平</td>
+			</tr>
+			<tr>
+					<td>TIM_OCMode_Inactive</td>
+					<td>((uint16_t)0x0020)</td>
+					<td>匹配时置无效电平</td>
+			</tr>
+			<tr>
+					<td>TIM_OCMode_Toggle</td>
+					<td>((uint16_t)0x0030)</td>
+					<td>匹配时电平翻转</td>
+			</tr>
+			<tr>
+					<td>TIM_OCMode_PWM1</td>
+					<td>((uint16_t)0x0060)</td>
+					<td>PWM模式1</td>
+			</tr>
+			<tr>
+					<td>TIM_OCMode_PWM2</td>
+					<td>((uint16_t)0x0070)</td>
+					<td>PWM模式2</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="输入捕获">输入捕获
 </h2><ul>
@@ -1363,86 +1363,86 @@ $$<h3 id="主从触发">主从触发
 <li><code>TIM_SelectSlaveMode</code>函数用于配置从模式</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_InputTriggerSource</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_TS_ITR0</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>Internal Trigger 0</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ITR1</td>
-          <td>((uint16_t)0x0010)</td>
-          <td>Internal Trigger 1</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ITR2</td>
-          <td>((uint16_t)0x0020)</td>
-          <td>Internal Trigger 2</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ITR3</td>
-          <td>((uint16_t)0x0030)</td>
-          <td>Internal Trigger 3</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_TI1F_ED</td>
-          <td>((uint16_t)0x0040)</td>
-          <td>TI1 Edge Detector</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_TI1FP1</td>
-          <td>((uint16_t)0x0050)</td>
-          <td>Filtered Timer Input 1</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_TI2FP2</td>
-          <td>((uint16_t)0x0060)</td>
-          <td>Filtered Timer Input 2</td>
-      </tr>
-      <tr>
-          <td>TIM_TS_ETRF</td>
-          <td>((uint16_t)0x0070)</td>
-          <td>External Trigger input</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_InputTriggerSource</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_TS_ITR0</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>Internal Trigger 0</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ITR1</td>
+					<td>((uint16_t)0x0010)</td>
+					<td>Internal Trigger 1</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ITR2</td>
+					<td>((uint16_t)0x0020)</td>
+					<td>Internal Trigger 2</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ITR3</td>
+					<td>((uint16_t)0x0030)</td>
+					<td>Internal Trigger 3</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_TI1F_ED</td>
+					<td>((uint16_t)0x0040)</td>
+					<td>TI1 Edge Detector</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_TI1FP1</td>
+					<td>((uint16_t)0x0050)</td>
+					<td>Filtered Timer Input 1</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_TI2FP2</td>
+					<td>((uint16_t)0x0060)</td>
+					<td>Filtered Timer Input 2</td>
+			</tr>
+			<tr>
+					<td>TIM_TS_ETRF</td>
+					<td>((uint16_t)0x0070)</td>
+					<td>External Trigger input</td>
+			</tr>
+	</tbody>
 </table></div>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_SlaveMode</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_SlaveMode_Reset</td>
-          <td>((uint16_t)0x0004)</td>
-          <td>Rising edge of the selected trigger signal (TRGI) re-initializes<code>&lt;br&gt;</code> the counter and triggers an update of the registers.</td>
-      </tr>
-      <tr>
-          <td>TIM_SlaveMode_Gated</td>
-          <td>((uint16_t)0x0005)</td>
-          <td>The counter clock is enabled when the trigger signal (TRGI) is high.</td>
-      </tr>
-      <tr>
-          <td>TIM_SlaveMode_Trigger</td>
-          <td>((uint16_t)0x0006)</td>
-          <td>The counter starts at a rising edge of the trigger TRGI.</td>
-      </tr>
-      <tr>
-          <td>TIM_SlaveMode_External1</td>
-          <td>((uint16_t)0x0007)</td>
-          <td>Rising edges of the selected trigger (TRGI) clock the counter.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_SlaveMode</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_SlaveMode_Reset</td>
+					<td>((uint16_t)0x0004)</td>
+					<td>Rising edge of the selected trigger signal (TRGI) re-initializes<code>&lt;br&gt;</code> the counter and triggers an update of the registers.</td>
+			</tr>
+			<tr>
+					<td>TIM_SlaveMode_Gated</td>
+					<td>((uint16_t)0x0005)</td>
+					<td>The counter clock is enabled when the trigger signal (TRGI) is high.</td>
+			</tr>
+			<tr>
+					<td>TIM_SlaveMode_Trigger</td>
+					<td>((uint16_t)0x0006)</td>
+					<td>The counter starts at a rising edge of the trigger TRGI.</td>
+			</tr>
+			<tr>
+					<td>TIM_SlaveMode_External1</td>
+					<td>((uint16_t)0x0007)</td>
+					<td>Rising edges of the selected trigger (TRGI) clock the counter.</td>
+			</tr>
+	</tbody>
 </table></div>
 <p><img src="/p/88b59a/b42f474d39a1da3c78820f23bacbcade6d7820b4.png"
 	width="705"
@@ -1489,55 +1489,55 @@ $$<h3 id="主从触发">主从触发
 <li><code>TIM_SelectOutputTrigger</code>函数用于配置触发源</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_TRGOSource</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_TRGOSource_Reset</td>
-          <td>((uint16_t)0x0000)</td>
-          <td>The UG bit in the TIM_EGR register is used as the trigger output (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_Enable</td>
-          <td>((uint16_t)0x0010)</td>
-          <td>The Counter Enable CEN is used as the trigger output (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_Update</td>
-          <td>((uint16_t)0x0020)</td>
-          <td>The update event is selected as the trigger output (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_OC1</td>
-          <td>((uint16_t)0x0030)</td>
-          <td>The trigger output sends a positive pulse when the CC1IF flag is to be set, as soon as a capture or compare match occurs (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_OC1Ref</td>
-          <td>((uint16_t)0x0040)</td>
-          <td>OC1REF signal is used as the trigger output (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_OC2Ref</td>
-          <td>((uint16_t)0x0050)</td>
-          <td>OC2REF signal is used as the trigger output (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_OC3Ref</td>
-          <td>((uint16_t)0x0060)</td>
-          <td>OC3REF signal is used as the trigger output (TRGO).</td>
-      </tr>
-      <tr>
-          <td>TIM_TRGOSource_OC4Ref</td>
-          <td>((uint16_t)0x0070)</td>
-          <td>OC4REF signal is used as the trigger output (TRGO).</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_TRGOSource</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_TRGOSource_Reset</td>
+					<td>((uint16_t)0x0000)</td>
+					<td>The UG bit in the TIM_EGR register is used as the trigger output (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_Enable</td>
+					<td>((uint16_t)0x0010)</td>
+					<td>The Counter Enable CEN is used as the trigger output (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_Update</td>
+					<td>((uint16_t)0x0020)</td>
+					<td>The update event is selected as the trigger output (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_OC1</td>
+					<td>((uint16_t)0x0030)</td>
+					<td>The trigger output sends a positive pulse when the CC1IF flag is to be set, as soon as a capture or compare match occurs (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_OC1Ref</td>
+					<td>((uint16_t)0x0040)</td>
+					<td>OC1REF signal is used as the trigger output (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_OC2Ref</td>
+					<td>((uint16_t)0x0050)</td>
+					<td>OC2REF signal is used as the trigger output (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_OC3Ref</td>
+					<td>((uint16_t)0x0060)</td>
+					<td>OC3REF signal is used as the trigger output (TRGO).</td>
+			</tr>
+			<tr>
+					<td>TIM_TRGOSource_OC4Ref</td>
+					<td>((uint16_t)0x0070)</td>
+					<td>OC4REF signal is used as the trigger output (TRGO).</td>
+			</tr>
+	</tbody>
 </table></div>
 <h2 id="编码器接口">编码器接口
 </h2><ul>
@@ -1691,30 +1691,30 @@ $$<h3 id="主从触发">主从触发
 <li><code>TIM_ICPolarity_Rising</code>代表不反相，<code>TIM_ICPolarity_Falling</code>表示反相</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>TIM_EncoderMode</th>
-          <th>值</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>TIM_EncoderMode_TI1</td>
-          <td>((uint16_t)0x0001)</td>
-          <td>Counter counts on TI1FP1 edge depending on TI2FP2 level.</td>
-      </tr>
-      <tr>
-          <td>TIM_EncoderMode_TI2</td>
-          <td>((uint16_t)0x0002)</td>
-          <td>Counter counts on TI2FP2 edge depending on TI1FP1 level.</td>
-      </tr>
-      <tr>
-          <td>TIM_EncoderMode_TI12</td>
-          <td>((uint16_t)0x0003)</td>
-          <td>Counter counts on both TI1FP1 and TI2FP2 edges depending on the level of the other input.</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>TIM_EncoderMode</th>
+					<th>值</th>
+					<th>描述</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>TIM_EncoderMode_TI1</td>
+					<td>((uint16_t)0x0001)</td>
+					<td>Counter counts on TI1FP1 edge depending on TI2FP2 level.</td>
+			</tr>
+			<tr>
+					<td>TIM_EncoderMode_TI2</td>
+					<td>((uint16_t)0x0002)</td>
+					<td>Counter counts on TI2FP2 edge depending on TI1FP1 level.</td>
+			</tr>
+			<tr>
+					<td>TIM_EncoderMode_TI12</td>
+					<td>((uint16_t)0x0003)</td>
+					<td>Counter counts on both TI1FP1 and TI2FP2 edges depending on the level of the other input.</td>
+			</tr>
+	</tbody>
 </table></div>
 
 </section>
